@@ -1,7 +1,7 @@
 # InventoryTrackingSystem
  CSS 343 Assignment 4
-By Abraham Sham and Micah Rice  
-Edited  
+By Abraham Sham and Micah Rice   
+Edited 5/22/2021
 Description:
 A local movie rental store wishes to automate their inventory tracking system. Currently there are three types of movies/videos (in DVD media) to be tracked:
     • Comedy (denoted as ‘F’ for funny)
