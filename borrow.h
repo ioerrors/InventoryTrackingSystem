@@ -1,18 +1,27 @@
 ////////////////////////////////borrow.h file  ///////////////////////////////
 //-----------------------------------------------------------------------------
-// Created by Group 1 on 05/19/2021.
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
 // This is a borrow class which is a type of transaction 
 // child of the transaction class, inheriting from transaction
 //-----------------------------------------------------------------------------
 
-class Borrow: public TransactionFactory {
+class Borrow: public Transaction {
 public:
-    Borrow(int, Movie*);  // constructor
+    Borrow(int customerID, string MovieData);  // constructor
     virtual ~Borrow();    // destructor
-    virtual bool perform(MovieInventory&, CustomerInventory&);   // perform borrow movie
+    
+    
+    //---------------------------------------------------------------------------
+    // doTransaction()
+    // Description: performs the action relevant to the correct
+    //              movie and customer
+    // PRE: customer exists, movie is in stock
+    // POST: movie is borrowed(stock reduced by one), 
+    //       transation is added to customer history
+    void doTransaction(BSTree movies, HashTable customers);
     
 private:
-    Movie* movie;                   // Node to track movies to borrow
+    string movieData;               // Node to track movies to borrow
     int customerID;                 // customer responsible for the transaction
 };
