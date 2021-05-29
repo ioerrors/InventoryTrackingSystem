@@ -22,6 +22,6 @@ public:
     void doTransaction(BSTree movies, HashTable customers);
     
 private:
-    string movieData;               // Node to track movies to borrow
+    string movieData;               // string to track the movie to borrow
     int customerID;                 // customer responsible for the transaction
 };
