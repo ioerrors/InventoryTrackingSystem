@@ -7,8 +7,7 @@
 
 class Transaction {
 public:
-    Transaction();              // constructor
-    ~Transaction();             // destructor
+    virtual ~Transaction();             // destructor
 
     // Transaction* create(char type, int customerID, Movie*& m);   // create transactions
     //---------------------------------------------------------------------------
@@ -23,7 +22,7 @@ public:
     // Description: sets data fields
     // PRE: transaction
     // POST: function is not carried out except in children classes
-    virtual void setData(int setCustomerID, string setMovieData);
+    virtual void setData(string setTransData);
     
 private:
 	// potentially, so they don't have to be passed, just inherited?

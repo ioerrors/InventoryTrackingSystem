@@ -16,9 +16,8 @@ public:
     // setData()
     // Description: sets data field
     // PRE: history exists, customer exists
-    // POST: movieData is ignored, 
-    //       and customerID is set to setCustomerID
-    void setData(int setCustomerID, string setMovieData);
+    // POST: customerID is set by parsing setTransData
+    void setData(string setTransData);
     
     //---------------------------------------------------------------------------
     // doTransaction()

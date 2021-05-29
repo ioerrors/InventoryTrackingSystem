@@ -17,8 +17,9 @@ public:
     // setData()
     // Description: is irrelevant in this class
     // PRE: Inventory exists
-    // POST: nothing changes
-    virtual void setData(int setCustomerID, string setMovieData);   
+    // POST: nothing changes, setTransData is ignored
+    void setData(string setTransData);
+
     
     //---------------------------------------------------------------------------
     // doTransaction()
@@ -26,4 +27,5 @@ public:
     // PRE: BSTree movies exists, is not null
     // POST: movies in stock are printed
     void doTransaction(BSTree movies);
+
 };

@@ -13,9 +13,8 @@
 class Drama : public Movie {
 public:
     
-    Drama(char genre, char mediaType, string title, string director,
-          int stock, int yearRelease);      // constructor
-    ~Drama();                               // destructor
+    Drama();      // constructor
+    ~Drama();     // destructor
     
     // Accessors
     char getGenre() const;
@@ -25,20 +24,17 @@ public:
     int getReleaseYear() const;
     
     // Mutators
-    virtual bool addStock(int); 
-    virtual bool subStock(int);            // subtract from stock
-    virtual void addSameMovies(Movie*&);            // add the same movie to the list of same movies
-    string setTitle() const;
-    string setDirector() const;
-    int setStock() const;
-    int setReleaseYear() const;
-    virtual string setActor() const;
+    bool addStock(int); 
+    bool subStock(int);            // subtract from stock
+    // void addSameMovies(Movie*&);            // add the same movie to the list of same movies
+    void setData(string movieData); 
+
 
     // Overloaded operators
-    virtual bool operator==(const Movie& otherMovie) const;   // check if movies are equal
-    virtual bool operator!=(const Movie& otherMovie) const; // check if movies are not equal
-    virtual bool operator>(const Movie& otherMovie) const;  // check if this movie is greater than rhs movie
-    virtual bool operator<(const Movie& otherMovie) const;  // check if this movie is less than rhs movie
+    bool operator==(const Movie& otherMovie) const;   // check if movies are equal
+    bool operator!=(const Movie& otherMovie) const; // check if movies are not equal
+    bool operator>(const Movie& otherMovie) const;  // check if this movie is greater than rhs movie
+    bool operator<(const Movie& otherMovie) const;  // check if this movie is less than rhs movie
 };
 
 #endif

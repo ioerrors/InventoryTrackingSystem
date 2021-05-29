@@ -23,6 +23,16 @@ int main() {
 
 BSTree Business::createBSTreeMovies(ifstream movieFile) {
   //creates the BSTree for movies, and returns
+
+  MovieFactory factory = new MovieFactory();
+  set<Movie> setOfMovies; 
+  while(!movieFile.eof()) {
+    char movieType << movieFile;
+    Movie movie = factory.getMovie(movieType);
+    movie.setData(movieFile.getLine());
+    setOfMovies.insert(movie);
+  }
+  
 }
 
 HashTable Business::createHashTableCustomers(ifstream customerFile) {
@@ -30,28 +40,17 @@ HashTable Business::createHashTableCustomers(ifstream customerFile) {
 }
 
 void processTransactions(transactionFile) {
-  char transType << transactionFile;
-  switch transType {
-    case 'B' {
-      int customerID << transactionFile;
-      char typeOfMedia << transactionFile;
-      char movieType << transactionFile;
-      string movieData << transactionFile;
-      //add << transactionFile to movieData
-      //until string contains 9 1938 Katherine Hepburn
-      Transaction borrow = new Borrow(customerID, movieData);
-      borrow.doTransaction(movies, customers);
-      break;
-    }
-    case 'R' {
-      break;
-    }
-    case 'I' {
-      break;
-    }
-    case H {
-      break;
-    }
-  }
+  
+  TransactionFactory factory = new TransactionFactory();
 
+  while(!transactionFile.eof()) {
+    char transType << transactionFile;
+    Transaction action = factory.getTransaction(transType);
+    action.setData(transactionFile.getLine());
+    action.doTransaction();
+    delete action;
+  }
 }
+
+inside transaction Inventory:
+  movieX.display();

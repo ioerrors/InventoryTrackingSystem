@@ -15,9 +15,8 @@ public:
     // setData()
     // Description: sets data fields
     // PRE: return exists
-    // POST: movieData is set to setMovieData, 
-    //       and customerID is set to setCustomerID
-    void setData(int setCustomerID, string setMovieData);
+    // POST: movieData and customerID is set by parsing setTransData
+    void setData(string setTransData);
 
  
     //---------------------------------------------------------------------------
