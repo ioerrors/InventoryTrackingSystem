@@ -17,10 +17,10 @@ public:
     
 
     //find
-    bool getCustomer (const int cID, Customer*&) const;            // get Customer from the tree
+    bool getCustomer (const int cID, Customer*&) const;            // get Customer
     
     //insert
-    bool addCustomer(Customer*&);                                 // add Customer node
+    bool addCustomer(Customer*&);                                 // add Customer 
     
 private:
 
