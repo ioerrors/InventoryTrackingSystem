@@ -4,31 +4,42 @@
 //-----------------------------------------------------------------------------
 // This is a class to hold a single customer
 //-----------------------------------------------------------------------------
-
+#ifndef CUSTOMER_H
+#define CUSTOMER_H
 
 
 class Customer {
 
 public:
     Customer();                            // constructor
+
     Customer(int cID, string first, string last);         // ID, first, last
+
     ~Customer();                           // destructor
     
-    void setCustomer(int cID, string first, string last);
-    
+
+
 
     // Accessors
-    void display();                        // display customer's name and id
+    void display() const;                        // display customer's name and id
     
-    int getID();                           // return ID of customer
-    string getName();                      // return full name of customer
-    
-    historyNode* getHistory(); //maybe return ostream?
+    int getID() const;                           // return ID of customer
+    string getName() const;                      // return full name of customer
+    string getFirstName() const;
+    string getLastName() const;
 
+    //maybe return ostream?
+    historyNode* getHistory();           
+  
     // Mutators
-    void addTrans(string);               // add transaction to history
+    void addHistory(string transaction);               // add transaction to history
+    bool setCustomerInfo(int cID, string first, string last);        
+    bool setID(int cID);
+    bool setFirstName(string first);
+    bool setLastName(string last);
     
 private:
+    // not sure about these structs
     struct historyNode {                   
         historyNode* next;		 // Node to keep track of history
         string data;                       // transaction summary
@@ -36,6 +47,9 @@ private:
     
     string lastName;			 // lastname of the customer
     string firstName;			 // firstname of the customer
+
     int customerID; 				     // unique user ID
     historyNode* headHistory;               // linked list of transaction history nodes
- };
+}; 
+#endif
+
