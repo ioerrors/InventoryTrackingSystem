@@ -1,17 +1,20 @@
 class Customer {
 public:
     Customer();                            // constructor
-    Customer(int, string, string);         // ID, first, last
+    Customer(int cID, string first, string last);         // ID, first, last
     ~Customer();                           // destructor
     
+    void setCustomer(int cID, string first, string last);
     // Accessors
     void display();                        // display customer's name and id
     
     int getID();                           // return ID of customer
     string getName();                      // return full name of customer
     
+    historyNode* getHistory(); //maybe return ostream?
+
     // Mutators
-    void addHistory(string);               // add transaction to history
+    void addTrans(string);               // add transaction to history
     
 private:
     struct historyNode {                   
@@ -21,6 +24,6 @@ private:
     
     string lastName;			 // lastname of the customer
     string firstName;			 // firstname of the customer
-    int ID; 				     // unique user ID
+    int customerID; 				     // unique user ID
     historyNode* headHistory;               // linked list of transaction history nodes
  };
