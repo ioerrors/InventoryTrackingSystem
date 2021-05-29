@@ -31,10 +31,27 @@ BSTree Business::createBSTreeMovies(ifstream movieFile) {
     Movie movie = factory.getMovie(movieType);
     movie.setData(movieFile.getLine());
     setOfMovies.insert(movie);
-  }
-  
+  } //<---we have a set full of all our movies
+  // now we want a bst of our movies.
+  BSTree movies;
+  createBSTreeMoviesHelper(setOfMovies, movies.getRoot());
+  return movies;
 }
 
+void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
+  if (current == nullptr) {
+    return;
+  }
+
+  createBSTreeMoviesHelper(movieSet, current->left);
+
+  Movie* first = movieSet.begin();
+  current->data = *first;
+  movieSet.erase(first);
+
+  createBSTreeMoviesHelper(movieSet, current->right);
+} 
+  
 HashTable Business::createHashTableCustomers(ifstream customerFile) {
   //creates the HashTable for customers, and returns
 }
