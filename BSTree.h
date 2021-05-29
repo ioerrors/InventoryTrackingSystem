@@ -46,7 +46,7 @@ private:
   // Description: recursively creates deep copies of data from currentOther
   //              to the current tree
   // PRE: Memory is available for BSTree
-  // POST: Deep Copy of othercurrent is created in this tree
+  // POST: SHALLOW Copy of othercurrent is created in this tree
   void copyHelper(Node* current, Node* currentOther);
 
   //---------------------------------------------------------------------------
@@ -140,7 +140,7 @@ public:
   // PRE: BSTree Exists
   // POST: BSTree is now equal to otherBSTree, 
   //       any memory of deleted nodes freed
-  // ASSUMPTION: Intent is to create a deep copy of otherBSTree
+  // ASSUMPTION: Intent is to create a SHALLOW copy of otherBSTree
   BSTree& operator=(const BSTree &otherBSTree);
 
 
