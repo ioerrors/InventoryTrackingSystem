@@ -6,6 +6,11 @@
 // child of the movie class, inheriting from Movie
 //-----------------------------------------------------------------------------
 
+#ifndef CLASSIC_H
+#define CLASSIC_H
+
+#include "movie.h"
+
 struct actorNode {
     string actor; // major actor of the movie
     int stock;    // the number of stock for movies
@@ -20,23 +25,35 @@ public:
     ~Classic();                                     // destructor
     
     // Overloaded operators
-    virtual bool operator == (const Movie&) const;  // check if movies are equal
-    virtual bool operator != (const Movie&) const;  // check if movies are not equal
-    virtual bool operator > (const Movie&) const;   // check if this movie is greater than rhs movie
-    virtual bool operator < (const Movie&) const;   // check if this movie is less than rhs movie
+    bool operator==(const Movie&) const;  // check if movies are equal
+    bool operator!=(const Movie&) const;  // check if movies are not equal
+    bool operator>(const Movie&) const;   // check if this movie is greater than rhs movie
+    bool operator<(const Movie&) const;   // check if this movie is less than rhs movie
     
     // Accessors
-    virtual int getMonth() const;
-    virtual void display() const;                   // print out movie data and return string
-    virtual string getActor() const;                // get the major actor for the movie
-    int getTotalStock() const;                      // get total stock of all the same movies
+    char getGenre() const;
+    string getTitle() const;       
+    string getDirector() const;
+    int getStock() const;
+    int getReleaseYear() const;
     
     // Mutators
-    virtual bool subtractFromStock(int);            // subtract from stock
+    virtual bool addStock(int); 
+    virtual bool subStock(int);            // subtract from stock
     virtual void addSameMovies(Movie*&);            // add the same movie to the list of same movies
-    
+    string setTitle() const;
+    string setDirector() const;
+    int setStock() const;
+    int setReleaseYear() const;
+    virtual string setActor() const;
+
 private:
     vector<Movie*> sameMoviesList;                  // List for the same movies
     string actor;				 // store the actor
-    int monthReleased;                              // month of the movie release
+    //int monthReleased;                              // month of the movie release
+
+    string releaseDate;
+    
 };
+
+#endif
