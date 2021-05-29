@@ -13,6 +13,22 @@ public:
     
     
     //---------------------------------------------------------------------------
+    // setData()
+    // Description: sets data fields
+    // PRE: return exists
+    // POST: movieData is set to setMovieData, 
+    //       and customerID is set to setCustomerID
+    void setData(int setCustomerID, string setMovieData);
+
+
+    //---------------------------------------------------------------------------
+    // display()
+    // Description: displays command
+    // PRE: return exists
+    // POST: movieData and customerID are printed to out with Return statement
+    void display();
+
+    //---------------------------------------------------------------------------
     // doTransaction()
     // Description: performs the action relevant to the correct
     //              movie and customer

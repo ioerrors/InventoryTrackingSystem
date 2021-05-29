@@ -17,6 +17,14 @@ public:
     // PRE: transaction exists
     // POST: no action is taken in the virtual doTransaction();
     virtual void doTransaction();
+
+    //---------------------------------------------------------------------------
+    // setData()
+    // Description: sets data fields
+    // PRE: transaction
+    // POST: function is not carried out except in children classes
+    virtual void setData(int setCustomerID, string setMovieData);
+    
 private:
 	// potentially, so they don't have to be passed, just inherited?
 	// HashTable customers; 

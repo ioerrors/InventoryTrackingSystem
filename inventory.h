@@ -10,7 +10,15 @@ class Inventory: public Transaction {
 public:
     Inventory();             // constructor
     virtual ~Inventory();    // destructor
-    
+ 
+
+
+    //---------------------------------------------------------------------------
+    // setData()
+    // Description: is irrelevant in this class
+    // PRE: Inventory exists
+    // POST: nothing changes
+    virtual void setData(int setCustomerID, string setMovieData);   
     
     //---------------------------------------------------------------------------
     // doTransaction()
