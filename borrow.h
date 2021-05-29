@@ -15,8 +15,9 @@ public:
     // setData()
     // Description: sets data fields
     // PRE: return exists
-    // POST: movieData and customerID is set by parsing setTransData
-    void setData(string setTransData);
+    // POST: movieData is set to setMovieData, 
+    //       and customerID is set to setCustomerID
+    void setData(int setCustomerID, string setMovieData);
 
  
     //---------------------------------------------------------------------------
@@ -33,7 +34,7 @@ public:
     // PRE: customer exists, movie is in stock
     // POST: movie is borrowed(stock reduced by one), 
     //       transation is added to customer history
-    void doTransaction(BSTree movies, HashTable customers);
+    void doTransaction(HashTable& customers, BSTree& movies);
     
 private:
     string movieData;               // string to track the movie to borrow

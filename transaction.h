@@ -7,7 +7,8 @@
 
 class Transaction {
 public:
-    virtual ~Transaction();             // destructor
+    Transaction();              // constructor
+    ~Transaction();             // destructor
 
     // Transaction* create(char type, int customerID, Movie*& m);   // create transactions
     //---------------------------------------------------------------------------
@@ -15,17 +16,13 @@ public:
     // Description: function overloaded in the children classes
     // PRE: transaction exists
     // POST: no action is taken in the virtual doTransaction();
-    virtual void doTransaction();
+    virtual void doTransaction(HashTable& customers, BSTree& movies);
 
     //---------------------------------------------------------------------------
     // setData()
     // Description: sets data fields
     // PRE: transaction
     // POST: function is not carried out except in children classes
-    virtual void setData(string setTransData);
-    
-private:
-	// potentially, so they don't have to be passed, just inherited?
-	// HashTable customers; 
-	// BSTree movies;    
+    virtual void setData(int setCustomerID, string setMovieData);
+
 };

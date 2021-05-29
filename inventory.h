@@ -8,24 +8,23 @@
 
 class Inventory: public Transaction {
 public:
-    Inventory();             // constructor
-    virtual ~Inventory();    // destructor
- 
+    Inventory();     // constructor
+    ~Inventory();    // destructor
+
+    //---------------------------------------------------------------------------
+    // doTransaction()
+    // Description: performs the action of printing inventory
+    // PRE: BSTree movies exists, is not null
+    // POST: movies in stock are printed
+    void doTransaction(HashTable& customers, BSTree& movies);
+
 
 
     //---------------------------------------------------------------------------
     // setData()
     // Description: is irrelevant in this class
     // PRE: Inventory exists
-    // POST: nothing changes, setTransData is ignored
-    void setData(string setTransData);
-
+    // POST: nothing changes
+    virtual void setData(int setCustomerID, string setMovieData);   
     
-    //---------------------------------------------------------------------------
-    // doTransaction()
-    // Description: performs the action of printing inventory
-    // PRE: BSTree movies exists, is not null
-    // POST: movies in stock are printed
-    void doTransaction(BSTree movies);
-
 };

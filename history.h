@@ -16,15 +16,16 @@ public:
     // setData()
     // Description: sets data field
     // PRE: history exists, customer exists
-    // POST: customerID is set by parsing setTransData
-    void setData(string setTransData);
+    // POST: movieData is ignored, 
+    //       and customerID is set to setCustomerID
+    void setData(int setCustomerID, string setMovieData);
     
     //---------------------------------------------------------------------------
     // doTransaction()
     // Description: performs the action relevant to the correct customer
     // PRE: customer exists, movie is in stock
     // POST: transaction history for customer is printed
-    void doTransaction(HashTable customers);
+    void doTransaction(HashTable& customers, BSTree& movies);
     
 private:           
     int customerID;                 // customer responsible for the transaction
