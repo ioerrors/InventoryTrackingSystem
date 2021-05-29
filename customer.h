@@ -7,7 +7,7 @@ public:
     // Accessors
     void display();                        // display customer's name and id
     
-    int getID();                           //return ID of customer
+    int getID();                           // return ID of customer
     string getName();                      // return full name of customer
     
     // Mutators
@@ -19,13 +19,8 @@ private:
         string data;                       // transaction summary
     };
     
-    struct checkedOutNode {                
-        checkedOutNode* next;		 // Node to keep track of movies borrowed
-        Movie* movieBorrowed;              // pointer to movies borrowed
-    };
-    
     string lastName;			 // lastname of the customer
     string firstName;			 // firstname of the customer
-    int ID; 				 // unique user ID
-    vector<string> *history;               // linked list of transaction history nodes
+    int ID; 				     // unique user ID
+    historyNode* headHistory;               // linked list of transaction history nodes
  };

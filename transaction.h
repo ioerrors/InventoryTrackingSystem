@@ -1,18 +1,24 @@
 ////////////////////////////////transaction.h file  ///////////////////////////
 //-----------------------------------------------------------------------------
-// Created by Group 1 on 05/19/2021.
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
 // This is a class to hold the action types, is a parent class
 //-----------------------------------------------------------------------------
 
 class Transaction {
 public:
-    Transaction();               // constructor
-    ~ Transaction();             // destructor
+    Transaction();              // constructor
+    ~Transaction();             // destructor
 
-    Transaction* create(char type, int customerID, Movie*& m);   // create transactions
-
+    // Transaction* create(char type, int customerID, Movie*& m);   // create transactions
+    //---------------------------------------------------------------------------
+    // doTransaction()
+    // Description: function overloaded in the children classes
+    // PRE: transaction exists
+    // POST: no action is taken in the virtual doTransaction();
+    virtual void doTransaction();
 private:
-    Movie* movie                 // Node to track movies
-    char transType               // transaction type of movies       
+	// potentially, so they don't have to be passed, just inherited?
+	// HashTable customers; 
+	// BSTree movies;    
 };

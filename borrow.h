@@ -9,7 +9,7 @@
 class Borrow: public Transaction {
 public:
     Borrow(int customerID, string MovieData);  // constructor
-    virtual ~Borrow();    // destructor
+    virtual ~Borrow();                         // destructor
     
     
     //---------------------------------------------------------------------------
