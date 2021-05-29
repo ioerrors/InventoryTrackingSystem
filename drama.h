@@ -1,6 +1,6 @@
 ////////////////////////////////drama.h file  /////////////////////////////////
 //-----------------------------------------------------------------------------
-// Created by Group 1 on 05/19/2021.
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
 // This is a drama class which is a type of movie 
 // child of the movie class, inheriting from Movie

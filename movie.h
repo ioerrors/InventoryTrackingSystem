@@ -1,6 +1,6 @@
 ////////////////////////////////movie.h file  /////////////////////////////////
 //-----------------------------------------------------------------------------
-// Created by Group 1 on 05/19/2021.
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
 // This is a movie class which stores 
 // and allows access to various movie attributes
