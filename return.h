@@ -8,8 +8,8 @@
 
 class Return: public Transaction {
 public:
-    Return(int customerID, string MovieData);  // constructor
-    virtual ~Return();                         // destructor
+    Return();  // constructor
+    ~Return();                         // destructor
     
     
     //---------------------------------------------------------------------------
@@ -18,7 +18,7 @@ public:
     // PRE: return exists
     // POST: movieData is set to setMovieData, 
     //       and customerID is set to setCustomerID
-    void setData(int setCustomerID, string setMovieData);
+    void setData(string setMovieData);
 
 
     //---------------------------------------------------------------------------

@@ -8,8 +8,8 @@
 
 class Borrow: public Transaction {
 public:
-    Borrow(int customerID, string MovieData);  // constructor
-    virtual ~Borrow();                         // destructor
+    Borrow();  // constructor
+    ~Borrow();                         // destructor
     
     //---------------------------------------------------------------------------
     // setData()
@@ -17,7 +17,7 @@ public:
     // PRE: return exists
     // POST: movieData is set to setMovieData, 
     //       and customerID is set to setCustomerID
-    void setData(int setCustomerID, string setMovieData);
+    void setData(string setMovieData);
 
  
     //---------------------------------------------------------------------------

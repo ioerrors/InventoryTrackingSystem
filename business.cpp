@@ -69,5 +69,3 @@ void processTransactions(transactionFile) {
   }
 }
 
-inside transaction Inventory:
-  movieX.display();

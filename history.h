@@ -8,8 +8,8 @@
 
 class History: public Transaction {
 public:
-    History(int customerID);  // constructor
-    virtual ~History();       // destructor
+    History();  // constructor
+    ~History();       // destructor
     
 
     //---------------------------------------------------------------------------
@@ -18,7 +18,7 @@ public:
     // PRE: history exists, customer exists
     // POST: movieData is ignored, 
     //       and customerID is set to setCustomerID
-    void setData(int setCustomerID, string setMovieData);
+    void setData(string setMovieData);
     
     //---------------------------------------------------------------------------
     // doTransaction()
