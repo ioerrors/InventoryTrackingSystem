@@ -2,18 +2,21 @@
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
-// This is a class to hold a customer data type
+// This is a class to hold a single customer
 //-----------------------------------------------------------------------------
 
 
 
 class Customer {
+
 public:
     Customer();                            // constructor
     Customer(int cID, string first, string last);         // ID, first, last
     ~Customer();                           // destructor
     
     void setCustomer(int cID, string first, string last);
+    
+
     // Accessors
     void display();                        // display customer's name and id
     
