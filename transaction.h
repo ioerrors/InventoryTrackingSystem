@@ -7,10 +7,11 @@
 
 class Transaction {
 public:
+
+    
     Transaction();              // constructor
     ~Transaction();             // destructor
 
-    // Transaction* create(char type, int customerID, Movie*& m);   // create transactions
     //---------------------------------------------------------------------------
     // doTransaction()
     // Description: function overloaded in the children classes

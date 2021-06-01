@@ -22,7 +22,7 @@ public:
             case type = 'B':
                 return new Borrow();
             default:
-                throw new NotSupportedException("Transaction type not found");
+                throw new NotSupportedException("Invalid Action Code");
         }
     }
 
