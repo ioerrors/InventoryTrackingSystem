@@ -38,7 +38,8 @@ Inventory::~Inventory() {
 // PRE: BSTree movies exists, is not null
 // POST: movies in stock are printed
 void Inventory::doTransaction(HashTable& customers, BSTree& movies) {
-
+    cout << "Inventory: " << endl;
+    cout << movies;
 }
 
 
@@ -49,6 +50,7 @@ void Inventory::doTransaction(HashTable& customers, BSTree& movies) {
 // PRE: Inventory exists
 // POST: nothing changes
 void Inventory::setData(int setCustomerID, string setMovieData){
-
+    
 }   
     
+ 
