@@ -49,7 +49,7 @@ void History::setData(string setMovieData) {
 // Description: performs the action relevant to the correct customer
 // PRE: customer exists, movie is in stock
 // POST: transaction history for customer is printed
-void doTransaction(HashTable& customers, BSTree& movies) {
+void History::doTransaction(HashTable& customers, BSTree& movies) {
     Customer current;
     if (customers.getCustomer(customerID, current)) {
         cout << current.getHistory();

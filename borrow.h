@@ -8,8 +8,21 @@
 
 class Borrow: public Transaction {
 public:
-    Borrow();  // constructor
-    ~Borrow();                         // destructor
+
+    //---------------------------------------------------------------------------
+    // Borrow DESTRUCTOR
+    // Description: deallocates all memory allocated for Borrow
+    // PRE: Borrow exists
+    // POST: All Borrow memory is freed    
+    Borrow();
+
+    //---------------------------------------------------------------------------
+    // setData()
+    // Description: sets data fields
+    // PRE: return exists
+    // POST: movieData is set to setMovieData, 
+    //       and customerID is set to setCustomerID
+    ~Borrow();
     
     //---------------------------------------------------------------------------
     // setData()
