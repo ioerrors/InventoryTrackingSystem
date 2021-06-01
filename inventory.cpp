@@ -1,30 +1,54 @@
-////////////////////////////////inventory.h file  /////////////////////////////
+////////////////////////////////inventory.cpp file  ///////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
 // This is a class to hold the action type Inventory
 // inherits from Transaction
 //-----------------------------------------------------------------------------
-
-class Inventory: public Transaction {
-public:
-    Inventory();     // constructor
-    ~Inventory();    // destructor
-
-    //---------------------------------------------------------------------------
-    // doTransaction()
-    // Description: performs the action of printing inventory
-    // PRE: BSTree movies exists, is not null
-    // POST: movies in stock are printed
-    void doTransaction(HashTable& customers, BSTree& movies);
+#include "BSTree.h"
+#include "HashTable.h"
+#include "inventory.h"
+#include <iostream>
+#include <sstream>  
+using namespace std;
 
 
+//-----------------------------------------------------------------------------
+// Inventory CONSTRUCTOR
+// Description: creates an empty Inventory
+// PRE: Memory is available for Inventory
+// POST: Empty Inventory is created
+Inventory::Inventory() {
 
-    //---------------------------------------------------------------------------
-    // setData()
-    // Description: is irrelevant in this class
-    // PRE: Inventory exists
-    // POST: nothing changes
-    virtual void setData(int setCustomerID, string setMovieData);   
+}
+
+
+//-----------------------------------------------------------------------------
+// Inventory DESTRUCTOR
+// Description: deallocates all memory allocated for Inventory
+// PRE: Inventory exists
+// POST: All Inventory memory is freed
+Inventory::~Inventory() {
+
+}
+
+//---------------------------------------------------------------------------
+// doTransaction()
+// Description: performs the action of printing inventory
+// PRE: BSTree movies exists, is not null
+// POST: movies in stock are printed
+void Inventory::doTransaction(HashTable& customers, BSTree& movies) {
+
+}
+
+
+
+//---------------------------------------------------------------------------
+// setData()
+// Description: is irrelevant in this class
+// PRE: Inventory exists
+// POST: nothing changes
+void Inventory::setData(int setCustomerID, string setMovieData){
+
+}   
     
-};

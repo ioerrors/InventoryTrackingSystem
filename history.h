@@ -8,8 +8,19 @@
 
 class History: public Transaction {
 public:
-    History();  // constructor
-    ~History();       // destructor
+    //---------------------------------------------------------------------------
+    // History CONSTRUCTOR
+    // Description: creates an empty History
+    // PRE: Memory is available for History
+    // POST: Empty History is created
+    History();
+
+    //---------------------------------------------------------------------------
+    // History DESTRUCTOR
+    // Description: deallocates all memory allocated for History
+    // PRE: History exists
+    // POST: All History memory is freed
+    ~History();
     
 
     //---------------------------------------------------------------------------

@@ -8,9 +8,19 @@
 class Transaction {
 public:
 
-    
-    Transaction();              // constructor
-    ~Transaction();             // destructor
+    //-----------------------------------------------------------------------------
+    // Transaction DESTRUCTOR
+    // Description: creates an empty Transaction
+    // PRE: Memory is available for Transaction
+    // POST: empty Transaction is created
+    Transaction();          
+
+    //-----------------------------------------------------------------------------
+    // Transaction DESTRUCTOR
+    // Description: deallocates all memory allocated for Transaction
+    // PRE: Transaction exists
+    // POST: All Transaction memory is freed
+    ~Transaction();             
 
     //---------------------------------------------------------------------------
     // doTransaction()

@@ -22,15 +22,15 @@ public:
 
 
     // Accessors
-    void display() const;                        // display customer's name and id
+    void display() const;                 // display customer's name and id
     
-    int getID() const;                           // return ID of customer
-    string getName() const;                      // return full name of customer
+    int getID() const;                    // return ID of customer
+    string getName() const;               // return full name of customer
     string getFirstName() const;
     string getLastName() const;
 
-    //maybe return ostream?
-    historyNode* getHistory();           
+    //basically an overloaded << operator just for history
+    ostream getHistory();           
   
     // Mutators
     void addHistory(string transaction);               // add transaction to history
@@ -42,15 +42,15 @@ public:
 private:
     // not sure about these structs
     struct historyNode {                   
-        historyNode* next;		 // Node to keep track of history
-        string data;                       // transaction summary
+        historyNode* next;     // Node to keep track of history
+        string data;             // transaction summary
     };
     
-    string lastName;			 // lastname of the customer
-    string firstName;			 // firstname of the customer
+    string lastName;       // lastname of the customer
+    string firstName;      // firstname of the customer
 
-    int customerID; 				     // unique user ID
-    historyNode* headHistory;               // linked list of transaction history nodes
+    int customerID;        // unique user ID
+    historyNode* headHistory;    // linked list of transaction history nodes
 }; 
 #endif
 

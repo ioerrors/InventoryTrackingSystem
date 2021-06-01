@@ -8,8 +8,20 @@
 
 class Inventory: public Transaction {
 public:
-    Inventory();     // constructor
-    ~Inventory();    // destructor
+    
+    //---------------------------------------------------------------------------
+    // Inventory CONSTRUCTOR
+    // Description: creates an empty Inventory
+    // PRE: Memory is available for Inventory
+    // POST: Empty Inventory is created
+    Inventory();
+
+    //---------------------------------------------------------------------------
+    // Inventory DESTRUCTOR
+    // Description: deallocates all memory allocated for Inventory
+    // PRE: Inventory exists
+    // POST: All Inventory memory is freed
+    ~Inventory();
 
     //---------------------------------------------------------------------------
     // doTransaction()
@@ -18,13 +30,11 @@ public:
     // POST: movies in stock are printed
     void doTransaction(HashTable& customers, BSTree& movies);
 
-
-
     //---------------------------------------------------------------------------
     // setData()
     // Description: is irrelevant in this class
     // PRE: Inventory exists
     // POST: nothing changes
-    virtual void setData(int setCustomerID, string setMovieData);   
+    void setData(int setCustomerID, string setMovieData);   
     
 };
