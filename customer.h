@@ -18,9 +18,6 @@ public:
 
     ~Customer();                           // destructor
     
-
-
-
     // Accessors
     void display() const;                 // display customer's name and id
     
