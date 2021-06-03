@@ -56,18 +56,24 @@ int Classic::getReleaseYear() const {
     return this->year;
 }
 
-bool Classic::addStock(int stock) {
-    stock++;
-    return true;
-}
-
-bool Classic::subStock(int stock) {
-    if (stock > 0) {
-        stock--;
-        return true;
+bool Classic::addStock(int newStock) {
+    if (newStock > 0) {
+      stock += newStock;
+      return true;      
+    } else {
+      return false;
     }
 
-    return false;
+}
+
+bool Classic::subStock(int removeStock) {
+    if (stock > 0) {
+      stock -= removeStock;
+      return true;
+    } else {
+      return false;
+    }
+
 }
 
 void Classic::addSameMovies(Movie*&) {
