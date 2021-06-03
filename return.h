@@ -8,14 +8,26 @@
 
 class Return: public Transaction {
 public:
-    Return();  // constructor
-    ~Return();                         // destructor
+
+    //---------------------------------------------------------------------------
+    // Return CONSTRUCTOR
+    // Description: creates an empty Return
+    // PRE: Memory is available for Return
+    // POST: Empty Return is created   
+    Return();
+
+    //---------------------------------------------------------------------------
+    // Return DESTRUCTOR
+    // Description: deallocates all memory allocated for Return
+    // PRE: Return exists
+    // POST: All Return memory is freed
+    ~Return();               
     
     
     //---------------------------------------------------------------------------
     // setData()
     // Description: sets data fields
-    // PRE: return exists
+    // PRE: return exists, Format setMovieData: "R 5000 D C 3 1971 Ruth Gordon"
     // POST: movieData is set to setMovieData, 
     //       and customerID is set to setCustomerID
     void setData(string setMovieData);
@@ -38,6 +50,6 @@ public:
     void doTransaction(HashTable& customers, BSTree& movies);
     
 private:
-    string movieData;               // string to track the movie to borrow
+    string movieData;               // string to track the movie to Return
     int customerID;                 // customer responsible for the transaction
 };

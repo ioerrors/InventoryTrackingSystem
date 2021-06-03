@@ -10,24 +10,24 @@ class Borrow: public Transaction {
 public:
 
     //---------------------------------------------------------------------------
-    // Borrow DESTRUCTOR
-    // Description: deallocates all memory allocated for Borrow
-    // PRE: Borrow exists
-    // POST: All Borrow memory is freed    
+    // Borrow CONSTRUCTOR
+    // Description: creates an empty Borrow
+    // PRE: Memory is available for Borrow
+    // POST: Empty Borrow is created   
     Borrow();
 
     //---------------------------------------------------------------------------
-    // setData()
-    // Description: sets data fields
-    // PRE: return exists
-    // POST: movieData is set to setMovieData, 
-    //       and customerID is set to setCustomerID
+    // Borrow DESTRUCTOR
+    // Description: deallocates all memory allocated for Borrow
+    // PRE: Borrow exists
+    // POST: All Borrow memory is freed
     ~Borrow();
     
     //---------------------------------------------------------------------------
     // setData()
     // Description: sets data fields
-    // PRE: return exists
+    // PRE: borrow exists, 
+    //      Format setMovieData = "B 2000 D F Sleepless in Seattle, 1993"   
     // POST: movieData is set to setMovieData, 
     //       and customerID is set to setCustomerID
     void setData(string setMovieData);
@@ -36,8 +36,8 @@ public:
     //---------------------------------------------------------------------------
     // display()
     // Description: displays command
-    // PRE: return exists
-    // POST: movieData and customerID are printed to out with Return statement
+    // PRE: borrow exists
+    // POST: movieData and customerID are printed to out with borrow statement
     void display();
            
     //---------------------------------------------------------------------------

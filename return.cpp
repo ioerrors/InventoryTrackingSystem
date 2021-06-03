@@ -6,38 +6,60 @@
 // and inherits from transaction class
 //-----------------------------------------------------------------------------
 
-class Return: public Transaction {
-public:
-    Return();  // constructor
-    ~Return();                         // destructor
-    
-    
-    //---------------------------------------------------------------------------
-    // setData()
-    // Description: sets data fields
-    // PRE: return exists
-    // POST: movieData is set to setMovieData, 
-    //       and customerID is set to setCustomerID
-    void setData(string setMovieData);
+//---------------------------------------------------------------------------
+// Return CONSTRUCTOR
+// Description: creates an empty Return
+// PRE: Memory is available for Return
+// POST: Empty Return is created  
+Return::Return() {
+    movieData = "";
+    customerID = NULL;
+}
+
+//---------------------------------------------------------------------------
+// Return DESTRUCTOR
+// Description: deallocates all memory allocated for Return
+// PRE: Return exists
+// POST: All Return memory is freed
+Return::~Return() {
+    delete movieData;
+    delete customerID;
+}
 
 
-    //---------------------------------------------------------------------------
-    // display()
-    // Description: displays command
-    // PRE: return exists
-    // POST: movieData and customerID are printed to out with Return statement
-    void display();
+//---------------------------------------------------------------------------
+// setData()
+// Description: sets data fields
+// PRE: return exists, Format setMovieData: "R 5000 D C 3 1971 Ruth Gordon"
+// POST: movieData is set to setMovieData, 
+//       and customerID is set to setCustomerID
+void Return::setData(string setMovieData) {
 
-    //---------------------------------------------------------------------------
-    // doTransaction()
-    // Description: performs the action relevant to the correct
-    //              movie and customer
-    // PRE: customer exists, movie is in stock
-    // POST: movie is Returned(stock incremented by one), 
-    //       transation is added to customer history
-    void doTransaction(HashTable& customers, BSTree& movies);
-    
+}
+
+
+//---------------------------------------------------------------------------
+// display()
+// Description: displays command
+// PRE: return exists
+// POST: movieData and customerID are printed to out with Return statement
+void Return::display() {
+
+}
+
+//---------------------------------------------------------------------------
+// doTransaction()
+// Description: performs the action relevant to the correct
+//              movie and customer
+// PRE: customer exists, movie is in stock
+// POST: movie is Returned(stock incremented by one), 
+//       transation is added to customer history
+void Return::doTransaction(HashTable& customers, BSTree& movies) {
+
+}
+/*    
 private:
     string movieData;               // string to track the movie to borrow
     int customerID;                 // customer responsible for the transaction
 };
+*/

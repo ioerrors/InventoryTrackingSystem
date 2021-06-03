@@ -27,11 +27,13 @@ Borrow::~Borrow() {
     delete movieData;
     delete customerID;
 }
-    
+
+
 //-----------------------------------------------------------------------------
 // setData()
 // Description: sets data fields
-// PRE: return exists
+// PRE: borrow exists, 
+//      Format setMovieData = "B 2000 D F Sleepless in Seattle, 1993"   
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
 void Borrow::setData(string setMovieData) {
@@ -42,8 +44,8 @@ void Borrow::setData(string setMovieData) {
 //-----------------------------------------------------------------------------
 // display()
 // Description: displays command
-// PRE: return exists
-// POST: movieData and customerID are printed to out with Return statement
+// PRE: borrow exists
+// POST: movieData and customerID are printed to out with borrow statement
 void Borrow::display() {
 
 }
