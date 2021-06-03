@@ -24,7 +24,8 @@ int Customer::getID() const {
 }
 
 string Customer::getName() const {
-    
+    // seaching only shows long way of returning multiple items
+    // since we cant do return firstname && lastname
 }
 
 string Customer::getFirstName() const {
@@ -40,7 +41,7 @@ historyNode* Customer::getHistory() {
 }
 
 void Customer::addHistory(string transaction) {
-
+    // history.push_back(transaction);
 }
 
 bool Customer::setCustomerInfo(int cID, string first, string last) {

@@ -40,17 +40,29 @@ void Comedy::setData(string movieData) {
 }
 
 bool Comedy::operator==(const Movie& otherMovie) const {
-
+	return (title == otherMovie.getTitle()) && 
+	(year == otherMovie.getReleaseYear());
 }
 
 bool Comedy::operator!=(const Movie& otherMovie) const {
-
+    return !(this == &otherMovie);
 }
 
 bool Comedy::operator>(const Movie& otherMovie) const {
+    if (title > otherMovie.getTitle()) {
+		return true;
 
+	} else {
+		if(year > otherMovie.getReleaseYear()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 bool Comedy::operator<(const Movie& otherMovie) const {
-    
+    if (this == &otherMovie) return false;
+	if (this > &otherMovie) return false;
+	return true;
 }

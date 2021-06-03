@@ -52,11 +52,22 @@ bool Drama::operator!=(const otherMovie&) const {
 }
 
 bool Drama::operator>(const otherMovie&) const {
+	if (director > otherMovie.getDirector()) {
+		return true;
 
+	} else {
+		if (title > otherMovie.getTitle()) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 bool Drama::operator<(const otherMovie&) const {
-    
+    if (this == &otherMovie) return false;
+	if (this > &otherMovie) return false;
+	return true;
 }
 
 #endif
