@@ -33,11 +33,13 @@ Borrow::~Borrow() {
 // setData()
 // Description: sets data fields
 // PRE: borrow exists, 
-//      Format setMovieData = "B 2000 D F Sleepless in Seattle, 1993"   
+//      Format setMovieData = "2000 D F Sleepless in Seattle, 1993"   
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
 void Borrow::setData(string setMovieData) {
-    
+    //turn into stringstream?
+    customerID << setMovieData;
+    movieData << setMovieData;
 }
 
 

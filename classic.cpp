@@ -1,16 +1,40 @@
+////////////////////////////////classic.cpp file  /////////////////////////////
+//-----------------------------------------------------------------------------
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
+//-----------------------------------------------------------------------------
+// This is a Classic class which is a type of Movie 
+// child of the Movie class, inheriting from Movie
+//-----------------------------------------------------------------------------
+
+
 #ifndef CLASSIC_CPP
 #define CLASSIC_CPP
 
 #include "classic.h"
 
+//-----------------------------------------------------------------------------
+// Classic CONSTRUCTOR
+// Description: creates an empty Classic
+// PRE: Memory is available for Classic
+// POST: Empty Classic is created
 Classic::Classic() {
 
 }
 
+//-----------------------------------------------------------------------------
+// Classic DESTRUCTOR
+// Description: deallocates all memory allocated for Classic
+// PRE: Classic exists
+// POST: All Classic memory is freed
 Classic::~Classic() {
 
 }
 
+//-----------------------------------------------------------------------------
+// Classic 
+// Description: 
+// PRE: 
+// POST: 
 char Classic::getGenre() const {
     return 'C';
 }
@@ -64,12 +88,12 @@ bool Classic::operator!=(const Movie& otherMovie) const {
 
 bool Classic::operator>(const Movie& otherMovie) const {
     Classic * ptr = dynamic_cast<Classic*>(&otherMovie);
-	return  *this > *ptr;
+    return  *this > *ptr;
 }
 
 bool Classic::operator<(const otherMovie&) const {
     Classic * ptr = dynamic_cast<Classic*>(&otherMovie);
-	return  *ptr > *this;
+    return  *ptr > *this;
 }
 
 #endif
