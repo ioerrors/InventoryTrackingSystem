@@ -43,15 +43,15 @@ void Drama::setData(string movieData) {
     
 }
 
-bool Drama::operator==(const otherMovie&) const {
+bool Drama::operator==(const Movie& otherMovie) const {
     return (director == otherMovie.getDirector() && title == otherMovie.getTitle());
 }
 
-bool Drama::operator!=(const otherMovie&) const {
+bool Drama::operator!=(const Movie& otherMovie) const {
     return !(this == &otherMovie)   
 }
 
-bool Drama::operator>(const otherMovie&) const {
+bool Drama::operator>(const Movie& otherMovie) const {
 	if (director > otherMovie.getDirector()) {
 		return true;
 
@@ -64,7 +64,7 @@ bool Drama::operator>(const otherMovie&) const {
 	return false;
 }
 
-bool Drama::operator<(const otherMovie&) const {
+bool Drama::operator<(const Movie& otherMovie) const {
     if (this == &otherMovie) return false;
 	if (this > &otherMovie) return false;
 	return true;
