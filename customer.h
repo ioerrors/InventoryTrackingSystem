@@ -38,16 +38,12 @@ public:
     
 private:
     // not sure about these structs
-    struct historyNode {                   
-        historyNode* next;     // Node to keep track of history
-        string data;             // transaction summary
-    };
     
     string lastName;       // lastname of the customer
     string firstName;      // firstname of the customer
 
     int customerID;        // unique user ID
-    historyNode* headHistory;    // linked list of transaction history nodes
+    stack<string> history;    // linked list of transaction history nodes
 }; 
 #endif
 

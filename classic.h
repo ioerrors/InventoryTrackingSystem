@@ -11,11 +11,6 @@
 
 #include "movie.h"
 
-struct actorNode {
-    string actor; // major actor of the movie
-    actorNode* next; // Node to keep track of actor 
-};
-
 class Classic : public Movie
 {
 public:
@@ -30,7 +25,8 @@ public:
     string getDirector() const;
     int getStock() const;
     int getReleaseYear() const;
-    
+    set<string> getActorsList();
+
     // Mutators
     bool addStock(int); 
     bool subStock(int);            // subtract from stock
@@ -45,7 +41,7 @@ public:
     bool operator<(const otherMovie&) const;   // check if this movie is less than rhs movie
     
 private:
-    actorNode* actorsList;       // List of actors
+    Set<String> actorsList;       // List of actors
 };
 
 #endif

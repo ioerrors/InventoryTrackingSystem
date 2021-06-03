@@ -76,7 +76,18 @@ bool Classic::subStock(int removeStock) {
 
 }
 
-void Classic::addSameMovies(Movie*&) {
+//We have BSTree Movies being build in business.cpp
+//inside business.cpp we find out if the movie is equal to a movie in the
+//Is this node equal to an existing node??
+// If yes, then do the below: 
+void Classic::addSameMovies(const Movie& otherMovie) {
+  //add the stock together
+  addStock(otherMovie.getStock());
+  
+
+  //add the other movie's entire list of actors
+  set<string> otherList = otherMovie.getActorsList();
+  actorsList.insert(otherList.begin(), otherList.end());
 
 }
 
@@ -93,12 +104,12 @@ bool Classic::operator!=(const Movie& otherMovie) const {
 }
 
 bool Classic::operator>(const Movie& otherMovie) const {
-    Classic * ptr = dynamic_cast<Classic*>(&otherMovie);
+    Classic *ptr = dynamic_cast<Classic*>(&otherMovie);
     return  *this > *ptr;
 }
 
 bool Classic::operator<(const otherMovie&) const {
-    Classic * ptr = dynamic_cast<Classic*>(&otherMovie);
+    Classic *ptr = dynamic_cast<Classic*>(&otherMovie);
     return  *ptr > *this;
 }
 
