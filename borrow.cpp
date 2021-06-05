@@ -37,9 +37,17 @@ Borrow::~Borrow() {
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
 void Borrow::setData(string setMovieData) {
-    //turn into stringstream?
-    customerID << setMovieData;
-    movieData << setMovieData;
+    stringstream ss(setMovieData); 
+    string data;
+    ss >> data;
+    customerID = (int) data; //store customerID
+    ss >> data; //clear media type
+    data = "";
+
+    //store rest of movieData as string
+    while(!ss.eof()) {
+        ss >> movieData;
+    }
 }
 
 
@@ -49,7 +57,7 @@ void Borrow::setData(string setMovieData) {
 // PRE: borrow exists
 // POST: movieData and customerID are printed to out with borrow statement
 void Borrow::display() {
-
+    cout << "Borrow:" << CustomerID << " " << movieData; 
 }
        
 //-----------------------------------------------------------------------------

@@ -41,7 +41,10 @@ History::~History() {
 //      and setMovieData format:  " XXXX"
 // POST: 
 void History::setData(string setMovieData) {
-    customerID << setMovieData;
+    stringstream ss(setMovieData); 
+    string data;
+    ss >> data;
+    customerID = (int) data; //store customerID
 }
 
 //-----------------------------------------------------------------------------

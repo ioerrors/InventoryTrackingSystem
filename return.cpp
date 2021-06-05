@@ -30,12 +30,23 @@ Return::~Return() {
 //---------------------------------------------------------------------------
 // setData()
 // Description: sets data fields
-// PRE: return exists, Format setMovieData: "R 5000 D C 3 1971 Ruth Gordon"
+// PRE: return exists, Format setMovieData: "5000 D C 3 1971 Ruth Gordon"
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
 void Return::setData(string setMovieData) {
 
-}
+    stringstream ss(setMovieData); 
+    string data;
+    ss >> data;
+    customerID = (int) data; //store customerID
+    ss >> data; //clear media type
+    data = "";
+
+    //store rest of movieData as string
+    while(!ss.eof()) {
+        ss >> movieData;
+    }
+}   
 
 
 //---------------------------------------------------------------------------
@@ -44,8 +55,8 @@ void Return::setData(string setMovieData) {
 // PRE: return exists
 // POST: movieData and customerID are printed to out with Return statement
 void Return::display() {
-
-}
+    cout << "Return:" << CustomerID << " " << movieData; 
+}   
 
 //---------------------------------------------------------------------------
 // doTransaction()
