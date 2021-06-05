@@ -36,7 +36,7 @@ Borrow::~Borrow() {
 //      Format setMovieData = "2000 D F Sleepless in Seattle, 1993"   
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
-void Borrow::setData(string setMovieData) {
+bool Borrow::setData(string setMovieData) {
     stringstream ss(setMovieData); 
     string data;
     ss >> data;
@@ -48,6 +48,7 @@ void Borrow::setData(string setMovieData) {
     while(!ss.eof()) {
         ss >> movieData;
     }
+    return true;
 }
 
 
@@ -56,8 +57,9 @@ void Borrow::setData(string setMovieData) {
 // Description: displays command
 // PRE: borrow exists
 // POST: movieData and customerID are printed to out with borrow statement
-void Borrow::display() {
-    cout << "Borrow:" << CustomerID << " " << movieData; 
+bool Borrow::display() {
+    cout << "Borrow:" << CustomerID << " " << movieData;
+    return true;
 }
        
 //-----------------------------------------------------------------------------
@@ -67,6 +69,13 @@ void Borrow::display() {
 // PRE: customer exists, movie is in stock
 // POST: movie is borrowed(stock reduced by one), 
 //       transation is added to customer history
-void Borrow::doTransaction(HashTable& customers, BSTree& movies) {
-
+bool Borrow::doTransaction(HashTable& customers, set<movie> movies) {
+    Customer current;
+    if (customers.getCustomer(customerID, current)) {
+        cout << current.getHistory();
+        return true;
+    } else {
+        cout << "Borrow: invalid customerID";
+        return  false;
+    }
 }

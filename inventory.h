@@ -35,6 +35,6 @@ public:
     // Description: is irrelevant in this class
     // PRE: Inventory exists
     // POST: nothing changes
-    void setData(int setCustomerID, string setMovieData);   
+    void setData(string setMovieData);   
     
 };

@@ -40,11 +40,12 @@ History::~History() {
 // PRE: history exists type is already parsed
 //      and setMovieData format:  " XXXX"
 // POST: 
-void History::setData(string setMovieData) {
+bool History::setData(string setMovieData) {
     stringstream ss(setMovieData); 
     string data;
     ss >> data;
     customerID = (int) data; //store customerID
+    return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -52,11 +53,13 @@ void History::setData(string setMovieData) {
 // Description: performs the action relevant to the correct customer
 // PRE: customer exists, movie is in stock
 // POST: transaction history for customer is printed
-void History::doTransaction(HashTable& customers, BSTree& movies) {
+bool History::doTransaction(HashTable& customers, BSTree& movies) {
     Customer current;
     if (customers.getCustomer(customerID, current)) {
         cout << current.getHistory();
+        return true;
     } else {
         cout << "History: invalid customerID";
+        return false;
     }
 }

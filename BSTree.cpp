@@ -220,7 +220,8 @@ bool BSTree::operator!=(const BSTree &otherBSTree) const {
 // PRE: BSTree Exists
 // POST: returns false if this BSTree already contains Node
 //       OR returns true if this BSTree successfully added Node
-bool BSTree::insert(Movie *insertMe) {
+bool BSTree::insert(Movie& movie) {
+  Movie* insertMe = movie;
   if (insertMe == nullptr) {
     return false;
   }
@@ -277,55 +278,6 @@ bool BSTree::retrieve(const Movie &checkMe, Movie *&setMe) const {
   }
   return false;
 }
-
-//-----------------------------------------------------------------------------
-// getHeight()
-// Description: finds the height of a given node in the tree
-// PRE: BSTree Exists
-// POST: returns the height of the node in the BSTree
-//              value not found returns 0
-int BSTree::getHeight(const NodeData &checkMe) const {
-  Node *current = root;
-  while (current->right != nullptr && *current->data < checkMe) {
-    current = current->right;
-  }
-  while (current->left != nullptr && checkMe < *current->data) {
-    current = current->left;
-  }
-  if (*current->data == checkMe) {
-    return heightHelper(current, 1);
-  }
-  return 0;
-}
-
-//-----------------------------------------------------------------------------
-// heighthelper()
-// Description: recursively finds the height of a given node in the tree
-// PRE: BSTree Exists
-// POST: returns the height of the node in the BSTree
-//              value not found returns 0
-int BSTree::heightHelper(Node *current, int height) const {
-  int right = 0;
-  int left = 0;
-  if (current->left == nullptr && current->right == nullptr) {
-    return height;
-  }
-  if (current->right != nullptr) {
-    left = heightHelper(current->right, 1 + height);
-  }
-  if (current->left != nullptr) {
-    right = heightHelper(current->left, 1 + height);
-  }
-  if (right > height) {
-    height = right;
-  }
-  if (left > height) {
-    height = left;
-  }
-  return height;
-}
-
-
 
 
 //-----------------------------------------------------------------------------

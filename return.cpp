@@ -33,8 +33,7 @@ Return::~Return() {
 // PRE: return exists, Format setMovieData: "5000 D C 3 1971 Ruth Gordon"
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
-void Return::setData(string setMovieData) {
-
+bool Return::setData(string setMovieData) {
     stringstream ss(setMovieData); 
     string data;
     ss >> data;
@@ -46,6 +45,7 @@ void Return::setData(string setMovieData) {
     while(!ss.eof()) {
         ss >> movieData;
     }
+    return true;
 }   
 
 
@@ -54,8 +54,9 @@ void Return::setData(string setMovieData) {
 // Description: displays command
 // PRE: return exists
 // POST: movieData and customerID are printed to out with Return statement
-void Return::display() {
-    cout << "Return:" << CustomerID << " " << movieData; 
+bool Return::display() {
+    cout << "Return:" << CustomerID << " " << movieData;
+    return true;
 }   
 
 //---------------------------------------------------------------------------
@@ -65,7 +66,7 @@ void Return::display() {
 // PRE: customer exists, movie is in stock
 // POST: movie is Returned(stock incremented by one), 
 //       transation is added to customer history
-void Return::doTransaction(HashTable& customers, BSTree& movies) {
+bool Return::doTransaction(HashTable& customers, BSTree& movies) {
 
 }
 /*    

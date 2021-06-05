@@ -19,7 +19,7 @@ using namespace std;
 // PRE: Memory is available for Inventory
 // POST: Empty Inventory is created
 Inventory::Inventory() {
-
+	
 }
 
 
@@ -37,9 +37,10 @@ Inventory::~Inventory() {
 // Description: performs the action of printing inventory
 // PRE: BSTree movies exists, is not null
 // POST: movies in stock are printed
-void Inventory::doTransaction(HashTable& customers, BSTree& movies) {
+bool Inventory::doTransaction(HashTable& customers, BSTree& movies) {
     cout << "Inventory: " << endl;
     cout << movies;
+    return true;
 }
 
 
@@ -49,8 +50,8 @@ void Inventory::doTransaction(HashTable& customers, BSTree& movies) {
 // Description: is irrelevant in this class
 // PRE: Inventory exists
 // POST: nothing changes
-void Inventory::setData(int setCustomerID, string setMovieData){
-    
+bool Inventory::setData(string setMovieData) {
+	return false;
 }   
     
  

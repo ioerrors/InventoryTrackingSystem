@@ -9,31 +9,30 @@ class Transaction {
 public:
 
     //-----------------------------------------------------------------------------
-    // Transaction DESTRUCTOR
+    // Transaction CONSTRUCTOR
     // Description: creates an empty Transaction
     // PRE: Memory is available for Transaction
     // POST: empty Transaction is created
-    Transaction();          
+    Transaction() {
 
-    //-----------------------------------------------------------------------------
-    // Transaction DESTRUCTOR
-    // Description: deallocates all memory allocated for Transaction
-    // PRE: Transaction exists
-    // POST: All Transaction memory is freed
-    ~Transaction();             
+    }                      
 
     //---------------------------------------------------------------------------
     // doTransaction()
     // Description: function overloaded in the children classes
     // PRE: transaction exists
     // POST: no action is taken in the virtual doTransaction();
-    virtual bool doTransaction(HashTable& customers, BSTree& movies);
+    virtual bool doTransaction(HashTable& customers, BSTree& movies){
+        return false;
+    }
 
     //---------------------------------------------------------------------------
     // setData()
     // Description: sets data fields
     // PRE: transaction
     // POST: function is not carried out except in children classes
-    virtual bool setData(string setMovieData);
+    virtual bool setData(string setMovieData) {
+        return false;
+    }
 
 };

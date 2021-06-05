@@ -9,7 +9,7 @@
 #ifndef ASS5_BSTREE_H
 #define ASS5_BSTREE_H
 
-#include "nodedata.h"
+#include "movie.h"
 #include <iostream>
 
 using namespace std;
@@ -28,18 +28,12 @@ class BSTree {
 private:
 
   struct Node {
-    NodeData* data = new NodeData();         // pointer to data object
+    Movie* data = new Movie();         // pointer to data object
     Node* left = nullptr;             // left subtree pointer
     Node* right= nullptr;            // right subtree pointer
   };
 
   Node* root;               // root of the tree
-
-  //---------------------------- Sideways -------------------------------------
-  // Helper method for displaySideways
-  // Preconditions: NONE
-  // Postconditions: BSTree remains unchanged.
-  void sideways(Node*, int) const; 
 
   //---------------------------------------------------------------------------
   // copyHelper
@@ -67,28 +61,7 @@ private:
   //       identical subtrees
   bool equalsHelper(Node* current, Node* currentOther) const;
 
-  //---------------------------------------------------------------------------
-  // heighthelper()
-  // Description: recursively finds the height of a given node in the tree
-  // PRE: BSTree Exists
-  // POST: returns the height of the node in the BSTree
-  //              value not found returns 0
-  int heightHelper(Node* current, int height) const;
 
-  //---------------------------------------------------------------------------
-  // toArrayHelper()
-  // Description: recursively converts bst to array
-  // PRE: BSTree Exists, has <= array size nodes
-  // POST: data is in the array
-  void toArrayHelper(NodeData* [], int index, Node* current);
-
-  //---------------------------------------------------------------------------
-  // arrayToBSTreeHelper()
-  // Description: recursive helper function for BSTree array to BST
-  //              recursively adds nodes
-  // PRE: BSTree exists with a root node already instantiated
-  // POST: BSTree is constructed in full after all recursive calls finish
-  void arrayToBSTreeHelper(int start, int end, NodeData* array[]);
 
 public:
 
@@ -169,7 +142,7 @@ public:
   // PRE: BSTree Exists
   // POST: returns false if this BSTree already contains Node
   //       OR returns true if this BSTree successfully added Node
-  bool insert(NodeData*);
+  bool insert(Movie*);
 
   //---------------------------------------------------------------------------
   // insert()
@@ -177,40 +150,9 @@ public:
   //              returns status of success
   // PRE: BSTree Exists
   // POST: returns true if this BSTree contains Node, 
-  //       and NodeData* & is now pointing to its location
+  //       and Movie* & is now pointing to its location
   //       OR returns false if this BSTree does not contain node
-  bool retrieve(const NodeData &, NodeData* &) const;
-
-
-  //---------------------------------------------------------------------------
-  // getHeight()
-  // Description: finds the height of a given node in the tree
-  // PRE: BSTree Exists
-  // POST: returns the height of the node in the BSTree
-  //              value not found returns 0
-  int getHeight (const NodeData &) const;
-  
-  //---------------------------------------------------------------------------
-  // bstreeToArray()
-  // Description: converst bst to array, leaving bst empty
-  // PRE: BSTree Exists, has <= arraysize nodes
-  // POST: BSTree is now empty, data is in the array
-  void bstreeToArray(NodeData* []);
-
-
-  //---------------------------------------------------------------------------
-  // arrayToBSTree()
-  // Description: converts array to bst, leaving array full of nulls
-  // PRE: BSTree Exists
-  // POST: array is now empty, data is in the bst replacing any old data
-  void arrayToBSTree(NodeData* []);
-
-  //------------------------- displaySideways ---------------------------------
-  // Displays a binary tree as though you are viewing it from the side;
-  // hard coded displaying to standard output.
-  // Preconditions: NONE
-  // Postconditions: BSTree remains unchanged.
-  void displaySideways() const;     // provided below, displays the tree sideways
+  bool retrieve(const Movie &, Movie* &) const;
 
   //---------------------------------------------------------------------------
   // inOrderHelper()
