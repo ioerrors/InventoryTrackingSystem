@@ -1,4 +1,4 @@
-////////////////////////////////borrow.h file  ///////////////////////////////
+////////////////////////////////borrow.cpp file  /////////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
@@ -6,6 +6,13 @@
 // child of the transaction class, inheriting from transaction
 //-----------------------------------------------------------------------------
 
+#include "BSTree.h"
+#include "HashTable.h"
+#include "history.h"
+#include "customer.h"
+#include <iostream>
+#include <sstream>  
+using namespace std;
 
 //-----------------------------------------------------------------------------
 // Borrow CONSTRUCTOR
@@ -24,8 +31,8 @@ Borrow::Borrow() {
 // PRE: Borrow exists
 // POST: All Borrow memory is freed
 Borrow::~Borrow() {
-    delete movieData;
-    delete customerID;
+  delete movieData;
+  delete customerID;
 }
 
 
@@ -37,18 +44,18 @@ Borrow::~Borrow() {
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
 bool Borrow::setData(string setMovieData) {
-    stringstream ss(setMovieData); 
-    string data;
-    ss >> data;
-    customerID = (int) data; //store customerID
-    ss >> data; //clear media type
-    data = "";
+  stringstream ss(setMovieData); 
+  string data;
+  ss >> data;
+  customerID = (int) data; //store customerID
+  ss >> data; //clear media type
+  data = "";
 
-    //store rest of movieData as string
-    while(!ss.eof()) {
-        ss >> movieData;
-    }
-    return true;
+  //store rest of movieData as string
+  while(!ss.eof()) {
+      ss >> movieData;
+  }
+  return true;
 }
 
 
@@ -58,8 +65,8 @@ bool Borrow::setData(string setMovieData) {
 // PRE: borrow exists
 // POST: movieData and customerID are printed to out with borrow statement
 bool Borrow::display() {
-    cout << "Borrow:" << CustomerID << " " << movieData;
-    return true;
+  cout << "Borrow:" << CustomerID << " " << movieData;
+  return true;
 }
        
 //-----------------------------------------------------------------------------
@@ -69,13 +76,38 @@ bool Borrow::display() {
 // PRE: customer exists, movie is in stock
 // POST: movie is borrowed(stock reduced by one), 
 //       transation is added to customer history
-bool Borrow::doTransaction(HashTable& customers, set<movie> movies) {
-    Customer current;
-    if (customers.getCustomer(customerID, current)) {
-        cout << current.getHistory();
-        return true;
-    } else {
-        cout << "Borrow: invalid customerID";
-        return  false;
+bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
+  Customer current;
+  if (customers.getCustomer(customerID, current)) {
+    current.addHistory("Borrow " + movieData);
+    Movie* foundMe;
+   
+    MovieFactory makeType = new MovieFactory();
+    stringstream ss(movieData); 
+    string data;
+    ss >> data;
+    Movie findMe = makeType.getMovie(data);
+    data = "";
+    //store rest of movieData as string
+    while(!ss.eof()) {
+        ss >> data;
     }
+    findMe.setData(data);
+
+    if (movies.retrieve(findMe, foundMe) ) {
+      if (foundMe.borrowStock(1)) {
+        current.addHistory("Borrow: " + movieData);
+        return true;
+      } else {
+        cout << "Borrow failed: not enough in stock";
+        return false; 
+      }
+    } else {
+      cout << "Borrow failed: movie not found";
+      return  false;
+    }
+  } else {
+      cout << "Borrow failed: invalid customerID";
+      return  false;
+  }
 }

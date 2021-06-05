@@ -1,10 +1,19 @@
-////////////////////////////////return.h file  ////////////////////////////////
+////////////////////////////////return.cpp file  //////////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
 // This is a class to hold the action type return which is a child of 
 // and inherits from transaction class
 //-----------------------------------------------------------------------------
+
+
+#include "BSTree.h"
+#include "HashTable.h"
+#include "history.h"
+#include "customer.h"
+#include <iostream>
+#include <sstream>  
+using namespace std;
 
 //---------------------------------------------------------------------------
 // Return CONSTRUCTOR
@@ -67,11 +76,38 @@ bool Return::display() {
 // POST: movie is Returned(stock incremented by one), 
 //       transation is added to customer history
 bool Return::doTransaction(HashTable& customers, BSTree& movies) {
+  Customer current;
+  if (customers.getCustomer(customerID, current)) {
+    current.addHistory("Borrow " + movieData);
+    Movie* foundMe;
+   
+    MovieFactory makeType = new MovieFactory();
+    stringstream ss(movieData); 
+    string data;
+    ss >> data;
+    Movie findMe = makeType.getMovie(data);
+    data = "";
+    //store rest of movieData as string
+    while(!ss.eof()) {
+        ss >> data;
+    }
+    findMe.setData(data);
 
+    if (movies.retrieve(findMe, foundMe) ) {
+      if (foundMe.borrowStock(1)) {
+        current.addHistory("Borrow: " + movieData);
+        return true;
+      } else {
+        cout << "Borrow failed: not enough in stock";
+        return false; 
+      }
+    } else {
+      cout << "Borrow failed: movie not found";
+      return  false;
+    }
+  } else {
+      cout << "Borrow failed: invalid customerID";
+      return  false;
+  }
 }
-/*    
-private:
-    string movieData;               // string to track the movie to borrow
-    int customerID;                 // customer responsible for the transaction
-};
-*/
+

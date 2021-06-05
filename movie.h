@@ -34,6 +34,9 @@ public:
     virtual void display() const;                   // print out movie data and return string
 
 
+    //assumed format "F Sleepless in Seattle, 1993"
+    //        or     "C 5 1940 Katherine Hepburn"
+    //        or     "D Gus Van Sant, Good Will Hunting,"   
     virtual void setData(string movieData); 
 
     virtual bool returnStock(int amount);           // add to stock

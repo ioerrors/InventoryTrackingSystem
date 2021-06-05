@@ -10,6 +10,7 @@
 #include "BSTree.h"
 #include "HashTable.h"
 #include "history.h"
+#include "customer.h"
 #include <iostream>
 #include <sstream>  
 using namespace std;
@@ -53,6 +54,8 @@ bool History::setData(string setMovieData) {
 // Description: performs the action relevant to the correct customer
 // PRE: customer exists, movie is in stock
 // POST: transaction history for customer is printed
+//        ASSUMPTION: History is not needed to be added as a transaction
+//                    to the transaction history for a customer
 bool History::doTransaction(HashTable& customers, BSTree& movies) {
     Customer current;
     if (customers.getCustomer(customerID, current)) {
