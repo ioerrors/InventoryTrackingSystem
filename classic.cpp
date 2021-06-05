@@ -93,6 +93,9 @@ void Classic::addSameMovies(const Movie& otherMovie) {
 
 void Classic::setData(string movieData) {
     // stringstream?
+
+    string selectYear = getReleaseYear();
+    stringstream stream(selectYear);
 }
 
 bool Classic::operator==(const Movie& otherMovie) const {
