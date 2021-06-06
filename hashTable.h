@@ -27,58 +27,39 @@ class HashTable {
 
 public:
     
-    HashTable ();           
-    ~HashTable ();            // desctructor
-    
+  HashTable ();           
+  ~HashTable ();            // destructor
+  
 
-    //find
-    bool getCustomer (const int cID, Customer*&) const;            // get Customer
-    
-    //insert
-    bool addCustomer(Customer*&);                                 // add Customer 
+  //find
+  bool getCustomer (const int cID, Customer*&) const;            // get Customer
+  
+  //insert
+  bool addCustomer(Customer*&);                                 // add Customer 
 
-    //returns message digest, after padding
-    string paddAndReturn();
+  //returns message digest, after padding
+  string paddAndReturn();
 
 private:
 
-
-    struct KeyHasher
+  struct KeyHasher {
+    std::size_t operator()(const int& k) const
     {
-      std::string operator()(const int& k) const
-      {
-        using std::string;
-        string data;
-        data = "thisisnotahashingalgorithm";
-        //data = this.paddAndReturn();
-        return data;
-      }
-    };
+    using std::size_t;
+    using std::hash;
+    using std::string;
 
-    //accepts customer ID converted to a string
-    void sha1String(const string& s);
-	//accepts customer ID converted to an istream
-	void sha1StandardImplemenation(istream &is);
+    //write hashing code here
+    int res = k^(k+42);
+    res = res * 62 + KeyHasher()(k + res);
+    res = res / 3 + KeyHasher()(k * res);
+    res = res + 42 + KeyHasher()(k / res);
+    //return value below
+    size_t final = res;
+    return final;
+    }
+  };
 
-
-	void reset(uint32_t message[], std::string &buffer, uint64_t &transforms);
-
-	void bufferToBlock(const std::string &buffer, uint32_t block[16]);
-	static uint32_t rol(const uint32_t value, const size_t bits);
-
-
-	uint32_t blk(const uint32_t block[16], const size_t i);
-
-	void transform(uint32_t message[], uint32_t block[16], uint64_t &transforms);
-	void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
-	void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
-	void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
-	void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
-	void R0(const uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
-    uint32_t message[5];
-    string buffer;
-    uint64_t transforms;
-
-    unordered_map<int&, Customer, KeyHasher> mappy;
+  unordered_map<int&, Customer*, KeyHasher> mappy;
 };
 #endif // HASHTABLE_H
