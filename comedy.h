@@ -26,7 +26,7 @@ public:
     bool addStock(int); 
     bool subStock(int);
 
-    void setData(string movieData);   
+    bool setData(string movieData);
 
     // Overloaded operators
     bool operator==(const Movie& otherMovie) const;   // check if movies are equal

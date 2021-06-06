@@ -11,8 +11,11 @@
 #include "hashTable.h"
 #include "history.h"
 #include "customer.h"
+#include "return.h"
 #include <iostream>
 #include <sstream>  
+
+
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -51,7 +54,7 @@ bool Return::setData(string setMovieData) {
   data = "";
 
   //store rest of movieData as string
-  movieData = ss.str()
+  movieData = ss.str();
   return true;
 }   
 
@@ -62,7 +65,7 @@ bool Return::setData(string setMovieData) {
 // PRE: return exists
 // POST: movieData and customerID are printed to out with Return statement
 bool Return::display() {
-  cout << "Return:" << CustomerID << " " << movieData;
+  cout << "Return:" << customerID << " " << movieData;
   return true;
 }   
 
@@ -74,20 +77,22 @@ bool Return::display() {
 // POST: movie is Returned(stock incremented by one), 
 //       transation is added to customer history
 bool Return::doTransaction(HashTable& customers, BSTree& movies) {
-  Customer current;
+  Customer* current;
   if (customers.getCustomer(customerID, current)) {
-    current.addHistory("Return " + movieData);
+    current->addHistory("Return " + movieData);
     Movie* foundMe;
    
-    MovieFactory makeType = new MovieFactory();
+    MovieFactory makeType;
     stringstream ss(movieData); 
     string data;
     ss >> data;
-    Movie findMe = makeType.getMovie(data);
+    char type;
+    type = data;
+    Movie* findMe = makeType.getMovie(type);
     data = "";
     //store rest of movieData as string
     data = ss.str();
-    findMe.setData(data);
+    findMe->setData(data);
 
 
     if (data == "C") {
@@ -103,7 +108,7 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
       // "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"
       string movieFakeData = "Hal Ashby, Harold and Maude, " 
                            + data  + " " + month + " " + year;
-      findMe.setData(movieFakeData);
+      findMe->setData(movieFakeData);
     } 
     // Command format "Nancy Savoca, Dogfight,"
     // movie format "Steven Spielberg, Schindler's List, 1993"
@@ -111,7 +116,7 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
       data = "";
       getline(ss, data);
       string movieFakeData = data + " 1993";
-      findMe.setData(movieFakeData);
+      findMe->setData(movieFakeData);
     } 
     // Command format "Annie Hall, 1977"
     // movie format  "Steven Spielberg, Schindler's List, 1993"
@@ -119,7 +124,7 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
       data = "";
       getline(ss, data);
       string movieFakeData = "Fake Director," + data;
-      findMe.setData(movieFakeData);
+      findMe->setData(movieFakeData);
     } else {
       cout << "Return failed: invalid Movie type";
       return false;
@@ -127,17 +132,18 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
 
 
     //find movie
-    if (movies.retrieve(findMe, foundMe) ) {
+    if (movies.retrieve(*findMe, foundMe) ) {
       int x = 0;
       data = "";
-      ostream findBorrow << current.getHistory();
+      ifstream os;
+      os << current->getHistory();
 
       //check if borrowed
-      while(std::getline(findBorrow, data)) {
-        if (data = "Borrow " + movieData) {
+      while(getline(os, data)) {
+        if (data == "Borrow " + movieData) {
             x--;
         }
-        else if (data = "Return " + movieData) {
+        else if (data == "Return " + movieData) {
             x++;
         }
       }
@@ -148,8 +154,8 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
       //           is borrowed by this customer and can be returned
       // x is never > 0
       if (x < 0) {
-        foundMe.addStock(1);
-        current.addHistory("Return: " + movieData);
+        foundMe->addStock(1);
+        current->addHistory("Return: " + movieData);
         return true;
       } else {
         cout << "Return failed: movie not borrowed or already returned";

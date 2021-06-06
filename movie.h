@@ -5,9 +5,13 @@
 // This is a movie class/interface which stores 
 // and allows access to various movie attributes
 //-----------------------------------------------------------------------------
-
 #ifndef MOVIE_H
 #define MOVIE_H
+
+#include <iostream>
+
+using namespace std;
+
 
 class Movie {
 public:

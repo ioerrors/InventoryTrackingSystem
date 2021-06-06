@@ -16,15 +16,20 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "customer.h"
+#include <stack>
+#include <unordered_map>
 #include "hashTable.h"
-
-
+#include "BSTree.h"
+#include "transaction.h"
+#include "movieFactory.h"
+#include "history.h"
+#include "borrow.h"
+#include "customer.h"
 
 
 HashTable::HashTable () {
   reset(message, buffer, transforms);
-  unordered_map<int, Customer, KeyHasher> mappy;
+  std::unordered_map<int, Customer, KeyHasher> mappy;
 
 }
 
@@ -38,22 +43,23 @@ HashTable::~HashTable () {
 
 //find
 bool HashTable::getCustomer (const int cID, Customer*& setMe) const {
-  int data = customer.getID();
-  string hashMe = "" + data;
-  setMe = mappy[data];
+  string hashMe = "" + cID;
+  setMe = mappy[hashMe];
+  return true;
 }            
 
 //insert
 bool HashTable::addCustomer(Customer*& customer) {
-  int data = customer.getID();
+  int data = customer->getID();
   string hashMe = "" + data;
   sha1String(hashMe);
   mappy[data] = customer;
   reset(message, buffer, transforms);
+  return true;
 }                             
     
 
-static void reset(uint32_t message[], std::string &buffer, uint64_t &transforms)
+void reset(uint32_t message[], std::string &buffer, uint64_t &transforms)
 {
     /* SHA1 initialization constants */
     message[0] = 0x67452301;

@@ -28,7 +28,7 @@ public:
     bool addStock(int); 
     bool subStock(int);            // subtract from stock
     // void addSameMovies(Movie*&);            // add the same movie to the list of same movies
-    void setData(string movieData); 
+    bool setData(string movieData);
 
 
     // Overloaded operators

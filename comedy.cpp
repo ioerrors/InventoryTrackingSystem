@@ -40,7 +40,6 @@ Comedy::~Comedy() {
   delete stock;                                      
   delete year;                                      
   delete month;
-  delete actorsList;  
 }
 
 char Comedy::getGenre() const {
@@ -53,7 +52,7 @@ char Comedy::getGenre() const {
 // PRE: Comedy exists, stock is already set using addStock()
 //    input format "Rob Reiner, When Harry Met Sally, 1989"    
 // POST: all data fields set
-void Comedy::setData(string movieData) {
+bool Comedy::setData(string movieData) {
   stringstream ss(movieData);
   char delimeter = ',';
   string data;
@@ -71,6 +70,7 @@ void Comedy::setData(string movieData) {
   data = "";
   ss >> data;
   year = (int) data;
+  return true;
 }
 
 bool Comedy::operator==(const Movie& otherMovie) const {
@@ -85,7 +85,7 @@ bool Comedy::operator!=(const Movie& otherMovie) const {
 bool Comedy::operator>(const Movie& otherMovie) const {
   if (title > otherMovie.getTitle()) {
     return true; // title is greater
-  } else (title == otherMovie.getTitle()) {
+  } else if (title == otherMovie.getTitle()) {
     if(year > otherMovie.getReleaseYear()) {
       return true; // release is greater(more recent)
     }

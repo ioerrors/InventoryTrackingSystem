@@ -1,4 +1,19 @@
-int main() {
+#include <iostream>
+#include <sstream>
+#include <stack>
+#include <set>
+
+#include "business.h"
+#include "BSTree.h"
+#include "hashTable.h"
+#include "transactionFactory.h"
+#include "movieFactory.h"
+#include "customer.h"
+
+
+using namespace std;
+
+Business::Business() {
     ifstream movieFile("data4movies.txt");           // read the movies text file
     ifstream customerFile("data4customers.txt");     // read the customers text file
     ifstream transactionFile("data4commands.txt");   // read the commands text file
@@ -14,26 +29,28 @@ int main() {
     createHashTableCustomers(customerFile);
     processTransactions(transactionFile);
 
-    return 0;
 }
 
 
 void Business::createBSTreeMovies(ifstream movieFile) {
   //creates the BSTree for movies, and returns
 
-  MovieFactory factory = new MovieFactory();
+  MovieFactory factory;
   set<Movie> setOfMovies; 
   while(!movieFile.eof()) {
-    char movieType << movieFile;
+    char movieType;
+    movieType << movieFile;
     Movie movie = factory.getMovie(movieType);
-    movie.setData(movieFile.getLine());
+    string data;
+    getline(movieFile, data);
+    movie.setData(data);
     setOfMovies.insert(movie);
   } //<---we have a set full of all our movies
   // now we want a bst of our movies.
   createBSTreeMoviesHelper(setOfMovies, movies.getRoot());
 }
 
-void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
+void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, BSTree::Node* current) {
   if (current == nullptr) {
     return;
   }
@@ -42,7 +59,7 @@ void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
 
   Movie* first = movieSet.begin();
   current->data = *first;
-  movieSet.erase(first);
+  movieSet.erase(*first);
 
   createBSTreeMoviesHelper(movieSet, current->right);
 } 
@@ -50,23 +67,29 @@ void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
 //3333 Witch Wicked
 void Business::createHashTableCustomers(ifstream customerFile) {
   while(!customerFile.eof()) {
-    int customerID << customerFile;
-    string lastName << customerFile;
-    string firstName << customerFile; 
-    Customer cust = new Customer(customerID, firstName, lastName);
+    int customerID;
+    customerID << customerFile;
+    string lastName;
+    lastName << customerFile;
+    string firstName;
+    firstName << customerFile;
+    Customer* cust(customerID, firstName, lastName);
     customers.addCustomer(cust);
   }
 }
 
-void processTransactions(transactionFile) {
+void Business::processTransactions(ifstream transactionFile) {
   
-  TransactionFactory factory = new TransactionFactory();
+  TransactionFactory factory;
 
   while(!transactionFile.eof()) {
-    char transType << transactionFile;
+    char transType;
+    transType << transactionFile;
     Transaction action = factory.getTransaction(transType);
-    action.setData(transactionFile.getLine());
-    action.doTransaction();
+    string data;
+    getline(transactionFile, data);
+    action.setData(data);
+    action.doTransaction(customers, movies);
     delete action;
   }
 }

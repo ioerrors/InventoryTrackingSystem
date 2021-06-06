@@ -5,13 +5,19 @@
 // This is a borrow class which is a type of transaction 
 // child of the transaction class, inheriting from transaction
 //-----------------------------------------------------------------------------
-
-#include "BSTree.h"
-#include "hashTable.h"
-#include "history.h"
-#include "customer.h"
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <sstream>  
+#include <sstream>
+#include <string>
+#include <stack>
+
+
+#include "transaction.h"
+#include "borrow.h"
+#include "movieFactory.h"
+
 using namespace std;
 
 //-----------------------------------------------------------------------------
@@ -52,7 +58,7 @@ bool Borrow::setData(string setMovieData) {
   data = "";
 
   //store rest of movieData as string
-  movieData = ss.str()
+  movieData = ss.str();
   return true;
 }
 
@@ -63,7 +69,7 @@ bool Borrow::setData(string setMovieData) {
 // PRE: borrow exists
 // POST: movieData and customerID are printed to out with borrow statement
 bool Borrow::display() {
-  cout << "Borrow:" << CustomerID << " " << movieData;
+  cout << "Borrow: " << customerID << " " << movieData;
   return true;
 }
        
@@ -75,16 +81,17 @@ bool Borrow::display() {
 // POST: movie is borrowed(stock reduced by one), 
 //       transation is added to customer history
 bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
-  Customer current;
+  Customer* current;
   if (customers.getCustomer(customerID, current)) {
-    current.addHistory("Borrow " + movieData);
+    current->addHistory("Borrow " + movieData);
     Movie* foundMe;
    
-    MovieFactory makeType = new MovieFactory();
+    MovieFactory makeType;
     stringstream ss(movieData); 
     string data;
     ss >> data;
-    Movie findMe = makeType.getMovie(data);
+    char type = data;
+    Movie* findMe = makeType.getMovie(type);
     
     if (data == "C") {
       data = "";
@@ -98,7 +105,7 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
       //Hal Ashby, Harold and Maude, Ruth Gordon 3 1971
       string movieFakeData = "Hal Ashby, Harold and Maude, " 
                            + data  + " " + month + " " + year;
-      findMe.setData(movieFakeData);
+      findMe->setData(movieFakeData);
     } 
     //Command "Nancy Savoca, Dogfight,"
     //movie "Steven Spielberg, Schindler's List, 1993"
@@ -106,7 +113,7 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
       data = "";
       getline(ss, data);
       string movieFakeData = data + " 1993";
-      findMe.setData(movieFakeData);
+      findMe->setData(movieFakeData);
     } 
     //Command "Annie Hall, 1977"
     //movie "Steven Spielberg, Schindler's List, 1993"
@@ -114,14 +121,14 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
       data = "";
       getline(ss, data);
       string movieFakeData = "Fake Director," + data;
-      findMe.setData(movieFakeData);
+      findMe->setData(movieFakeData);
     } else {
       cout << "Borrow failed: invalid Movie type";
       return false;
     }
-    if (movies.retrieve(findMe, foundMe) ) {
-      if (foundMe.subStock(1)) {
-        current.addHistory("Borrow: " + movieData);
+    if (movies.retrieve(*findMe, foundMe) ) {
+      if (foundMe->subStock(1)) {
+        current->addHistory("Borrow: " + movieData);
         return true;
       } else {
         cout << "Borrow failed: not enough in stock";

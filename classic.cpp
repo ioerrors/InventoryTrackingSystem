@@ -178,11 +178,11 @@ bool Classic::operator==(const Movie& otherMovie) {
   if (year != otherMovie.getReleaseYear()) {
     return false;
   }
-  if (actorsList != otherMovie.actorsList()) { // check actor
+  if (actorsList != otherMovie.getActors()) { // check actor
     if (title == otherMovie.getTitle()) { // still same movie, new actor
       //add the other movie's entire list of actors to this movie object
-      set<string> otherList = otherMovie.getActors();
-      actorsList.insert(otherList.begin(), otherList.end());
+      actorsList.insert(otherMovie.getActors().begin(),
+    		  	  	    otherMovie.getActors().end());
       return true;      
     } else {
       return false; //different release date, actors, and different title
@@ -201,31 +201,25 @@ bool Classic::operator>(const Movie& otherMovie) {
       if (year > otherMovie.getReleaseYear()) {
         return true; //this movie release year is greater(more recent)   
       } else if (year == otherMovie.getReleaseYear() 
-              && month > otherMovie.getMonth()) {
-          return true; //this movie release month is greater (more recent)
+          && month > otherMovie.getMonth()) {
+            return true; //this movie release month is greater (more recent)
         } else if (year == otherMovie.getReleaseYear() 
-              && month == otherMovie.getMonth()) { //same release date
-          //alphabetically Last actor in both lists is used as sorting actor
-          return actorsList.end() > otherMovie.getActors().end();
-        } else {
-          return false; // this movie is less recent in months
-        }
-      } else {
-        return false; // this movie is less recent in years
-      }
-    } else {
+                  && month == otherMovie.getMonth()) { //same release date
+            //alphabetically Last actor in both lists is used as sorting actor
+            return actorsList.end() > otherMovie.getActors().end();
+        }    
+        return false; // this movie is less recent
+      } 
       // this classic movie is sorted greater than other movie types
-      return true; 
-    }  
-  } else { 
-    return false;   // this movie is the same movie
-  }
+    return true;   
+  } 
+  return false;   // this movie is the same movie
 }
 
 
 
 // this < otherMovie
-bool Classic::operator<(const otherMovie&) {
+bool Classic::operator<(const Movie& otherMovie) {
   if(this != otherMovie) { 
     return (!(this > otherMovie)); 
   }

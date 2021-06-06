@@ -18,6 +18,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <customer.h>
 
 class HashTable {
 
@@ -34,7 +35,10 @@ public:
     
     //insert
     bool addCustomer(Customer*&);                                 // add Customer 
-    
+
+    //returns message digest, after padding
+    string paddAndReturn();
+
 private:
 
 
@@ -43,7 +47,10 @@ private:
       std::string operator()(const int& k) const
       {
         using std::string;
-        return final();
+        string data;
+        data = "thisisnotahashingalgorithm";
+        //data = this.paddAndReturn();
+        return data;
       }
     };
 
@@ -51,10 +58,9 @@ private:
     void sha1String(string& s);
 	//accepts customer ID converted to an istream
 	void sha1StandardImplemenation(istream &is);
-	//returns message digest, after padding
-	string paddAndReturn();
 
-	static void reset(uint32_t message[], std::string &buffer, uint64_t &transforms);
+
+	void reset(uint32_t message[], std::string &buffer, uint64_t &transforms);
 
 
 	static uint32_t rol(const uint32_t value, const size_t bits);

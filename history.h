@@ -6,6 +6,26 @@
 // child and inheriting from Transaction class
 //-----------------------------------------------------------------------------
 
+#ifndef HISTORY_H
+#define HISTORY_H
+
+#include "BSTree.h"
+#include "hashTable.h"
+#include <iostream>
+#include <sstream>
+
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stack>
+
+
+#include "transaction.h"
+
+
 class History: public Transaction {
 public:
     //---------------------------------------------------------------------------
@@ -29,15 +49,16 @@ public:
     // PRE: history exists, customer exists
     // POST: movieData is ignored, 
     //       and customerID is set to setCustomerID
-    void setData(string setMovieData);
+    bool setData(string setMovieData);
     
     //---------------------------------------------------------------------------
     // doTransaction()
     // Description: performs the action relevant to the correct customer
     // PRE: customer exists, movie is in stock
     // POST: transaction history for customer is printed
-    void doTransaction(HashTable& customers, BSTree& movies);
+    bool doTransaction(HashTable& customers, BSTree& movies);
     
 private:           
     int customerID;                 // customer responsible for the transaction
 };
+#endif

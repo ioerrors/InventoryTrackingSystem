@@ -1,10 +1,19 @@
-#ifndef CUSTOMER_CPP
-#define CUSTOMER_CPP
 
+#include <iostream>
+#include <sstream>
+#include <stack>
+
+#include "BSTree.h"
+#include "hashTable.h"
+#include "transaction.h"
+#include "movieFactory.h"
 #include "customer.h"
 
+
+using namespace std;
+
 Customer::Customer() {
-    setID("");
+    setID(0);
     setFirstName("");
     setLastName("");
 }
@@ -27,7 +36,7 @@ int Customer::getID() const {
 }
 
 string Customer::getName() const {
-    string fullName = firstName + " " lastName;
+    string fullName = firstName + " " + lastName;
     return fullName;
 }
 
@@ -58,18 +67,18 @@ bool Customer::setCustomerInfo(int cID, string first, string last) {
 }
 
 bool Customer::setID(int cID) {
-    customerID = id;
+    customerID = cID;
     return true;
 }
 
-bool setFirstName(string first) {
+bool Customer::setFirstName(string first) {
     firstName = first;
     return true;
 }
 
-bool setLastName(string last) {
+bool Customer::setLastName(string last) {
     lastName = last;
     return true;
 }
 
-#endif
+

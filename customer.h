@@ -4,10 +4,23 @@
 //-----------------------------------------------------------------------------
 // This is a class to hold a single customer
 //-----------------------------------------------------------------------------
-
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
+
+#include "BSTree.h"
+#include "hashTable.h"
+#include "transaction.h"
+#include "movieFactory.h"
+#include "history.h"
+#include "borrow.h"
+#include "customer.h"
+#include <iostream>
+#include <sstream>
+#include <stack>
+
+
+using namespace std;
 
 class Customer {
 

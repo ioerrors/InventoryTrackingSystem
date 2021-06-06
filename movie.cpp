@@ -6,13 +6,16 @@
 // and allows access to various movie attributes
 //-----------------------------------------------------------------------------
 
-#ifndef MOVIE_CPP
-#define MOVIE_CPP
-
 #include "movie.h"
 
 Movie::Movie() {
-    otherMovie = NULL;
+  genre = '';
+  mediaType = '';
+  title = "";
+  director = "";
+  stock = 0;
+  year = 0;
+  month = 0;
 }
 
 Movie::~Movie() {
@@ -56,4 +59,4 @@ bool Movie::subStock(int removeStock) {
 
 }
 
-#endif
+

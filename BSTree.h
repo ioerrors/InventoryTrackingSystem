@@ -6,8 +6,8 @@
 // Can search a BSTree and find items in O(log n) time.
 // No duplicates are allowed.
 
-#ifndef ASS5_BSTREE_H
-#define ASS5_BSTREE_H
+#ifndef BSTREE_H
+#define BSTREE_H
 
 #include "movie.h"
 #include <iostream>
@@ -172,4 +172,4 @@ public:
 };
 
 
-#endif //ASS5_BSTREE_H
+#endif //BSTREE_H

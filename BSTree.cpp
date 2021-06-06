@@ -6,10 +6,28 @@
 // Can search a BSTree and find items in O(log n) time.
 // No duplicates are allowed.
 
-#include "BSTree.h"
-#include "movie.h"
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <sstream>  
+#include <sstream>
+#include <string>
+#include <stack>
+
+
+#include "transaction.h"
+#include "return.h"
+#include "inventory.h"
+#include "history.h"
+#include "HashTable.h"
+#include "BSTree.h"
+#include "business.h"
+#include "classic.h"
+#include "comedy.h"
+#include "drama.h"
+#include "customer.h"
+#include "movieFactory.h"
+#include "transactionFactory.h"
 using namespace std;
 
 //-----------------------------------------------------------------------------
@@ -220,8 +238,7 @@ bool BSTree::operator!=(const BSTree &otherBSTree) const {
 // PRE: BSTree Exists
 // POST: returns false if this BSTree already contains Node
 //       OR returns true if this BSTree successfully added Node
-bool BSTree::insert(Movie& movie) {
-  Movie* insertMe = movie;
+bool BSTree::insert(Movie* insertMe) {
   if (insertMe == nullptr) {
     return false;
   }

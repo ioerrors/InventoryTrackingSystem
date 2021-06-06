@@ -4,6 +4,15 @@
 //-----------------------------------------------------------------------------
 // This is a class to build the movie objects
 //-----------------------------------------------------------------------------
+
+
+#include "classic.h"
+#include "comedy.h"
+#include "drama.h"
+
+//#include "transactionFactory.h"
+
+
 class MovieFactory {
 public:
 
@@ -13,14 +22,14 @@ public:
 
     Movie getMovie(char type) {
         switch (type) {
-            case type = 'C':
+            case type == 'C':
                 return new Classic();
-            case type = 'F':
+            case type == 'F':
                 return new Comedy();
-            case type = 'D':
+            case type == 'D':
                 return new Drama();
             default:
-                throw new NotSupportedException("Movie type not found");
+                throw;
         }
     }
 };

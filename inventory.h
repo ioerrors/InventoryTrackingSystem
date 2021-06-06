@@ -5,6 +5,20 @@
 // This is a class to hold the action type Inventory
 // inherits from Transaction
 //-----------------------------------------------------------------------------
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
+#include <iostream>
+#include <sstream>
+
+#include "transaction.h"
+#include "BSTree.h"
+#include "hashTable.h"
+#include "history.h"
+#include "inventory.h"
+#include "customer.h"
+
+using namespace std;
 
 class Inventory: public Transaction {
 public:
@@ -38,3 +52,4 @@ public:
     void setData(string setMovieData);   
     
 };
+#endif

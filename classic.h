@@ -38,6 +38,9 @@
 #define CLASSIC_H
 
 #include "movie.h"
+#include <set>
+
+using namespace std;
 
 class Classic : public Movie {
 public:
@@ -81,16 +84,16 @@ public:
   // Overloaded operators
 
   // check if movies are equal and adds actor to actor list
-  bool operator==(const otherMovie&);
+  bool operator==(const Movie& otherMovie);
 
   // check if movies are not equal  
-  bool operator!=(const otherMovie&);
+  bool operator!=(const Movie& otherMovie);
 
   // check if this movie is greater than other movie  
-  bool operator>(const otherMovie&);
+  bool operator>(const Movie& otherMovie);
 
   // check if this movie is less than other movie  
-  bool operator<(const otherMovie&);   
+  bool operator<(const Movie& otherMovie);
     
 private:
     set<string> actorsList;       // List of actors

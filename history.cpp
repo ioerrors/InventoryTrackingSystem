@@ -6,13 +6,16 @@
 // child and inheriting from Transaction class
 //-----------------------------------------------------------------------------
 
+#include <iostream>
+#include <sstream>
+
 
 #include "BSTree.h"
 #include "hashTable.h"
 #include "history.h"
 #include "customer.h"
-#include <iostream>
-#include <sstream>  
+
+
 using namespace std;
 
 
@@ -57,9 +60,9 @@ bool History::setData(string setMovieData) {
 //        ASSUMPTION: History is not needed to be added as a transaction
 //                    to the transaction history for a customer
 bool History::doTransaction(HashTable& customers, BSTree& movies) {
-    Customer current;
+    Customer* current;
     if (customers.getCustomer(customerID, current)) {
-        cout << current.getHistory();
+        cout << current->getHistory();
         return true;
     } else {
         cout << "History: invalid customerID";

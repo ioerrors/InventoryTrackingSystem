@@ -1,26 +1,31 @@
-////////////////////////////////transaction.h file  ///////////////////////////
+/////////////////////////transactionFactory.h file  ///////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
-// This is a class to hold the action types, is a parent class
+// This is a class to build the action types
 //-----------------------------------------------------------------------------
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stack>
+
+
+#include "HashTable.h"
+#include "BSTree.h"
+
+//#include "transactionFactory.h"
+
 
 class Transaction {
 public:
 
-    //-----------------------------------------------------------------------------
-    // Transaction DESTRUCTOR
-    // Description: creates an empty Transaction
-    // PRE: Memory is available for Transaction
-    // POST: empty Transaction is created
-    Transaction();          
+    Transaction();              // constructor
+    virtual ~Transaction();             // destructor
 
-    //-----------------------------------------------------------------------------
-    // Transaction DESTRUCTOR
-    // Description: deallocates all memory allocated for Transaction
-    // PRE: Transaction exists
-    // POST: All Transaction memory is freed
-    ~Transaction();             
+
 
     //---------------------------------------------------------------------------
     // doTransaction()

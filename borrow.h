@@ -5,6 +5,25 @@
 // This is a borrow class which is a type of transaction 
 // child of the transaction class, inheriting from transaction
 //-----------------------------------------------------------------------------
+#ifndef BORROW_H
+#define BORROW_H
+
+
+
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stack>
+
+
+#include "transaction.h"
+
+
+
+using namespace std;
 
 class Borrow: public Transaction {
 public:
@@ -30,7 +49,7 @@ public:
     //      Format setMovieData = "B 2000 D F Sleepless in Seattle, 1993"   
     // POST: movieData is set to setMovieData, 
     //       and customerID is set to setCustomerID
-    void setData(string setMovieData);
+    bool setData(string setMovieData);
 
  
     //---------------------------------------------------------------------------
@@ -38,7 +57,7 @@ public:
     // Description: displays command
     // PRE: borrow exists
     // POST: movieData and customerID are printed to out with borrow statement
-    void display();
+    bool display();
            
     //---------------------------------------------------------------------------
     // doTransaction()
@@ -47,9 +66,10 @@ public:
     // PRE: customer exists, movie is in stock
     // POST: movie is borrowed(stock reduced by one), 
     //       transation is added to customer history
-    void doTransaction(HashTable& customers, BSTree& movies);
+    bool doTransaction(HashTable& customers, BSTree& movies);
     
 private:
     string movieData;               // string to track the movie to borrow
     int customerID;                 // customer responsible for the transaction
 };
+#endif

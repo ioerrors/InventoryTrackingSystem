@@ -5,12 +5,17 @@
 // This is a class to hold the action type Inventory
 // inherits from Transaction
 //-----------------------------------------------------------------------------
+
+#include <iostream>
+#include <sstream>
+
+#include "transaction.h"
 #include "BSTree.h"
 #include "hashTable.h"
 #include "history.h"
+#include "inventory.h"
 #include "customer.h"
-#include <iostream>
-#include <sstream>  
+
 using namespace std;
 
 

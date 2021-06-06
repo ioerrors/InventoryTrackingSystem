@@ -10,8 +10,10 @@
 #define DRAMA_CPP
 
 #include "drama.h"
-
-
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <stack>
 //-----------------------------------------------------------------------------
 // Comedy CONSTRUCTOR
 // Description: creates an empty Comedy
@@ -41,7 +43,6 @@ Drama::~Drama() {
   delete stock;                                      
   delete year;                                      
   delete month;
-  delete actorsList;  
 }
 
 char Drama::getGenre() const {
@@ -54,7 +55,7 @@ char Drama::getGenre() const {
 // PRE: Drama exists, stock is already set using addStock()
 //    input format "Phillippe De Broca, King of Hearts, 1967"    
 // POST: all data fields set
-void Drama::setData(string movieData) {
+bool Drama::setData(string movieData) {
   stringstream ss(movieData);
   char delimeter = ',';
   string data;
@@ -71,7 +72,8 @@ void Drama::setData(string movieData) {
   // get year
   data = "";
   ss >> data;
-  year = (int) data;    
+  year = (int) data;
+  return true;
 }
 
 bool Drama::operator==(const Movie& otherMovie) const {
@@ -79,7 +81,7 @@ bool Drama::operator==(const Movie& otherMovie) const {
 }
 
 bool Drama::operator!=(const Movie& otherMovie) const {
-    return !(this == &otherMovie)   
+    return !(this == &otherMovie);
 }
 
 bool Drama::operator>(const Movie& otherMovie) const {
