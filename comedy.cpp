@@ -1,3 +1,11 @@
+////////////////////////////////comedy.cpp file  ////////////////////////////////
+//-----------------------------------------------------------------------------
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
+//-----------------------------------------------------------------------------
+// This is a comedy class which is a type of movie 
+// child of the movie class, inheriting from Movie
+//-----------------------------------------------------------------------------
+
 #ifndef COMEDY_CPP
 #define COMEDY_CPP
 
@@ -12,27 +20,7 @@ Comedy::~Comedy() {
 }
 
 char Comedy::getGenre() const {
-
-}
-
-string Comedy::getTitle() const {
-
-}
-
-int Comedy::getStock() const {
-
-}
-
-int Comedy::getReleaseYear() const {
-
-}
-
-bool Comedy::addStock(int) {
-
-}
-
-bool Comedy::subStock(int) {
-
+	return 'F';
 }
 
 void Comedy::setData(string movieData) {

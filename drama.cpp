@@ -1,3 +1,11 @@
+////////////////////////////////drama.cpp file  /////////////////////////////////
+//-----------------------------------------------------------------------------
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
+//-----------------------------------------------------------------------------
+// This is a drama class which is a type of movie 
+// child of the movie class, inheriting from Movie
+//-----------------------------------------------------------------------------
+
 #ifndef DRAMA_CPP
 #define DRAMA_CPP
 
@@ -13,30 +21,6 @@ Drama::~Drama() {
 
 char Drama::getGenre() const {
     return 'D';
-}
-
-string Drama::getTitle() const {
-    return this->title;
-}
-
-string Drama::getDirector() const {
-    return this->director;
-}
-
-int Drama::getStock() const {
-    return this->stock;
-}
-
-int Drama::getReleaseYear() const {
-    return year;
-}
-
-bool Drama::addStock(int) {
-
-}
-
-bool Drama::subStock(int) {
-
 }
 
 void Drama::setData(string movieData) {
