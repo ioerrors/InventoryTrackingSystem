@@ -10,18 +10,15 @@ int main() {
     if (!transactionFile)             // repeat for movieFile and transactionFile
         cout << "Transaction file cannot be oppened" << endl;
     
-    movies = createBSTreeMovies(movieFile);
-    customers = createHashTableCustomers(customerFile);
+    createBSTreeMovies(movieFile);
+    createHashTableCustomers(customerFile);
     processTransactions(transactionFile);
-    
-
-
 
     return 0;
 }
 
 
-BSTree Business::createBSTreeMovies(ifstream movieFile) {
+void Business::createBSTreeMovies(ifstream movieFile) {
   //creates the BSTree for movies, and returns
 
   MovieFactory factory = new MovieFactory();
@@ -33,9 +30,7 @@ BSTree Business::createBSTreeMovies(ifstream movieFile) {
     setOfMovies.insert(movie);
   } //<---we have a set full of all our movies
   // now we want a bst of our movies.
-  BSTree movies;
   createBSTreeMoviesHelper(setOfMovies, movies.getRoot());
-  return movies;
 }
 
 void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
@@ -51,13 +46,15 @@ void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
 
   createBSTreeMoviesHelper(movieSet, current->right);
 } 
-  
-HashTable Business::createHashTableCustomers(ifstream customerFile) {
+
+//3333 Witch Wicked
+void Business::createHashTableCustomers(ifstream customerFile) {
   while(!customerFile.eof()) {
-    char movieType << customerFile;
-    Movie movie = factory.getMovie(movieType);
-    movie.setData(customerFile.getLine());
-    setOfMovies.insert(movie);
+    int customerID << customerFile;
+    string lastName << customerFile;
+    string firstName << customerFile; 
+    Customer cust = new Customer(customerID, firstName, lastName);
+    customers.addCustomer(cust);
   }
 }
 
