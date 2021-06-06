@@ -4,14 +4,20 @@
 //-----------------------------------------------------------------------------
 // This class is a data structure to hold customers
 // in a quickly accessable format
+// Implemented hashing algorithm based on public domain worked implemenations
+// of the now defunct SHA1 standard
 //-----------------------------------------------------------------------------
+
+
+#ifndef HASHTABLE_H
+#define HASHTABLE_H
+
 #include <cstdint>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
-
 
 class HashTable {
 public:
@@ -32,7 +38,7 @@ private:
 	//returns message digest, after padding
 	string paddAndReturn();
 
-	static void reset(uint32_t digest[], std::string &buffer, uint64_t &transforms);
+	static void reset(uint32_t message[], std::string &buffer, uint64_t &transforms);
 
 
 	static uint32_t rol(const uint32_t value, const size_t bits);
@@ -42,8 +48,9 @@ private:
 
 
 	void sha1StandardImplemenation(std::istream &is);
-	
+
     uint32_t message[5];
     string buffer;
     uint64_t transforms;
 };
+#endif // HASHTABLE_H
