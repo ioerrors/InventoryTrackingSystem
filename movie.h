@@ -28,15 +28,17 @@ public:
     int getStock() const;                           // get the stock of the movie object
     int getReleaseYear() const;                     // get the release year date of the movie object
 
-    string getActor() const;                // get the actor of the movie object
+    virtual string getActors() const;                // get the actors of the movie object
     virtual int getMonth() const;                   // get the month of classic of the movie object
     
     virtual void display() const;                   // print out movie data and return string
 
 
-    //assumed format "F Sleepless in Seattle, 1993"
-    //        or     "C 5 1940 Katherine Hepburn"
-    //        or     "D Gus Van Sant, Good Will Hunting,"   
+    //created a movie()
+    //add stock(stock)
+    //assumed format "Gus Van Sant, Good Will Hunting, 2000"
+    //        or     "Rob Reiner, When Harry Met Sally, 1989"
+    //        or     "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"   
     virtual void setData(string movieData); 
 
     bool addStock(int newStock);           // add to stock

@@ -25,12 +25,13 @@ public:
     string getDirector() const;
     int getStock() const;
     int getReleaseYear() const;
-    set<string> getActorsList();
+
 
     // Mutators
     bool addStock(int); 
     bool subStock(int);            // subtract from stock
     void addSameMovies(Movie*&);            // add the same movie to the list of same movies
+    set<string> getActors() const;      // get the actors of the movie object
 
     void setData(string movieData);  
     

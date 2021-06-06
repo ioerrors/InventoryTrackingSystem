@@ -91,11 +91,46 @@ void Classic::addSameMovies(const Movie& otherMovie) {
 
 }
 
-void Classic::setData(string movieData) {
-    // stringstream?
+// get the actors of the movie object
+set<string> Classic::getActors() const { 
+  return actorsList;
+}   
 
-    string selectYear = getReleaseYear();
-    stringstream stream(selectYear);
+
+//-----------------------------------------------------------------------------
+// setData()
+// Description: sets data fields
+// PRE: classic exists, 
+//    assumed format "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"    
+// POST: 
+void Classic::setData(string movieData) {
+
+  //usable for any movie:
+  stringstream ss(movieData);
+  char delimeter = ',';
+  string data;
+  getline(ss, data, ',');
+  director = data;
+  data = "";
+  getline(ss, data, ',');
+  title = data;
+
+  //specific to Classic:
+  string first;
+  string last;
+  ss >> first;
+  ss >> last;
+  string name = first + " " + last;
+  actorsList.insert(name);
+
+  data = "";
+  ss >> data;
+  month = (int) data;
+
+  //use for any movie:
+  data = "";
+  ss >> data;
+  year = (int) data;
 }
 
 bool Classic::operator==(const Movie& otherMovie) const {
