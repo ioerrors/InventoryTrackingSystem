@@ -30,14 +30,14 @@ public:
     TransactionFactory();              // constructor
     virtual ~TransactionFactory();             // destructor
 
-    Transaction* getTransaction(const char type) {
-        if(type == 'H') {
+    Transaction* getTransaction(string type) {
+        if(type == "H") {
             return new History();
-        } else if (type == 'I') {
+        } else if (type == "I") {
             return new Inventory();                
-        } else if (type == 'R') {
+        } else if (type == "R") {
             return new Return();
-        } else if (type == 'B') {
+        } else if (type == "B") {
             return new Borrow();
         } else {
             throw;

@@ -9,7 +9,7 @@
 #define MOVIE_H
 
 #include <iostream>
-
+#include <set>
 using namespace std;
 
 
@@ -41,7 +41,7 @@ public:
     int getStock() const;                           // get the stock of the movie object
     int getReleaseYear() const;                     // get the release year date of the movie object
 
-    virtual string getActors() const;                // get the actors of the movie object
+    virtual set<string> getActors() const;                // get the actors of the movie object
     virtual int getMonth() const;                   // get the month of classic of the movie object
     
     virtual void display() const;                   // print out movie data and return string

@@ -20,8 +20,8 @@
 // PRE: Memory is available for Comedy
 // POST: Empty Comedy is created
 Drama::Drama() {
-  genre = '';                                   
-  mediaType = '';                               
+  genre = '`';
+  mediaType = 'D';
   title = "";           
   director = "";                               
   stock = 0;                                      
@@ -29,21 +29,6 @@ Drama::Drama() {
   month = 0;   
 }
 
-
-//-----------------------------------------------------------------------------
-// Comedy DESTRUCTOR
-// Description: deallocates all memory allocated for Comedy
-// PRE: Comedy exists
-// POST: All Comedy memory is freed
-Drama::~Drama() {
-  delete genre;                                   
-  delete mediaType;                               
-  delete title;           
-  delete director;                               
-  delete stock;                                      
-  delete year;                                      
-  delete month;
-}
 
 char Drama::getGenre() const {
     return 'D';
@@ -57,7 +42,6 @@ char Drama::getGenre() const {
 // POST: all data fields set
 bool Drama::setData(string movieData) {
   stringstream ss(movieData);
-  char delimeter = ',';
   string data;
   
   // get director
@@ -72,7 +56,7 @@ bool Drama::setData(string movieData) {
   // get year
   data = "";
   ss >> data;
-  year = (int) data;
+  year = stoi(data);
   return true;
 }
 

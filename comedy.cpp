@@ -10,7 +10,7 @@
 #define COMEDY_CPP
 
 #include "comedy.h"
-
+#include <sstream>
 
 //-----------------------------------------------------------------------------
 // Comedy CONSTRUCTOR
@@ -18,8 +18,8 @@
 // PRE: Memory is available for Comedy
 // POST: Empty Comedy is created
 Comedy::Comedy() {
-  genre = '';                                   
-  mediaType = '';                               
+  genre = '`';
+  mediaType = 'D';
   title = "";           
   director = "";                               
   stock = 0;                                      
@@ -27,20 +27,7 @@ Comedy::Comedy() {
   month = 0;
 }
 
-//-----------------------------------------------------------------------------
-// Comedy DESTRUCTOR
-// Description: deallocates all memory allocated for Comedy
-// PRE: Comedy exists
-// POST: All Comedy memory is freed
-Comedy::~Comedy() {
-  delete genre;                                   
-  delete mediaType;                               
-  delete title;           
-  delete director;                               
-  delete stock;                                      
-  delete year;                                      
-  delete month;
-}
+
 
 char Comedy::getGenre() const {
   return 'F';
@@ -54,7 +41,6 @@ char Comedy::getGenre() const {
 // POST: all data fields set
 bool Comedy::setData(string movieData) {
   stringstream ss(movieData);
-  char delimeter = ',';
   string data;
   
   // get director
@@ -69,7 +55,7 @@ bool Comedy::setData(string movieData) {
   // get year
   data = "";
   ss >> data;
-  year = (int) data;
+  year = stoi(data);
   return true;
 }
 
@@ -99,3 +85,4 @@ bool Comedy::operator<(const Movie& otherMovie) const {
   if (this > &otherMovie) return false;
   return true;
 }
+#endif

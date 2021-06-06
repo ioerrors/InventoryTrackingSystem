@@ -24,12 +24,6 @@ Customer::Customer(int cID, string first, string last) {
     setLastName(last);
 }
 
-Customer::~Customer() {
-    delete history;
-    delete customerID;
-    delete firstName;
-    delete lastName;
-}
 
 int Customer::getID() const {
     return customerID;
@@ -48,10 +42,10 @@ string Customer::getLastName() const {
     return lastName;
 }
 
-ostream Customer::getHistory() {
-    ostream os;
+stringstream Customer::getHistory() {
+    stringstream os;
     while(!history.empty()) {
-        os << history.top();
+    	os << history.top();
         history.pop();
     }
     return os;

@@ -33,41 +33,26 @@
 // which if positive will add to the existing actor list 
 // rather than return a false negative in comparison operations
 
-
-#ifndef CLASSIC_CPP
-#define CLASSIC_CPP
-
 #include "classic.h"
+#include <sstream>
+#include <iostream>
+#include <string.h>
 
+
+using namespace std;
 //-----------------------------------------------------------------------------
 // Classic CONSTRUCTOR
 // Description: creates an empty Classic
 // PRE: Memory is available for Classic
 // POST: Empty Classic is created
 Classic::Classic() {
-  genre = '';                                   
-  mediaType = '';                               
+  genre = '`';
+  mediaType = 'D';
   title = "";           
   director = "";                               
   stock = 0;                                      
   year = 0;                                      
   month = 0;                                      
-}
-
-//-----------------------------------------------------------------------------
-// Classic DESTRUCTOR
-// Description: deallocates all memory allocated for Classic
-// PRE: Classic exists
-// POST: All Classic memory is freed
-Classic::~Classic() {
-  delete genre;                                   
-  delete mediaType;                               
-  delete title;           
-  delete director;                               
-  delete stock;                                      
-  delete year;                                      
-  delete month;
-  delete actorsList;  
 }
 
 //-----------------------------------------------------------------------------
@@ -121,7 +106,7 @@ bool Classic::subStock(int removeStock) {
 }
 
 // get the actors of the movie object
-set<string> Classic::getActors() const { 
+set<string> Classic::getActors() {
   return actorsList;
 }   
 
@@ -136,7 +121,6 @@ bool Classic::setData(string movieData) {
 
   //usable for any movie:
   stringstream ss(movieData);
-  char delimeter = ',';
   string data;
   getline(ss, data, ',');
   director = data;
@@ -154,12 +138,12 @@ bool Classic::setData(string movieData) {
 
   data = "";
   ss >> data;
-  month = (int) data;
+  month = stoi(data);
 
   //use for any movie:
   data = "";
   ss >> data;
-  year = (int) data;
+  year = stoi(data);
   return  true;
 }
 
@@ -179,25 +163,25 @@ bool Classic::operator==(const Movie& otherMovie) {
   if (year != otherMovie.getReleaseYear()) {
     return false;
   }
-  if (actorsList != otherMovie.getActors()) { // check actor
-    if (title == otherMovie.getTitle()) { // still same movie, new actor
+  if (title == otherMovie.getTitle()) { // still same movie, new actor
       //add the other movie's entire list of actors to this movie object
-      actorsList.insert(otherMovie.getActors().begin(),
-    		  	  	    otherMovie.getActors().end());
+	  set<string> thing;
+	  thing = otherMovie.getActors();
+      actorsList.insert(thing.begin(), thing.end());
+
       return true;      
-    } else {
+   } else {
       return false; //different release date, actors, and different title
-    }
-  }
-  return true; //release date and actors are the same
+   }
 }
+
 
 
 
 //-----------------------------------------------------------------------------
 // this > otherMovie
 bool Classic::operator>(const Movie& otherMovie) {
-  if(this != otherMovie) { 
+  if(*this != otherMovie) {
     if(otherMovie.getGenre() == 'C') {
       if (year > otherMovie.getReleaseYear()) {
         return true; //this movie release year is greater(more recent)   
@@ -207,7 +191,11 @@ bool Classic::operator>(const Movie& otherMovie) {
         } else if (year == otherMovie.getReleaseYear() 
                   && month == otherMovie.getMonth()) { //same release date
             //alphabetically Last actor in both lists is used as sorting actor
-            return actorsList.end() > otherMovie.getActors().end();
+        	string last = *actorsList.end();
+        	string otherLast;
+        	otherLast = *otherMovie.getActors().end();
+        	int res = last.compare(otherLast);
+            return (res > 0);
         }    
         return false; // this movie is less recent
       } 
@@ -221,7 +209,7 @@ bool Classic::operator>(const Movie& otherMovie) {
 
 // this < otherMovie
 bool Classic::operator<(const Movie& otherMovie) {
-  if(this != otherMovie) { 
+  if(*this != otherMovie) {
     return (!(*this > otherMovie));
   }
   return false; 

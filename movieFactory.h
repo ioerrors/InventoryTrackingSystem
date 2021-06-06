@@ -22,14 +22,14 @@ public:
     MovieFactory();              // constructor
     ~MovieFactory();             // destructor
 
-    Movie* getMovie(char type) {
-        if(type == 'C' ) {
+    Movie* getMovie(string type) {
+        if(type == "C" ) {
 			return new Classic();
         }
-        if(type == 'F') {
+        if(type == "F") {
 			return new Comedy();
         }
-        if (type == 'D') {
+        if (type == "D") {
             return new Drama();
         }
         else {

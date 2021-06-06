@@ -41,25 +41,32 @@ public:
   string paddAndReturn();
 
 private:
-
+  struct Key
+  {
+    int x;
+    bool operator==(const Key &other) const
+    { return (x == other.x);
+    }
+  };
   struct KeyHasher {
-    std::size_t operator()(const int& k) const
+    std::size_t operator()(const Key& k) const
     {
     using std::size_t;
     using std::hash;
     using std::string;
 
     //write hashing code here
-    int res = k^(k+42);
-    res = res * 62 + KeyHasher()(k + res);
-    res = res / 3 + KeyHasher()(k * res);
-    res = res + 42 + KeyHasher()(k / res);
+    int res = k.x^(k.x + 42);
+    res = res * 62 + KeyHasher()(k);
+    res = res / 3 + KeyHasher()(k);
+    res = res + 42 + KeyHasher()(k);
     //return value below
     size_t final = res;
     return final;
     }
   };
 
-  unordered_map<int&, Customer*, KeyHasher> mappy;
+
+  std::unordered_map<Key, Customer*, KeyHasher> mappy;
 };
 #endif // HASHTABLE_H

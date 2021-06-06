@@ -30,13 +30,10 @@
 using namespace std;
 
 HashTable::HashTable () {
-  std::unordered_map<int, Customer*, KeyHasher> mappy;
+  //std::unordered_map<int, Customer*, KeyHasher> mappy;
 }
 
-HashTable::~HashTable () {
-	delete mappy;
-}          
-    
+
 
 
 //find

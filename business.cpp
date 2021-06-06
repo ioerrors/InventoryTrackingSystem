@@ -32,65 +32,67 @@ Business::Business() {
 }
 
 
-void Business::createBSTreeMovies(ifstream movieFile) {
+void Business::createBSTreeMovies(ifstream& movieFile) {
   //creates the BSTree for movies, and returns
 
   MovieFactory factory;
-  set<Movie> setOfMovies; 
+  set<Movie*> setOfMovies;
   while(!movieFile.eof()) {
-    char movieType;
-    movieType << movieFile;
-    Movie movie = factory.getMovie(movieType);
+    string movieType;
+    movieFile >> movieType;
+    Movie* movie = factory.getMovie(movieType);
     string data;
     getline(movieFile, data);
-    movie.setData(data);
+    movie->setData(data);
     setOfMovies.insert(movie);
   } //<---we have a set full of all our movies
   // now we want a bst of our movies.
   createBSTreeMoviesHelper(setOfMovies, movies.getRoot());
 }
 
-void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, BSTree::Node* current) {
+void Business::createBSTreeMoviesHelper(set<Movie*>& movieSet, BSTree::Node* current) {
   if (current == nullptr) {
     return;
   }
 
   createBSTreeMoviesHelper(movieSet, current->left);
 
-  Movie* first = movieSet.begin();
-  current->data = *first;
-  movieSet.erase(*first);
+
+  Movie* first = *movieSet.begin();
+  current->data = first;
+  movieSet.erase(first);
 
   createBSTreeMoviesHelper(movieSet, current->right);
 } 
 
 //3333 Witch Wicked
-void Business::createHashTableCustomers(ifstream customerFile) {
+void Business::createHashTableCustomers(ifstream& customerFile) {
   while(!customerFile.eof()) {
     int customerID;
-    customerID << customerFile;
+    string data;
+    customerFile >> data;
+    customerID = stoi(data);
     string lastName;
-    lastName << customerFile;
+    customerFile >> lastName;
     string firstName;
-    firstName << customerFile;
-    Customer* cust(customerID, firstName, lastName);
+    customerFile >> firstName;
+    Customer* cust = new Customer(customerID, firstName, lastName);
     customers.addCustomer(cust);
   }
 }
 
-void Business::processTransactions(ifstream transactionFile) {
+void Business::processTransactions(ifstream& transactionFile) {
   
   TransactionFactory factory;
 
   while(!transactionFile.eof()) {
-    char transType;
-    transType << transactionFile;
-    Transaction action = factory.getTransaction(transType);
+    string transType;
+    transactionFile >> transType;
+    Transaction* action = factory.getTransaction(transType);
     string data;
     getline(transactionFile, data);
-    action.setData(data);
-    action.doTransaction(customers, movies);
-    delete action;
+    action->setData(data);
+    action->doTransaction(customers, movies);
   }
 }
 

@@ -7,6 +7,7 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
+#include <sstream>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ public:
     string getLastName() const;
 
     //basically an overloaded << operator just for history
-    ostream getHistory();           
+    stringstream getHistory();
   
     // Mutators
     void addHistory(string transaction);               // add transaction to history

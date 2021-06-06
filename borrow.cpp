@@ -15,6 +15,7 @@
 
 #include "borrow.h"
 #include "movieFactory.h"
+#include "BSTree.h"
 
 using namespace std;
 
@@ -30,17 +31,6 @@ Borrow::Borrow() {
 
 
 //-----------------------------------------------------------------------------
-// Borrow DESTRUCTOR
-// Description: deallocates all memory allocated for Borrow
-// PRE: Borrow exists
-// POST: All Borrow memory is freed
-Borrow::~Borrow() {
-  delete movieData;
-  delete customerID;
-}
-
-
-//-----------------------------------------------------------------------------
 // setData()
 // Description: sets data fields
 // PRE: borrow exists, 
@@ -51,7 +41,8 @@ bool Borrow::setData(string setMovieData) {
   stringstream ss(setMovieData); 
   string data;
   ss >> data;
-  customerID = (int) data; //store customerID
+
+  customerID = stoi(data); //store customerID
   ss >> data; //clear media type
   data = "";
 
@@ -88,8 +79,8 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
     stringstream ss(movieData); 
     string data;
     ss >> data;
-    char type = data;
-    Movie* findMe = makeType.getMovie(type);
+    //char type = data;
+    Movie* findMe = makeType.getMovie(data);
     
     if (data == "C") {
       data = "";
