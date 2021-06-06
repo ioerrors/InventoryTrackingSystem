@@ -11,20 +11,66 @@
 
 #include "drama.h"
 
-Drama::Drama() {
 
+//-----------------------------------------------------------------------------
+// Comedy CONSTRUCTOR
+// Description: creates an empty Comedy
+// PRE: Memory is available for Comedy
+// POST: Empty Comedy is created
+Drama::Drama() {
+  genre = '';                                   
+  mediaType = '';                               
+  title = "";           
+  director = "";                               
+  stock = 0;                                      
+  year = 0;                                      
+  month = 0;   
 }
 
-Drama::~Drama() {
 
+//-----------------------------------------------------------------------------
+// Comedy DESTRUCTOR
+// Description: deallocates all memory allocated for Comedy
+// PRE: Comedy exists
+// POST: All Comedy memory is freed
+Drama::~Drama() {
+    char genre;                                     // genre of the movie
+    char mediaType;                                 // media type of the movie
+    string title;                                   // title of movie
+    string director;                                // director of movie
+    int stock;                                      // number of movie left in stock
+    int year;                                       // year released
+    int month;                                      // month released
 }
 
 char Drama::getGenre() const {
     return 'D';
 }
 
+//-----------------------------------------------------------------------------
+// setData()
+// Description: sets data fields
+// PRE: Drama exists, stock is already set using addStock()
+//    input format "Phillippe De Broca, King of Hearts, 1967"    
+// POST: all data fields set
 void Drama::setData(string movieData) {
-    
+  stringstream ss(movieData);
+  char delimeter = ',';
+  string data;
+  
+  // get director
+  getline(ss, data, ',');
+  director = data;
+  data = "";
+
+  // get title
+  getline(ss, data, ',');
+  title = data;
+
+  // get year
+  data = "";
+  ss >> data;
+  year = (int) data;    
 }
 
 bool Drama::operator==(const Movie& otherMovie) const {
@@ -44,7 +90,6 @@ bool Drama::operator>(const Movie& otherMovie) const {
 			return true;
 		}
 	}
-
 	return false;
 }
 

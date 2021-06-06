@@ -90,6 +90,41 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
     findMe.setData(data);
 
 
+    if (data == "C") {
+      data = "";
+      string month;
+      ss >> month;
+      string year;
+      ss >> year;
+
+      getline(ss, data);
+
+      // fake date to conform to expected format:
+      // "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"
+      string movieFakeData = "Hal Ashby, Harold and Maude, " 
+                           + data  + " " + month + " " + year;
+      findMe.setData(movieFakeData);
+    } 
+    // Command format "Nancy Savoca, Dogfight,"
+    // movie format "Steven Spielberg, Schindler's List, 1993"
+    else if (data == "D") {
+      data = "";
+      getline(ss, data);
+      string movieFakeData = data + " 1993";
+      findMe.setData(movieFakeData);
+    } 
+    // Command format "Annie Hall, 1977"
+    // movie format  "Steven Spielberg, Schindler's List, 1993"
+    else if (data == "F") {
+      data = "";
+      getline(ss, data);
+      string movieFakeData = "Fake Director," + data;
+      findMe.setData(movieFakeData);
+    } else {
+      cout << "Return failed: invalid Movie type";
+      return false;
+    }
+
 
     //find movie
     if (movies.retrieve(findMe, foundMe) ) {

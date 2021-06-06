@@ -11,13 +11,14 @@
 
 class Movie {
 public:
+
     virtual ~Movie();                               // destructor
     
     // Overloaded operators
-    virtual bool operator==(const Movie& otherMovie) const;    // check if movies are equal
-    virtual bool operator!=(const Movie& otherMovie) const;  // check if movies are not equal
-    virtual bool operator>(const Movie& otherMovie) const;   // check if this movie is greater than other movie
-    virtual bool operator<(const Movie& otherMovie) const;   // check if this movie is less than other movie
+    virtual bool operator==(const Movie& otherMovie);    // check if movies are equal
+    virtual bool operator!=(const Movie& otherMovie);  // check if movies are not equal
+    virtual bool operator>(const Movie& otherMovie);   // check if this movie is greater than other movie
+    virtual bool operator<(const Movie& otherMovie);   // check if this movie is less than other movie
 
     virtual char getGenre() const;                          // get the genre of the movie object
     char getMediaType() const;                      // get the type of the movie object, i.e. DVD
