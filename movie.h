@@ -15,8 +15,7 @@ using namespace std;
 
 class Movie {
 public:
-    virtual Movie();
-    virtual ~Movie();                               // destructor
+    Movie();
     
     // Overloaded operators
     virtual bool operator==(const Movie& otherMovie);    // check if movies are equal
@@ -44,13 +43,11 @@ public:
     //assumed format "Gus Van Sant, Good Will Hunting, 2000"
     //        or     "Rob Reiner, When Harry Met Sally, 1989"
     //        or     "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"   
-    virtual void setData(string movieData); 
+    virtual bool setData(string movieData);
 
     bool addStock(int newStock);           // add to stock
     bool subStock(int removeStock);        // subtract from stock
 
-    
-    virtual bool addSameMovie(Movie*&);             // add the same movie to the list of same movies
     
 protected:
     char genre;                                     // genre of the movie

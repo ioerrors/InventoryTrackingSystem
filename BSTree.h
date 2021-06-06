@@ -24,46 +24,13 @@ class BSTree {
   // PRE: BSTree exists
   // POST: All contained nodes are printed in order
   friend ostream &operator<<(ostream &os, const BSTree&);
-
-private:
+public:
 
   struct Node {
-    Movie* data = new Movie();         // pointer to data object
-    Node* left = nullptr;             // left subtree pointer
-    Node* right= nullptr;            // right subtree pointer
-  };
-
-  Node* root;               // root of the tree
-
-  //---------------------------------------------------------------------------
-  // copyHelper
-  // Description: recursively creates deep copies of data from currentOther
-  //              to the current tree
-  // PRE: Memory is available for BSTree
-  // POST: SHALLOW Copy of othercurrent is created in this tree
-  void copyHelper(Node* current, Node* currentOther);
-
-  //---------------------------------------------------------------------------
-  // clear()
-  // Description: deletes all nodes in BSTree
-  //              traverses and delete in postorder fashion
-  // PRE: BSTree exists
-  // POST: BSTree is deletedd from memory
-  //       all allocated memory for the BSTree is freed
-  void clear(Node *subTreePtr);
-
-  //---------------------------------------------------------------------------
-  // equalsHelper
-  // Description: recursively compares data from currentOther
-  //              to the current tree
-  // PRE: current and currentOther belong to seperate BSTree
-  // POST: returns true if current node and currentOther node contain
-  //       identical subtrees
-  bool equalsHelper(Node* current, Node* currentOther) const;
-
-
-
-public:
+     Movie* data = new Movie();         // pointer to data object
+     Node* left = nullptr;             // left subtree pointer
+     Node* right= nullptr;            // right subtree pointer
+   };
 
   //---------------------------------------------------------------------------
   // BSTree CONSTRUCTOR
@@ -168,6 +135,43 @@ public:
   // PRE: BSTree Exists
   // POST: returned the value of the root
   Node* getRoot() const;
+
+
+private:
+
+
+
+  Node* root;               // root of the tree
+
+  //---------------------------------------------------------------------------
+  // copyHelper
+  // Description: recursively creates deep copies of data from currentOther
+  //              to the current tree
+  // PRE: Memory is available for BSTree
+  // POST: SHALLOW Copy of othercurrent is created in this tree
+  void copyHelper(Node* current, Node* currentOther);
+
+  //---------------------------------------------------------------------------
+  // clear()
+  // Description: deletes all nodes in BSTree
+  //              traverses and delete in postorder fashion
+  // PRE: BSTree exists
+  // POST: BSTree is deletedd from memory
+  //       all allocated memory for the BSTree is freed
+  void clear(Node *subTreePtr);
+
+  //---------------------------------------------------------------------------
+  // equalsHelper
+  // Description: recursively compares data from currentOther
+  //              to the current tree
+  // PRE: current and currentOther belong to seperate BSTree
+  // POST: returns true if current node and currentOther node contain
+  //       identical subtrees
+  bool equalsHelper(Node* current, Node* currentOther) const;
+
+
+
+
 
 };
 

@@ -20,7 +20,7 @@
 
 
 #include "transaction.h"
-
+#include "hashTable.h"
 
 
 using namespace std;
@@ -66,7 +66,7 @@ public:
     // PRE: customer exists, movie is in stock
     // POST: movie is borrowed(stock reduced by one), 
     //       transation is added to customer history
-    bool doTransaction(HashTable& customers, BSTree& movies);
+    bool doTransaction(HashTable&, BSTree&);
     
 private:
     string movieData;               // string to track the movie to borrow

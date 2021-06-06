@@ -18,9 +18,6 @@ Movie::Movie() {
   month = 0;
 }
 
-Movie::~Movie() {
-
-}
 
 string Movie::getTitle() const {
     // do we need this?

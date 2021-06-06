@@ -10,11 +10,7 @@
 #include <sstream>
 
 #include "transaction.h"
-#include "BSTree.h"
-#include "hashTable.h"
-#include "history.h"
 #include "inventory.h"
-#include "customer.h"
 
 using namespace std;
 

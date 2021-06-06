@@ -6,14 +6,19 @@
 // child and inheriting from Transaction class
 //-----------------------------------------------------------------------------
 
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include <stack>
 
 
-#include "BSTree.h"
-#include "hashTable.h"
+#include "transaction.h"
 #include "history.h"
-#include "customer.h"
+#include "movieFactory.h"
+
 
 
 using namespace std;

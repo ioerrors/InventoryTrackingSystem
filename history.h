@@ -9,11 +9,6 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-#include "BSTree.h"
-#include "hashTable.h"
-#include <iostream>
-#include <sstream>
-
 #include <cstdint>
 #include <fstream>
 #include <iomanip>
@@ -24,6 +19,8 @@
 
 
 #include "transaction.h"
+
+
 
 
 class History: public Transaction {

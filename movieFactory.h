@@ -4,6 +4,8 @@
 //-----------------------------------------------------------------------------
 // This is a class to build the movie objects
 //-----------------------------------------------------------------------------
+#ifndef MOVIEFACTORY_H
+#define MOVIEFACTORY_H
 
 
 #include "classic.h"
@@ -33,3 +35,4 @@ public:
         }
     }
 };
+#endif

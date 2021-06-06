@@ -4,6 +4,9 @@
 //-----------------------------------------------------------------------------
 // This is a class to build the action types
 //-----------------------------------------------------------------------------
+#ifndef TRANSACTION_H
+#define TRANSACTION_H
+
 #include <cstdint>
 #include <fstream>
 #include <iomanip>
@@ -13,7 +16,7 @@
 #include <stack>
 
 
-#include "HashTable.h"
+#include "hashTable.h"
 #include "BSTree.h"
 
 //#include "transactionFactory.h"
@@ -42,3 +45,4 @@ public:
     virtual bool setData(string setMovieData);
 
 };
+#endif
