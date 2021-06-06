@@ -11,7 +11,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "transaction.h"
+class Transaction;
 
 
 using namespace std;
@@ -38,14 +38,14 @@ public:
     // Description: performs the action of printing inventory
     // PRE: BSTree movies exists, is not null
     // POST: movies in stock are printed
-    void doTransaction(HashTable& customers, BSTree& movies);
+    bool doTransaction(HashTable& customers, BSTree& movies);
 
     //---------------------------------------------------------------------------
     // setData()
     // Description: is irrelevant in this class
     // PRE: Inventory exists
     // POST: nothing changes
-    void setData(string setMovieData);   
+    bool setData(string setMovieData);
     
 };
 #endif

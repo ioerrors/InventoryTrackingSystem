@@ -16,7 +16,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "transaction.h"
+class Transaction;
 
 using namespace std;
 class Return: public Transaction {

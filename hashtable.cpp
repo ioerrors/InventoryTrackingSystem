@@ -27,6 +27,7 @@
 #include "borrow.h"
 #include "customer.h"
 
+using namespace std;
 
 HashTable::HashTable () {
   reset(message, buffer, transforms);

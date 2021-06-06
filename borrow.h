@@ -19,7 +19,7 @@
 #include <stack>
 
 
-#include "transaction.h"
+class Transaction;
 #include "hashTable.h"
 
 

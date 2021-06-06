@@ -6,18 +6,11 @@
 // child and inheriting from Transaction class
 //-----------------------------------------------------------------------------
 
-#include <cstdint>
-#include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <string>
-#include <stack>
-
 
 #include "transaction.h"
 #include "history.h"
-#include "movieFactory.h"
 
 
 

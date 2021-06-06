@@ -9,18 +9,12 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-#include <cstdint>
-#include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <string>
-#include <stack>
-
 
 #include "transaction.h"
 
-
+using namespace std;
 
 
 class History: public Transaction {

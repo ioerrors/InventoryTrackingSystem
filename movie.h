@@ -25,6 +25,7 @@ class Movie {
 public:
 
     Movie();
+    virtual ~Movie();
     // Overloaded operators
     virtual bool operator==(const Movie& otherMovie);    // check if movies are equal
     virtual bool operator!=(const Movie& otherMovie);  // check if movies are not equal

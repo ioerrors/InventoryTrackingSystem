@@ -222,7 +222,7 @@ bool Classic::operator>(const Movie& otherMovie) {
 // this < otherMovie
 bool Classic::operator<(const Movie& otherMovie) {
   if(this != otherMovie) { 
-    return (!(this > otherMovie)); 
+    return (!(*this > otherMovie));
   }
   return false; 
 }

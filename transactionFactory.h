@@ -17,11 +17,10 @@
 #include <stack>
 
 
-#include "transaction.h"
-#include "borrow.h"
-#include "return.h"
-#include "inventory.h"
 #include "history.h"
+#include "inventory.h"
+#include "return.h"
+#include "borrow.h"
 //#include "transactionFactory.h"
 
 
