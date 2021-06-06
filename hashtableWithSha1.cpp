@@ -1,27 +1,14 @@
-/*
-    sha1.hpp - source code of
-
-    ============
-    SHA-1 in C++
-    ============
-
-    100% Public Domain.
-
-    Original C Code
-        -- Steve Reid <steve@edmweb.com>
-    Small changes to fit into bglibs
-        -- Bruce Guenter <bruce@untroubled.org>
-    Translation to simpler C++ Code
-        -- Volker Diels-Grabsch <v@njh.eu>
-    Safety fixes
-        -- Eugene Hopkinson <slowriot at voxelstorm dot com>
-    Header-only library
-        -- Zlatko Michailov <zlatko@michailov.org>
-*/
-
-#ifndef SHA1_HPP
-#define SHA1_HPP
-
+////////////////////////////////hashTable.h file  /////////////////////////////
+//-----------------------------------------------------------------------------
+// Created by Micah Rice and Abraham Sham on 05/25/2021.
+//-----------------------------------------------------------------------------
+// This class is a data structure to hold customers
+// in a quickly accessable format
+//-----------------------------------------------------------------------------
+// Implementation of hash functions based on public domain 
+// Standardized and somewhat broken now
+// sha1 hashing implementations
+// it is still my favorite hashing algorithm though
 
 #include <cstdint>
 #include <fstream>
@@ -31,21 +18,32 @@
 #include <string>
 
 
-class SHA1
-{
-public:
-    SHA1();
-    void update(const std::string &s);
-    void update(std::istream &is);
-    std::string paddAndReturn();
+class HashTable {
+    
+HashTable () {
+  reset(message, buffer, transforms);
+}
 
-private:
-    uint32_t message[5];
-    std::string buffer;
-    uint64_t transforms;
-};
+~HashTable () {
+  delete[] message;
+  delete buffer;
+  delete transforms;
+}          
+    
 
-inline static void reset(uint32_t message[], std::string &buffer, uint64_t &transforms)
+
+//find
+bool HashTable::getCustomer (const int cID, Customer*&) const {
+
+}            
+
+//insert
+bool HashTable::addCustomer(Customer*&) {
+
+}                             
+    
+
+static void reset(uint32_t message[], std::string &buffer, uint64_t &transforms)
 {
     /* SHA1 initialization constants */
     message[0] = 0x67452301;
@@ -60,30 +58,89 @@ inline static void reset(uint32_t message[], std::string &buffer, uint64_t &tran
 }
 
 
-inline static uint32_t rol(const uint32_t value, const size_t bits)
-{
-    return (value << bits) | (value >> (32 - bits));
-}
+
+static uint32_t rol(const uint32_t value, const size_t bits) {
+        return (value << bits) | (value >> (32 - bits));
+    }
 
 
-inline static uint32_t blk(const uint32_t block[16], const size_t i)
-{
+static uint32_t blk(const uint32_t block[16], const size_t i) {
     return rol(block[(i+13)&15] ^ block[(i+8)&15] ^ block[(i+2)&15] ^ block[i], 1);
 }
 
+//accepts customer ID, passes it converted as an istream
+inline void SHA1::update(const std::string &s)
+{
+    istringstream is(s);
+    sha1StandardImplemenation(is);
+}
 
-/*
- * (R0+R1), R2, R3, R4 are the different operations used in SHA1
- */
 
-inline static void R0(const uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+//accepts customer ID converted to an istream
+void HashTable::sha1StandardImplemenation(std::istream &is) {
+  char sbuf[64];
+  is.read(sbuf, 64 - buffer.size());
+  buffer.append(sbuf, (std::size_t)is.gcount());
+  uint32_t block[16];
+  bufferToBlock(buffer, block);
+  transform(message, block, transforms);
+  buffer.clear();
+}
+
+
+
+//returns message digest, after padding
+string HashTable::paddAndReturn() {
+    /* Total number of hashed bits */
+    uint64_t total_bits = (transforms*64 + buffer.size()) * 8;
+
+    /* Padding */
+    buffer += (char)0x80;
+    size_t orig_size = buffer.size();
+    while (buffer.size() < 64)
+    {
+        buffer += (char)0x00;
+    }
+
+    uint32_t block[16];
+    bufferToBlock(buffer, block);
+
+    if (orig_size > 64 - 8)
+    {
+        transform(message, block, transforms);
+        for (size_t i = 0; i < 16 - 2; i++)
+        {
+            block[i] = 0;
+        }
+    }
+
+    /* Append total_bits, split this uint64_t into two uint32_t */
+    block[16 - 1] = (uint32_t)total_bits;
+    block[16 - 2] = (uint32_t)(total_bits >> 32);
+    transform(message, block, transforms);
+
+    /* Hex std::string */
+    std::ostringstream result;
+    for (size_t i = 0; i < sizeof(message) / sizeof(message[0]); i++)
+    {
+        result << std::hex << std::setfill('0') << std::setw(8);
+        result << message[i];
+    }
+
+    /* Reset for next run */
+    reset(message, buffer, transforms);
+
+    return result.str();
+}
+
+static void R0(const uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     z += ((w&(x^y))^y) + block[i] + 0x5a827999 + rol(v, 5);
     w = rol(w, 30);
 }
 
 
-inline static void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+static void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += ((w&(x^y))^y) + block[i] + 0x5a827999 + rol(v, 5);
@@ -91,7 +148,7 @@ inline static void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const u
 }
 
 
-inline static void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+static void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += (w^x^y) + block[i] + 0x6ed9eba1 + rol(v, 5);
@@ -99,7 +156,7 @@ inline static void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const u
 }
 
 
-inline static void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+static void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += (((w|x)&y)|(w&x)) + block[i] + 0x8f1bbcdc + rol(v, 5);
@@ -107,7 +164,7 @@ inline static void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const u
 }
 
 
-inline static void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+static void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += (w^x^y) + block[i] + 0xca62c1d6 + rol(v, 5);
@@ -118,8 +175,7 @@ inline static void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const u
 /*
  * Hash a single 512-bit block. This is the core of the algorithm.
  */
-
-inline static void transform(uint32_t message[], uint32_t block[16], uint64_t &transforms)
+static void transform(uint32_t message[], uint32_t block[16], uint64_t &transforms)
 {
     /* Copy message[] to working vars */
     uint32_t a = message[0];
@@ -222,8 +278,7 @@ inline static void transform(uint32_t message[], uint32_t block[16], uint64_t &t
 }
 
 
-inline static void buffer_to_block(const std::string &buffer, uint32_t block[16])
-{
+static void bufferToBlock(const std::string &buffer, uint32_t block[16]) {
     /* Convert the std::string (byte buffer) to a uint32_t array (MSB) */
     for (size_t i = 0; i < 16; i++)
     {
@@ -233,22 +288,3 @@ inline static void buffer_to_block(const std::string &buffer, uint32_t block[16]
                    | (buffer[4*i+0] & 0xff)<<24;
     }
 }
-
-
-inline SHA1::SHA1()
-{
-    reset(message, buffer, transforms);
-}
-
-
-inline void SHA1::update(const std::string &s)
-{
-    std::istringstream is(s);
-    update(is);
-}
-
-
-
-
-
-#endif /* SHA1_HPP */

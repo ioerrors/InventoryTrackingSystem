@@ -33,17 +33,18 @@ Comedy::Comedy() {
 // PRE: Comedy exists
 // POST: All Comedy memory is freed
 Comedy::~Comedy() {
-    char genre;                                     // genre of the movie
-    char mediaType;                                 // media type of the movie
-    string title;                                   // title of movie
-    string director;                                // director of movie
-    int stock;                                      // number of movie left in stock
-    int year;                                       // year released
-    int month;                                      // month released
+  delete genre;                                   
+  delete mediaType;                               
+  delete title;           
+  delete director;                               
+  delete stock;                                      
+  delete year;                                      
+  delete month;
+  delete actorsList;  
 }
 
 char Comedy::getGenre() const {
-	return 'F';
+  return 'F';
 }
 
 //-----------------------------------------------------------------------------
@@ -73,28 +74,28 @@ void Comedy::setData(string movieData) {
 }
 
 bool Comedy::operator==(const Movie& otherMovie) const {
-	return (title == otherMovie.getTitle()) && 
-	(year == otherMovie.getReleaseYear());
+  return (title == otherMovie.getTitle()) && 
+  (year == otherMovie.getReleaseYear());
 }
 
 bool Comedy::operator!=(const Movie& otherMovie) const {
-    return !(this == &otherMovie);
+  return !(this == &otherMovie);
 }
 
 bool Comedy::operator>(const Movie& otherMovie) const {
-    if (title > otherMovie.getTitle()) {
-		return true; // title is greater
-	} else (title == otherMovie.getTitle()) {
-		if(year > otherMovie.getReleaseYear()) {
-			return true; // release is greater(more recent)
-		}
-		return false; // release is less or same
-	}
-	return false; // title is less
+  if (title > otherMovie.getTitle()) {
+    return true; // title is greater
+  } else (title == otherMovie.getTitle()) {
+    if(year > otherMovie.getReleaseYear()) {
+      return true; // release is greater(more recent)
+    }
+    return false; // release is less or same
+  }
+  return false; // title is less
 }
 
 bool Comedy::operator<(const Movie& otherMovie) const {
-    if (this == &otherMovie) return false;
-	if (this > &otherMovie) return false;
-	return true;
+  if (this == &otherMovie) return false;
+  if (this > &otherMovie) return false;
+  return true;
 }

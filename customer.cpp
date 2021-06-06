@@ -16,7 +16,10 @@ Customer::Customer(int cID, string first, string last) {
 }
 
 Customer::~Customer() {
-
+    delete history;
+    delete customerID;
+    delete firstName;
+    delete lastName;
 }
 
 int Customer::getID() const {
@@ -24,8 +27,8 @@ int Customer::getID() const {
 }
 
 string Customer::getName() const {
-    // seaching only shows long way of returning multiple items
-    // since we cant do return firstname && lastname
+    string fullName = firstName + " " lastName;
+    return fullName;
 }
 
 string Customer::getFirstName() const {
@@ -36,12 +39,18 @@ string Customer::getLastName() const {
     return lastName;
 }
 
-historyNode* Customer::getHistory() {
-    return headHistory;
+ostream Customer::getHistory() {
+    ostream os;
+    while(!history.empty()) {
+        os << history.top();
+        history.pop();
+    }
+    return os;
 }
 
+
 void Customer::addHistory(string transaction) {
-    // history.push_back(transaction);
+    history.push(transaction);
 }
 
 bool Customer::setCustomerInfo(int cID, string first, string last) {

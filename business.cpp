@@ -53,7 +53,12 @@ void Business::createBSTreeMoviesHelper(set<Movie>& movieSet, Node* current) {
 } 
   
 HashTable Business::createHashTableCustomers(ifstream customerFile) {
-  //creates the HashTable for customers, and returns
+  while(!customerFile.eof()) {
+    char movieType << customerFile;
+    Movie movie = factory.getMovie(movieType);
+    movie.setData(customerFile.getLine());
+    setOfMovies.insert(movie);
+  }
 }
 
 void processTransactions(transactionFile) {

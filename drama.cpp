@@ -34,13 +34,14 @@ Drama::Drama() {
 // PRE: Comedy exists
 // POST: All Comedy memory is freed
 Drama::~Drama() {
-    char genre;                                     // genre of the movie
-    char mediaType;                                 // media type of the movie
-    string title;                                   // title of movie
-    string director;                                // director of movie
-    int stock;                                      // number of movie left in stock
-    int year;                                       // year released
-    int month;                                      // month released
+  delete genre;                                   
+  delete mediaType;                               
+  delete title;           
+  delete director;                               
+  delete stock;                                      
+  delete year;                                      
+  delete month;
+  delete actorsList;  
 }
 
 char Drama::getGenre() const {
@@ -82,21 +83,18 @@ bool Drama::operator!=(const Movie& otherMovie) const {
 }
 
 bool Drama::operator>(const Movie& otherMovie) const {
-	if (director > otherMovie.getDirector()) {
-		return true;
-
-	} else {
-		if (title > otherMovie.getTitle()) {
-			return true;
-		}
-	}
-	return false;
+  if (director > otherMovie.getDirector()) {
+    return true; 
+  } else if (director == otherMovie.getDirector()) {
+    return title > otherMovie.getTitle();
+  }
+  return false;
 }
 
 bool Drama::operator<(const Movie& otherMovie) const {
     if (this == &otherMovie) return false;
-	if (this > &otherMovie) return false;
-	return true;
+  if (this > &otherMovie) return false;
+  return true;
 }
 
 #endif

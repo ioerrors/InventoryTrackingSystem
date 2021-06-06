@@ -20,6 +20,9 @@
 #include <string>
 
 class HashTable {
+
+
+
 public:
     
     HashTable ();           
@@ -33,6 +36,19 @@ public:
     bool addCustomer(Customer*&);                                 // add Customer 
     
 private:
+
+
+    struct KeyHasher
+    {
+      std::string operator()(const int& k) const
+      {
+        using std::string;
+        return final();
+      }
+    };
+
+    //accepts customer ID converted to a string
+    void sha1String(string& s);
 	//accepts customer ID converted to an istream
 	void sha1StandardImplemenation(istream &is);
 	//returns message digest, after padding
@@ -46,11 +62,12 @@ private:
 
 	static uint32_t blk(const uint32_t block[16], const size_t i);
 
-
-	void sha1StandardImplemenation(std::istream &is);
+    
 
     uint32_t message[5];
     string buffer;
     uint64_t transforms;
+
+    unordered_map<int&, Customer, KeyHasher> mappy;
 };
 #endif // HASHTABLE_H

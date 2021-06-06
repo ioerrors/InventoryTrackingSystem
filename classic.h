@@ -41,9 +41,19 @@
 
 class Classic : public Movie {
 public:
-  
-  Classic();               // constructor
-  ~Classic();              // destructor
+  //---------------------------------------------------------------------------
+  // Classic CONSTRUCTOR
+  // Description: creates an empty Classic
+  // PRE: Memory is available for Classic
+  // POST: Empty Classic is created
+  Classic();
+
+  //---------------------------------------------------------------------------
+  // Classic DESTRUCTOR
+  // Description: deallocates all memory allocated for Classic
+  // PRE: Classic exists
+  // POST: All Classic memory is freed               
+  ~Classic();             
   
   
   // Accessors
@@ -83,7 +93,7 @@ public:
   bool operator<(const otherMovie&);   
     
 private:
-    Set<String> actorsList;       // List of actors
+    set<string> actorsList;       // List of actors
 };
 
 #endif

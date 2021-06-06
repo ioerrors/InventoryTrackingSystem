@@ -5,34 +5,52 @@
 // This class is a data structure to hold customers
 // in a quickly accessable format
 //-----------------------------------------------------------------------------
+// Implementation of hash functions based on public domain 
+// Standardized and somewhat broken now
+// sha1 hashing implementations
+// it is still my favorite hashing algorithm though
+
 #include <cstdint>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "customer.h"
+#include "hashTable.h"
 
 
-class HashTable {
-    
-HashTable () {
+
+
+HashTable::HashTable () {
+  reset(message, buffer, transforms);
+  unordered_map<int, Customer, KeyHasher> mappy;
 
 }
 
-~HashTable (){
+HashTable::~HashTable () {
+  delete[] message;
+  delete buffer;
+  delete transforms;
 }          
     
 
 
-    //find
-    bool HashTable::getCustomer (const int cID, Customer*&) const {
+//find
+bool HashTable::getCustomer (const int cID, Customer*& setMe) const {
+  int data = customer.getID();
+  string hashMe = "" + data;
+  setMe = mappy[data];
+}            
 
-    }            
-    
-    //insert
-    bool HashTable::addCustomer(Customer*&) {
-
-    }                             
+//insert
+bool HashTable::addCustomer(Customer*& customer) {
+  int data = customer.getID();
+  string hashMe = "" + data;
+  sha1String(hashMe);
+  mappy[data] = customer;
+  reset(message, buffer, transforms);
+}                             
     
 
 static void reset(uint32_t message[], std::string &buffer, uint64_t &transforms)
@@ -60,25 +78,23 @@ static uint32_t blk(const uint32_t block[16], const size_t i) {
     return rol(block[(i+13)&15] ^ block[(i+8)&15] ^ block[(i+2)&15] ^ block[i], 1);
 }
 
+//accepts customer ID, passes it converted as an istream
+void SHA1::sha1String(const std::string &s)
+{
+    istringstream is(s);
+    sha1StandardImplemenation(is);
+}
 
 
-
-    //accepts customer ID converted to an istream
+//accepts customer ID converted to an istream
 void HashTable::sha1StandardImplemenation(std::istream &is) {
-    while (true)
-    {
-        char sbuf[64];
-        is.read(sbuf, 64 - buffer.size());
-        buffer.append(sbuf, (std::size_t)is.gcount());
-        if (buffer.size() != 64)
-        {
-            return;
-        }
-        uint32_t block[16];
-        bufferToBlock(buffer, block);
-        transform(message, block, transforms);
-        buffer.clear();
-    }
+  char sbuf[64];
+  is.read(sbuf, 64 - buffer.size());
+  buffer.append(sbuf, (std::size_t)is.gcount());
+  uint32_t block[16];
+  bufferToBlock(buffer, block);
+  transform(message, block, transforms);
+  buffer.clear();
 }
 
 
@@ -165,6 +181,10 @@ static void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t
     w = rol(w, 30);
 }
 
+
+/*
+ * Hash a single 512-bit block. This is the core of the algorithm.
+ */
 static void transform(uint32_t message[], uint32_t block[16], uint64_t &transforms)
 {
     /* Copy message[] to working vars */

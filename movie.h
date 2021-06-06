@@ -11,7 +11,7 @@
 
 class Movie {
 public:
-
+    virtual Movie();
     virtual ~Movie();                               // destructor
     
     // Overloaded operators
@@ -36,7 +36,7 @@ public:
 
 
     //created a movie()
-    //add stock(stock)
+    //add stock(stock) preconditioned
     //assumed format "Gus Van Sant, Good Will Hunting, 2000"
     //        or     "Rob Reiner, When Harry Met Sally, 1989"
     //        or     "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"   
