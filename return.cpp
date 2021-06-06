@@ -117,7 +117,7 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
       //           is borrowed by this customer and can be returned
       // x is never > 0
       if (x < 0) {
-        foundMe.returnStock(1)
+        foundMe.addStock(1);
         current.addHistory("Return: " + movieData);
         return true;
       } else {

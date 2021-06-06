@@ -95,7 +95,7 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
     findMe.setData(data);
 
     if (movies.retrieve(findMe, foundMe) ) {
-      if (foundMe.borrowStock(1)) {
+      if (foundMe.subStock(1)) {
         current.addHistory("Borrow: " + movieData);
         return true;
       } else {
