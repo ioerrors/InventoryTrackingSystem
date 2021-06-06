@@ -56,21 +56,25 @@ private:
     };
 
     //accepts customer ID converted to a string
-    void sha1String(string& s);
+    void sha1String(const string& s);
 	//accepts customer ID converted to an istream
 	void sha1StandardImplemenation(istream &is);
 
 
 	void reset(uint32_t message[], std::string &buffer, uint64_t &transforms);
 
-
+	void bufferToBlock(const std::string &buffer, uint32_t block[16]);
 	static uint32_t rol(const uint32_t value, const size_t bits);
 
 
-	static uint32_t blk(const uint32_t block[16], const size_t i);
+	uint32_t blk(const uint32_t block[16], const size_t i);
 
-    
-
+	void transform(uint32_t message[], uint32_t block[16], uint64_t &transforms);
+	void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
+	void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
+	void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
+	void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
+	void R0(const uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i);
     uint32_t message[5];
     string buffer;
     uint64_t transforms;

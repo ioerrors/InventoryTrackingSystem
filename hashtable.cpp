@@ -76,17 +76,17 @@ void reset(uint32_t message[], std::string &buffer, uint64_t &transforms)
 
 
 
-static uint32_t rol(const uint32_t value, const size_t bits) {
+uint32_t HashTable::rol(const uint32_t value, const size_t bits) {
         return (value << bits) | (value >> (32 - bits));
     }
 
 
-static uint32_t blk(const uint32_t block[16], const size_t i) {
+uint32_t HashTable::blk(const uint32_t block[16], const size_t i) {
     return rol(block[(i+13)&15] ^ block[(i+8)&15] ^ block[(i+2)&15] ^ block[i], 1);
 }
 
 //accepts customer ID, passes it converted as an istream
-void SHA1::sha1String(const std::string &s)
+void HashTable::sha1String(const std::string &s)
 {
     istringstream is(s);
     sha1StandardImplemenation(is);
@@ -150,14 +150,14 @@ string HashTable::paddAndReturn() {
     return result.str();
 }
 
-static void R0(const uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+void HashTable::R0(const uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     z += ((w&(x^y))^y) + block[i] + 0x5a827999 + rol(v, 5);
     w = rol(w, 30);
 }
 
 
-static void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+void HashTable::R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += ((w&(x^y))^y) + block[i] + 0x5a827999 + rol(v, 5);
@@ -165,7 +165,7 @@ static void R1(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t
 }
 
 
-static void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+void HashTable::R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += (w^x^y) + block[i] + 0x6ed9eba1 + rol(v, 5);
@@ -173,7 +173,7 @@ static void R2(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t
 }
 
 
-static void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+void HashTable::R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += (((w|x)&y)|(w&x)) + block[i] + 0x8f1bbcdc + rol(v, 5);
@@ -181,7 +181,7 @@ static void R3(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t
 }
 
 
-static void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
+void HashTable::R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t x, const uint32_t y, uint32_t &z, const size_t i)
 {
     block[i] = blk(block, i);
     z += (w^x^y) + block[i] + 0xca62c1d6 + rol(v, 5);
@@ -192,8 +192,7 @@ static void R4(uint32_t block[16], const uint32_t v, uint32_t &w, const uint32_t
 /*
  * Hash a single 512-bit block. This is the core of the algorithm.
  */
-static void transform(uint32_t message[], uint32_t block[16], uint64_t &transforms)
-{
+void HashTable::transform(uint32_t message[], uint32_t block[16], uint64_t &transforms){
     /* Copy message[] to working vars */
     uint32_t a = message[0];
     uint32_t b = message[1];
@@ -295,7 +294,7 @@ static void transform(uint32_t message[], uint32_t block[16], uint64_t &transfor
 }
 
 
-static void bufferToBlock(const std::string &buffer, uint32_t block[16]) {
+void HashTable::bufferToBlock(const std::string &buffer, uint32_t block[16]) {
     /* Convert the std::string (byte buffer) to a uint32_t array (MSB) */
     for (size_t i = 0; i < 16; i++)
     {
