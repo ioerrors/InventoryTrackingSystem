@@ -20,7 +20,7 @@
 // Description: function overloaded in the children classes
 // PRE: transaction exists
 // POST: no action is taken in the virtual doTransaction();
-virtual bool doTransaction(HashTable& customers, BSTree& movies){
+virtual bool Transaction::doTransaction(HashTable& customers, BSTree& movies){
 	return false;
 }
 
@@ -29,7 +29,7 @@ virtual bool doTransaction(HashTable& customers, BSTree& movies){
 // Description: sets data fields
 // PRE: transaction
 // POST: function is not carried out except in children classes
-virtual bool setData(string setMovieData) {
+virtual bool Transaction::setData(string setMovieData) {
 	return false;
 }
 

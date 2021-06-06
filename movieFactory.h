@@ -22,16 +22,18 @@ public:
     MovieFactory();              // constructor
     ~MovieFactory();             // destructor
 
-    Movie getMovie(char type) {
-        switch (type) {
-            case type == 'C':
-                return new Classic();
-            case type == 'F':
-                return new Comedy();
-            case type == 'D':
-                return new Drama();
-            default:
-                throw;
+    Movie* getMovie(char type) {
+        if(type == 'C' ) {
+			return new Classic();
+        }
+        if(type == 'F') {
+			return new Comedy();
+        }
+        if (type == 'D') {
+            return new Drama();
+        }
+        else {
+            throw;
         }
     }
 };

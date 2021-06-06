@@ -14,9 +14,17 @@ using namespace std;
 
 
 class Movie {
+
+    //-----------------------------------------------------------------------------
+    // Overloaded Operator <<
+    // Description: prints movie contents to ostream
+    // PRE: Movie exists
+    // POST: All contained data fields are printed in order
+    friend ostream &operator<<(ostream &os, const Movie&);
+
 public:
+
     Movie();
-    
     // Overloaded operators
     virtual bool operator==(const Movie& otherMovie);    // check if movies are equal
     virtual bool operator!=(const Movie& otherMovie);  // check if movies are not equal

@@ -55,9 +55,9 @@ public:
   // Classic DESTRUCTOR
   // Description: deallocates all memory allocated for Classic
   // PRE: Classic exists
-  // POST: All Classic memory is freed               
-  ~Classic();             
-  
+  // POST: All Classic memory is freed
+  virtual  ~Classic();
+
   
   // Accessors
   char getGenre() const;
@@ -71,7 +71,7 @@ public:
   bool addStock(int); 
   bool subStock(int);             // subtract from stock
 
-  set<string> getActors() const;  // get the actors of the movie object
+  set<string> getActors();  // get the actors of the movie object
 
   //---------------------------------------------------------------------------
   // setData()
@@ -79,7 +79,7 @@ public:
   // PRE: classic exists, stock is already set using addStock()
   //    input format "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"    
   // POST: all data fields set
-  void setData(string movieData);  
+  bool setData(string movieData);
   
   // Overloaded operators
 

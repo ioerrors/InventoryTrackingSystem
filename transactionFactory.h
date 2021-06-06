@@ -31,20 +31,20 @@ public:
     TransactionFactory();              // constructor
     virtual ~TransactionFactory();             // destructor
 
-    Transaction getTransaction(char type) {
-        switch (type) {
-            case type == 'H':
-                return new History();
-            case type =='I':
-                return new Inventory();
-            case type == 'R':
-                return new Return();
-            case type == 'B':
-                return new Borrow();
-            default:
-                throw;
+    Transaction* getTransaction(const char type) {
+        if(type == 'H') {
+            return new History();
+        } else if (type == 'I') {
+            return new Inventory();                
+        } else if (type == 'R') {
+            return new Return();
+        } else if (type == 'B') {
+            return new Borrow();
+        } else {
+            throw;
         }
     }
+
     //---------------------------------------------------------------------------
     // doTransaction()
     // Description: function overloaded in the children classes

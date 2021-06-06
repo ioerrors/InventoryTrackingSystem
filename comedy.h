@@ -15,7 +15,7 @@ class Comedy : public Movie {
 public:
 
     Comedy();         // constructor
-    ~Comedy();        // destructor
+    virtual ~Comedy();        // destructor
     
     char getGenre() const;
     string getTitle() const;       

@@ -132,7 +132,7 @@ set<string> Classic::getActors() const {
 // PRE: classic exists, stock is already set using addStock()
 //    input format "Hal Ashby, Harold and Maude, Ruth Gordon 3 1971"    
 // POST: all data fields set
-void Classic::setData(string movieData) {
+bool Classic::setData(string movieData) {
 
   //usable for any movie:
   stringstream ss(movieData);
@@ -160,6 +160,7 @@ void Classic::setData(string movieData) {
   data = "";
   ss >> data;
   year = (int) data;
+  return  true;
 }
 
 bool Classic::operator!=(const Movie& otherMovie) {

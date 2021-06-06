@@ -8,6 +8,35 @@
 
 #include "movie.h"
 
+//-----------------------------------------------------------------------------
+// Overloaded Operator <<
+// Description: prints movie contents to ostream
+// PRE: Movie exists
+// POST: All contained data fields are printed in order
+ostream &operator<<(ostream &os, const Movie& mov) {
+	if (mov.getGenre() != 'C') {
+		os << "D" + " ";
+    os << mov.getStock() + " ";
+    os << mov.getGenre() + " ";
+		os << mov.getDirector() + ", ";
+    os << mov.getTitle() + ", ";
+		os << mov.getReleaseYear();
+    os << endl;
+	} else {
+    os << "D" + " ";
+    os << mov.getStock() + " ";
+    os << mov.getGenre() + " ";
+    os << mov.getDirector() + ", ";
+    os << mov.getTitle() + ", ";
+    os << mov.getActors();
+    os << mov.getMonth() + " ";
+    os << mov.getReleaseYear();
+    os << endl;
+	}
+	return os;
+}
+
+
 Movie::Movie() {
   genre = '';
   mediaType = '';

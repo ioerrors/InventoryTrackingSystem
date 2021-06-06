@@ -18,6 +18,7 @@
 #include <string>
 #include <stack>
 #include <unordered_map>
+
 #include "hashTable.h"
 #include "BSTree.h"
 #include "transaction.h"
@@ -30,7 +31,6 @@
 HashTable::HashTable () {
   reset(message, buffer, transforms);
   std::unordered_map<int, Customer, KeyHasher> mappy;
-
 }
 
 HashTable::~HashTable () {
