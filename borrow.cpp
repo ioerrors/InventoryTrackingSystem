@@ -52,9 +52,7 @@ bool Borrow::setData(string setMovieData) {
   data = "";
 
   //store rest of movieData as string
-  while(!ss.eof()) {
-      ss >> movieData;
-  }
+  movieData = ss.str()
   return true;
 }
 
@@ -89,9 +87,7 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
     Movie findMe = makeType.getMovie(data);
     data = "";
     //store rest of movieData as string
-    while(!ss.eof()) {
-        ss >> data;
-    }
+    data = ss.str();
     findMe.setData(data);
 
     if (movies.retrieve(findMe, foundMe) ) {
