@@ -7,7 +7,7 @@
 //-----------------------------------------------------------------------------
 
 #include "BSTree.h"
-#include "HashTable.h"
+#include "hashTable.h"
 #include "history.h"
 #include "customer.h"
 #include <iostream>
@@ -20,8 +20,8 @@ using namespace std;
 // PRE: Memory is available for Borrow
 // POST: Empty Borrow is created
 Borrow::Borrow() {
-    movieData = "";
-    customerID = NULL;     
+  movieData = "";
+  customerID = NULL;     
 }
 
 

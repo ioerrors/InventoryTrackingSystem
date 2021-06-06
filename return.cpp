@@ -8,7 +8,7 @@
 
 
 #include "BSTree.h"
-#include "HashTable.h"
+#include "hashTable.h"
 #include "history.h"
 #include "customer.h"
 #include <iostream>
@@ -21,8 +21,8 @@ using namespace std;
 // PRE: Memory is available for Return
 // POST: Empty Return is created  
 Return::Return() {
-    movieData = "";
-    customerID = NULL;
+  movieData = "";
+  customerID = NULL;
 }
 
 //---------------------------------------------------------------------------
@@ -31,8 +31,8 @@ Return::Return() {
 // PRE: Return exists
 // POST: All Return memory is freed
 Return::~Return() {
-    delete movieData;
-    delete customerID;
+  delete movieData;
+  delete customerID;
 }
 
 
@@ -43,18 +43,18 @@ Return::~Return() {
 // POST: movieData is set to setMovieData, 
 //       and customerID is set to setCustomerID
 bool Return::setData(string setMovieData) {
-    stringstream ss(setMovieData); 
-    string data;
-    ss >> data;
-    customerID = (int) data; //store customerID
-    ss >> data; //clear media type
-    data = "";
+  stringstream ss(setMovieData); 
+  string data;
+  ss >> data;
+  customerID = (int) data; //store customerID
+  ss >> data; //clear media type
+  data = "";
 
-    //store rest of movieData as string
-    while(!ss.eof()) {
-        ss >> movieData;
-    }
-    return true;
+  //store rest of movieData as string
+  while(!ss.eof()) {
+      ss >> movieData;
+  }
+  return true;
 }   
 
 
@@ -64,8 +64,8 @@ bool Return::setData(string setMovieData) {
 // PRE: return exists
 // POST: movieData and customerID are printed to out with Return statement
 bool Return::display() {
-    cout << "Return:" << CustomerID << " " << movieData;
-    return true;
+  cout << "Return:" << CustomerID << " " << movieData;
+  return true;
 }   
 
 //---------------------------------------------------------------------------
@@ -78,7 +78,7 @@ bool Return::display() {
 bool Return::doTransaction(HashTable& customers, BSTree& movies) {
   Customer current;
   if (customers.getCustomer(customerID, current)) {
-    current.addHistory("Borrow " + movieData);
+    current.addHistory("Return " + movieData);
     Movie* foundMe;
    
     MovieFactory makeType = new MovieFactory();
@@ -93,21 +93,44 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
     }
     findMe.setData(data);
 
+
+
+    //find movie
     if (movies.retrieve(findMe, foundMe) ) {
-      if (foundMe.borrowStock(1)) {
-        current.addHistory("Borrow: " + movieData);
+      int x = 0;
+      data = "";
+      ostream findBorrow << current.getHistory();
+
+      //check if borrowed
+      while(std::getline(findBorrow, data)) {
+        if (data = "Borrow " + movieData) {
+            x--;
+        }
+        else if (data = "Return " + movieData) {
+            x++;
+        }
+      }
+      // at this moment:
+      // if x = 0, all copies of this movie that were
+      //           borrowed by this customer are already returned.
+      // if x < 0, at least one copy of this movie 
+      //           is borrowed by this customer and can be returned
+      // x is never > 0
+      if (x < 0) {
+        foundMe.returnStock(1)
+        current.addHistory("Return: " + movieData);
         return true;
       } else {
-        cout << "Borrow failed: not enough in stock";
+        cout << "Return failed: movie not borrowed or already returned";
         return false; 
       }
     } else {
-      cout << "Borrow failed: movie not found";
+      cout << "Return failed: movie not found";
       return  false;
     }
   } else {
-      cout << "Borrow failed: invalid customerID";
-      return  false;
+    cout << "Return failed: invalid customerID";
+    return  false;
   }
 }
 

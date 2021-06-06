@@ -8,7 +8,7 @@
 
 
 #include "BSTree.h"
-#include "HashTable.h"
+#include "hashTable.h"
 #include "history.h"
 #include "customer.h"
 #include <iostream>

@@ -6,8 +6,9 @@
 // inherits from Transaction
 //-----------------------------------------------------------------------------
 #include "BSTree.h"
-#include "HashTable.h"
-#include "inventory.h"
+#include "hashTable.h"
+#include "history.h"
+#include "customer.h"
 #include <iostream>
 #include <sstream>  
 using namespace std;
@@ -19,7 +20,7 @@ using namespace std;
 // PRE: Memory is available for Inventory
 // POST: Empty Inventory is created
 Inventory::Inventory() {
-	
+
 }
 
 

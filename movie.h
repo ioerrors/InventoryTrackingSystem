@@ -39,6 +39,8 @@ public:
     //        or     "D Gus Van Sant, Good Will Hunting,"   
     virtual void setData(string movieData); 
 
+
+    //could be simplified to changeStock();
     virtual bool returnStock(int amount);           // add to stock
     virtual bool borrowStock(int amount);           // subtract from stock
     
