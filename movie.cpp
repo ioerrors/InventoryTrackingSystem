@@ -96,4 +96,23 @@ bool Movie::subStock(int removeStock) {
 
 }
 
+char Movie::getGenre() const { return this->genre; }
 
+int Movie::getMonth() const { return 0; }
+set<string> Movie::getActors() const {
+	set<string> notReal;
+	return notReal;
+}
+
+bool Movie::setData(string movieData) {
+	return false;
+}
+
+void Movie::display() const {
+	cout << "This is the base class!";
+}
+
+bool Movie::operator==(const Movie& otherMovie) { return false; } // check if movies are equal
+bool Movie::operator!=(const Movie& otherMovie) { return false; } // check if movies are not equal
+bool Movie::operator>(const Movie& otherMovie) { return false; }  // check if this movie is greater than other movie
+bool Movie::operator<(const Movie& otherMovie) { return false; }  // check if this movie is less than other movie

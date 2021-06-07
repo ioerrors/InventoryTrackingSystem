@@ -29,6 +29,7 @@ Drama::Drama() {
   month = 0;   
 }
 
+Drama::~Drama() {}
 
 char Drama::getGenre() const {
     return 'D';

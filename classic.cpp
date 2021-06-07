@@ -55,6 +55,8 @@ Classic::Classic() {
   month = 0;                                      
 }
 
+Classic::~Classic() {}
+
 //-----------------------------------------------------------------------------
 // Classic 
 // Description: 

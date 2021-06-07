@@ -26,7 +26,9 @@ History::History() {
     customerID = 0;
 }
 
-  
+
+History::~History() {}
+
 //-----------------------------------------------------------------------------
 // setData()
 // Description: sets data field

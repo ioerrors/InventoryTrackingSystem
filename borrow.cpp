@@ -29,7 +29,7 @@ Borrow::Borrow() {
   customerID = 0;
 }
 
-
+Borrow::~Borrow() {}
 //-----------------------------------------------------------------------------
 // setData()
 // Description: sets data fields

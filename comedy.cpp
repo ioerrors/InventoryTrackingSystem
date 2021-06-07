@@ -27,7 +27,7 @@ Comedy::Comedy() {
   month = 0;
 }
 
-
+Comedy::~Comedy() {}
 
 char Comedy::getGenre() const {
   return 'F';

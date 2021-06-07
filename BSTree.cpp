@@ -19,7 +19,7 @@
 #include "return.h"
 #include "inventory.h"
 #include "history.h"
-#include "HashTable.h"
+#include "hashTable.h"
 #include "BSTree.h"
 #include "business.h"
 #include "classic.h"
