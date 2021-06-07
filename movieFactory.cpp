@@ -4,25 +4,32 @@
 //-----------------------------------------------------------------------------
 // This is a class to build the movie objects
 //-----------------------------------------------------------------------------
-#ifndef MOVIEFACTORY_H
-#define MOVIEFACTORY_H
-
 
 #include "classic.h"
 #include "comedy.h"
 #include "drama.h"
 
-//#include "transactionFactory.h"
+#include "movieFactory.h"
 
 
-class MovieFactory {
-public:
+MovieFactory::MovieFactory() { }
 
 
-	MovieFactory();             // constructor
-    ~MovieFactory();             // destructor
+MovieFactory::~MovieFactory() { }
 
-    Movie* getMovie(string type);
 
-};
-#endif
+Movie* MovieFactory::getMovie(string type) {
+  if(type == "C" ) {
+    return new Classic();
+  }
+  if(type == "F") {
+    return new Comedy();
+  }
+  if (type == "D") {
+    return new Drama();
+  }
+  else {
+    throw;
+  } 
+}
+

@@ -7,6 +7,13 @@
 //-----------------------------------------------------------------------------
 
 #include "movie.h"
+#include <iterator>
+#include <set>
+
+using namespace std;
+
+
+
 
 //-----------------------------------------------------------------------------
 // Overloaded Operator <<
@@ -14,32 +21,35 @@
 // PRE: Movie exists
 // POST: All contained data fields are printed in order
 ostream &operator<<(ostream &os, const Movie& mov) {
-	if (mov.getGenre() != 'C') {
-		os << "D" + " ";
-    os << mov.getStock() + " ";
-    os << mov.getGenre() + " ";
-		os << mov.getDirector() + ", ";
-    os << mov.getTitle() + ", ";
-		os << mov.getReleaseYear();
-    os << endl;
-	} else {
-    os << "D" + " ";
+  if (mov.getGenre() == 'C') {
+    string data = "D ";
+    os << data;
     os << mov.getStock() + " ";
     os << mov.getGenre() + " ";
     os << mov.getDirector() + ", ";
     os << mov.getTitle() + ", ";
-    os << mov.getActors();
+    std::copy(mov.getActors().begin(), mov.getActors().end(),
+              std::ostream_iterator<std::string>(os, ","));
     os << mov.getMonth() + " ";
     os << mov.getReleaseYear();
     os << endl;
-	}
-	return os;
+  } else {
+	string data = "D ";
+    os << data;
+    os << mov.getStock() + " ";
+    os << mov.getGenre() + " ";
+    os << mov.getDirector() + ", ";
+    os << mov.getTitle() + ", ";
+    os << mov.getReleaseYear();
+    os << endl;
+  }
+  return os;
 }
 
 
 Movie::Movie() {
-  genre = '';
-  mediaType = '';
+  genre = '`';
+  mediaType = 'D';
   title = "";
   director = "";
   stock = 0;
@@ -47,6 +57,7 @@ Movie::Movie() {
   month = 0;
 }
 
+Movie::~Movie() {}
 
 string Movie::getTitle() const {
     // do we need this?

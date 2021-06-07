@@ -26,7 +26,7 @@ using namespace std;
 // POST: Empty Borrow is created
 Borrow::Borrow() {
   movieData = "";
-  customerID = NULL;     
+  customerID = 0;
 }
 
 
@@ -75,12 +75,12 @@ bool Borrow::doTransaction(HashTable& customers, BSTree& movies) {
     current->addHistory("Borrow " + movieData);
     Movie* foundMe;
    
-    MovieFactory makeType;
+    MovieFactory* makeType = new MovieFactory();
     stringstream ss(movieData); 
     string data;
     ss >> data;
     //char type = data;
-    Movie* findMe = makeType.getMovie(data);
+    Movie* findMe = makeType->getMovie(data);
     
     if (data == "C") {
       data = "";

@@ -40,7 +40,7 @@ public:
     // Description: deallocates all memory allocated for Borrow
     // PRE: Borrow exists
     // POST: All Borrow memory is freed
-    ~Borrow();
+    virtual ~Borrow();
     
     //---------------------------------------------------------------------------
     // setData()

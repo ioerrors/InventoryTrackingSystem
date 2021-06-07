@@ -17,7 +17,7 @@
 #include <sstream>
 #include <string>
 #include <stack>
-#include <unordered_map>
+
 
 #include "hashTable.h"
 #include "BSTree.h"
@@ -26,6 +26,7 @@
 #include "history.h"
 #include "borrow.h"
 #include "customer.h"
+#include <unordered_map>
 
 using namespace std;
 
@@ -33,19 +34,30 @@ HashTable::HashTable () {
   //std::unordered_map<int, Customer*, KeyHasher> mappy;
 }
 
+HashTable::~HashTable() {
+
+}
 
 
 
 //find
 bool HashTable::getCustomer (const int cID, Customer*& setMe) const {
-  string hashMe = "" + cID;
-  setMe = mappy[hashMe];
-  return true;
+  Key hashMe;
+  hashMe.x = cID;
+  std::unordered_map<Key,Customer*, KeyHasher>::const_iterator got = mappy.find(hashMe);
+  setMe = got->second;
+  if (setMe == nullptr) {
+	  return false;
+  } else {
+	  return true;
+  }
 }            
 
 //insert
-bool HashTable::addCustomer(Customer*& customer) {
-  int data = customer->getID();
-  mappy[data] = customer;
+bool HashTable::addCustomer(Customer*& cust) {
+  int data = cust->getID();
+  Key hashMe;
+  hashMe.x = data;
+  mappy.insert({hashMe, cust});
   return true;
 }                             

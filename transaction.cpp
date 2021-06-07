@@ -10,5 +10,14 @@
 #include <iostream>
 #include <sstream>
 #include <stack>
+#include "history.h"
+#include "inventory.h"
+#include "return.h"
+#include "borrow.h"
+
+
+Transaction::Transaction() {}
+
+Transaction::~Transaction() {}
 
 

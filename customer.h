@@ -8,7 +8,7 @@
 #define CUSTOMER_H
 
 #include <sstream>
-
+#include <stack>
 using namespace std;
 
 class Customer {

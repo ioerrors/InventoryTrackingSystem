@@ -82,13 +82,13 @@ void Business::createHashTableCustomers(ifstream& customerFile) {
 }
 
 void Business::processTransactions(ifstream& transactionFile) {
-  
-  TransactionFactory factory;
+  //    MovieFactory* makeType = new MovieFactory();
+  TransactionFactory* factory = new TransactionFactory();
 
   while(!transactionFile.eof()) {
     string transType;
     transactionFile >> transType;
-    Transaction* action = factory.getTransaction(transType);
+    Transaction* action = factory->getTransaction(transType);
     string data;
     getline(transactionFile, data);
     action->setData(data);

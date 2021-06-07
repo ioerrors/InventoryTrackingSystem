@@ -12,6 +12,7 @@
 #include "history.h"
 #include "customer.h"
 #include "return.h"
+#include "movieFactory.h"
 #include <iostream>
 #include <sstream>  
 
@@ -25,17 +26,7 @@ using namespace std;
 // POST: Empty Return is created  
 Return::Return() {
   movieData = "";
-  customerID = NULL;
-}
-
-//---------------------------------------------------------------------------
-// Return DESTRUCTOR
-// Description: deallocates all memory allocated for Return
-// PRE: Return exists
-// POST: All Return memory is freed
-Return::~Return() {
-  delete movieData;
-  delete customerID;
+  customerID = 0;
 }
 
 
@@ -49,7 +40,7 @@ bool Return::setData(string setMovieData) {
   stringstream ss(setMovieData); 
   string data;
   ss >> data;
-  customerID = (int) data; //store customerID
+  customerID = stoi(data); //store customerID
   ss >> data; //clear media type
   data = "";
 
@@ -86,9 +77,7 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
     stringstream ss(movieData); 
     string data;
     ss >> data;
-    char type;
-    type = data;
-    Movie* findMe = makeType.getMovie(type);
+    Movie* findMe = makeType.getMovie(data);
     data = "";
     //store rest of movieData as string
     data = ss.str();
@@ -135,8 +124,7 @@ bool Return::doTransaction(HashTable& customers, BSTree& movies) {
     if (movies.retrieve(*findMe, foundMe) ) {
       int x = 0;
       data = "";
-      ifstream os;
-      os << current->getHistory();
+      stringstream os = current->getHistory();
 
       //check if borrowed
       while(getline(os, data)) {

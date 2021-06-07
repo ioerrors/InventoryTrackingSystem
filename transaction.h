@@ -25,9 +25,9 @@
 class Transaction {
 public:
 
-    Transaction();              // constructor
-    virtual ~Transaction();             // destructor
 
+    Transaction();           // constructor
+    virtual ~Transaction();             // destructor
 
 
     //---------------------------------------------------------------------------
@@ -46,3 +46,4 @@ public:
 
 };
 #endif
+;

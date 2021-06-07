@@ -23,18 +23,9 @@ using namespace std;
 // PRE: Memory is available for History
 // POST: Empty History is created
 History::History() {
-    customerID = NULL;
+    customerID = 0;
 }
 
-//-----------------------------------------------------------------------------
-// History DESTRUCTOR
-// Description: deallocates all memory allocated for History
-// PRE: History exists
-// POST: All History memory is freed
-History::~History() {
-    delete customerID;
-}
-    
   
 //-----------------------------------------------------------------------------
 // setData()
@@ -46,7 +37,7 @@ bool History::setData(string setMovieData) {
     stringstream ss(setMovieData); 
     string data;
     ss >> data;
-    customerID = (int) data; //store customerID
+    customerID = stoi(data); //store customerID
     return true;
 }
 
@@ -60,7 +51,12 @@ bool History::setData(string setMovieData) {
 bool History::doTransaction(HashTable& customers, BSTree& movies) {
     Customer* current;
     if (customers.getCustomer(customerID, current)) {
-        cout << current->getHistory();
+    	stringstream out = current->getHistory();
+        while(!out.eof()) {
+        	string data;
+        	out >> data;
+        	cout << data;
+        }
         return true;
     } else {
         cout << "History: invalid customerID";
