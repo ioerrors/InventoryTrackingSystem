@@ -18,7 +18,7 @@ public:
     ~Drama();     // destructor
     
     // Accessors
-    char getGenre() const;
+    string getGenre() const;
     string getTitle() const;       
     string getDirector() const;
     int getStock() const;

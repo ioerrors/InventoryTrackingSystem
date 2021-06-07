@@ -36,7 +36,7 @@
 #include "classic.h"
 #include <iostream>
 #include <sstream>
-#include <string.h>
+#include <string>
 
 using namespace std;
 //-----------------------------------------------------------------------------
@@ -45,8 +45,8 @@ using namespace std;
 // PRE: Memory is available for Classic
 // POST: Empty Classic is created
 Classic::Classic() {
-  genre = '`';
-  mediaType = 'D';
+  genre = "C";
+  mediaType = "D";
   title = "";
   director = "";
   stock = 0;
@@ -61,7 +61,7 @@ Classic::~Classic() {}
 // Description:
 // PRE:
 // POST:
-char Classic::getGenre() const { return 'C'; }
+string Classic::getGenre() const { return "C"; }
 
 string Classic::getTitle() const { return this->title; }
 
@@ -120,13 +120,13 @@ bool Classic::setData(string movieData) {
   actorsList.insert(name);
 
   data = "";
-  ss >> data;
-  month = stoi(data);
+  ss >> month;
+  //month = stoi(data);
 
   // use for any movie:
   data = "";
-  ss >> data;
-  year = stoi(data);
+  ss >> year;
+  //   = stoi(data);
   return true;
 }
 
@@ -136,7 +136,8 @@ bool Classic::operator!=(const Movie &otherMovie) {
 
 //-----------------------------------------------------------------------------
 bool Classic::operator==(const Movie &otherMovie) {
-  if (otherMovie.getGenre() != 'C') {
+  string type = "C";
+  if (type != otherMovie.getGenre()) {
     return false;
   }
   if (month != otherMovie.getMonth()) {
@@ -161,7 +162,8 @@ bool Classic::operator==(const Movie &otherMovie) {
 // this > otherMovie
 bool Classic::operator>(const Movie &otherMovie) {
   if (*this != otherMovie) {
-    if (otherMovie.getGenre() == 'C') {
+	  string type = "C";
+	  if (type == otherMovie.getGenre()) {
       if (year > otherMovie.getReleaseYear()) {
         return true; // this movie release year is greater(more recent)
       } else if (year == otherMovie.getReleaseYear() &&

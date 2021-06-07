@@ -32,7 +32,7 @@ public:
     virtual bool operator>(const Movie& otherMovie);   // check if this movie is greater than other movie
     virtual bool operator<(const Movie& otherMovie);   // check if this movie is less than other movie
 
-    virtual char getGenre() const;                          // get the genre of the movie object
+    virtual string getGenre() const;                // get the genre of the movie object
     char getMediaType() const;                      // get the type of the movie object, i.e. DVD
     
     string getTitle() const;                        // get the title of the movie object
@@ -59,8 +59,8 @@ public:
 
     
 protected:
-    char genre;                                     // genre of the movie
-    char mediaType;                                 // media type of the movie
+    string genre;                                     // genre of the movie
+    string mediaType;                                 // media type of the movie
     string title;                                   // title of movie
     string director;                                // director of movie
     int stock;                                      // number of movie left in stock

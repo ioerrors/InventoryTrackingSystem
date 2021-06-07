@@ -20,8 +20,8 @@
 // PRE: Memory is available for Comedy
 // POST: Empty Comedy is created
 Drama::Drama() {
-  genre = '`';
-  mediaType = 'D';
+  genre = "D";
+  mediaType = "D";
   title = "";
   director = "";
   stock = 0;
@@ -31,7 +31,7 @@ Drama::Drama() {
 
 Drama::~Drama() {}
 
-char Drama::getGenre() const { return 'D'; }
+string Drama::getGenre() const { return "D"; }
 
 //-----------------------------------------------------------------------------
 // setData()
@@ -54,8 +54,8 @@ bool Drama::setData(string movieData) {
 
   // get year
   data = "";
-  ss >> data;
-  year = stoi(data);
+  ss >> year;
+  //year = stoi(data);
   return true;
 }
 

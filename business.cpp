@@ -36,9 +36,16 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
     movieFile >> movieType;
     Movie *movie = factory.getMovie(movieType);
     string data;
-    getline(movieFile, data);
-    movie->setData(data);
-    setOfMovies.insert(movie);
+    getline(movieFile, data, ',');
+    stringstream ss(data);
+    int stock = 0;
+    ss >> stock;
+    if(movie != nullptr) {
+    	movie->addStock(stock);
+    	getline(movieFile, data);
+		movie->setData(data);
+		setOfMovies.insert(movie);
+    }
   } //<---we have a set full of all our movies
   // now we want a bst of our movies.
   createBSTreeMoviesHelper(setOfMovies, movies.getRoot(), movies);
@@ -49,8 +56,8 @@ void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
   while (!customerFile.eof()) {
     int customerID;
     string data;
-    customerFile >> data;
-    customerID = stoi(data);
+    customerFile >> customerID;
+    //customerID = stoi(data);
     string lastName;
     customerFile >> lastName;
     string firstName;

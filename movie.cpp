@@ -18,7 +18,8 @@ using namespace std;
 // PRE: Movie exists
 // POST: All contained data fields are printed in order
 ostream &operator<<(ostream &os, const Movie &mov) {
-  if (mov.getGenre() == 'C') {
+  string type = "C";
+  if (type == mov.getGenre()) {
     string data = "D ";
     os << data;
     os << mov.getStock() + " ";
@@ -84,7 +85,7 @@ bool Movie::subStock(int removeStock) {
   }
 }
 
-char Movie::getGenre() const { return this->genre; }
+string Movie::getGenre() const { return this->genre; }
 
 int Movie::getMonth() const { return 0; }
 set<string> Movie::getActors() const {
