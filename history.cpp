@@ -9,23 +9,17 @@
 #include <iostream>
 #include <sstream>
 
-#include "transaction.h"
 #include "history.h"
-
-
+#include "transaction.h"
 
 using namespace std;
-
 
 //-----------------------------------------------------------------------------
 // History CONSTRUCTOR
 // Description: creates an empty History
 // PRE: Memory is available for History
 // POST: Empty History is created
-History::History() {
-    customerID = 0;
-}
-
+History::History() { customerID = 0; }
 
 History::~History() {}
 
@@ -34,13 +28,13 @@ History::~History() {}
 // Description: sets data field
 // PRE: history exists type is already parsed
 //      and setMovieData format:  " XXXX"
-// POST: 
+// POST:
 bool History::setData(string setMovieData) {
-    stringstream ss(setMovieData); 
-    string data;
-    ss >> data;
-    customerID = stoi(data); //store customerID
-    return true;
+  stringstream ss(setMovieData);
+  string data;
+  ss >> data;
+  customerID = stoi(data); // store customerID
+  return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -50,18 +44,18 @@ bool History::setData(string setMovieData) {
 // POST: transaction history for customer is printed
 //        ASSUMPTION: History is not needed to be added as a transaction
 //                    to the transaction history for a customer
-bool History::doTransaction(HashTable& customers, BSTree& movies) {
-    Customer* current;
-    if (customers.getCustomer(customerID, current)) {
-    	stringstream out = current->getHistory();
-        while(!out.eof()) {
-        	string data;
-        	out >> data;
-        	cout << data;
-        }
-        return true;
-    } else {
-        cout << "History: invalid customerID";
-        return false;
+bool History::doTransaction(HashTable &customers, BSTree &movies) {
+  Customer *current;
+  if (customers.getCustomer(customerID, current)) {
+    stringstream out = current->getHistory();
+    while (!out.eof()) {
+      string data;
+      out >> data;
+      cout << data;
     }
+    return true;
+  } else {
+    cout << "History: invalid customerID";
+    return false;
+  }
 }

@@ -11,8 +11,9 @@
 #include <iostream>
 #include <sstream>
 
-class Transaction;
-
+#include "transaction.h"
+#include "hashTable.h"
+#include "BSTree.h"
 
 using namespace std;
 

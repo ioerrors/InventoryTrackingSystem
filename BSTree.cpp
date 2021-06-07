@@ -11,22 +11,20 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <string>
 #include <stack>
+#include <string>
 
-
-#include "transaction.h"
-#include "return.h"
-#include "inventory.h"
-#include "history.h"
-#include "hashTable.h"
 #include "BSTree.h"
-#include "business.h"
 #include "classic.h"
 #include "comedy.h"
-#include "drama.h"
 #include "customer.h"
+#include "drama.h"
+#include "hashTable.h"
+#include "history.h"
+#include "inventory.h"
 #include "movieFactory.h"
+#include "return.h"
+#include "transaction.h"
 #include "transactionFactory.h"
 using namespace std;
 
@@ -238,7 +236,7 @@ bool BSTree::operator!=(const BSTree &otherBSTree) const {
 // PRE: BSTree Exists
 // POST: returns false if this BSTree already contains Node
 //       OR returns true if this BSTree successfully added Node
-bool BSTree::insert(Movie* insertMe) {
+bool BSTree::insert(Movie *insertMe) {
   if (insertMe == nullptr) {
     return false;
   }
@@ -295,7 +293,6 @@ bool BSTree::retrieve(const Movie &checkMe, Movie *&setMe) const {
   }
   return false;
 }
-
 
 //-----------------------------------------------------------------------------
 // getRoot()

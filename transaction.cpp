@@ -7,26 +7,26 @@
 
 #include "transaction.h"
 
-#include <iostream>
-#include <sstream>
-#include <stack>
+#include "borrow.h"
 #include "history.h"
 #include "inventory.h"
 #include "return.h"
-#include "borrow.h"
-
+#include <iostream>
+#include <sstream>
+#include <stack>
 
 Transaction::Transaction() {}
 
 Transaction::~Transaction() {}
-
 
 //---------------------------------------------------------------------------
 // doTransaction()
 // Description: function overloaded in the children classes
 // PRE: transaction exists
 // POST: no action is taken in the virtual doTransaction();
-bool Transaction::doTransaction(HashTable& customers, BSTree& movies) { return false; }
+bool Transaction::doTransaction(HashTable &customers, BSTree &movies) {
+  return false;
+}
 
 //---------------------------------------------------------------------------
 // setData()
@@ -34,4 +34,3 @@ bool Transaction::doTransaction(HashTable& customers, BSTree& movies) { return f
 // PRE: transaction
 // POST: function is not carried out except in children classes
 bool Transaction::setData(string setMovieData) { return false; }
-

@@ -11,25 +11,20 @@
 
 #include "movieFactory.h"
 
+MovieFactory::MovieFactory() {}
 
-MovieFactory::MovieFactory() { }
+MovieFactory::~MovieFactory() {}
 
-
-MovieFactory::~MovieFactory() { }
-
-
-Movie* MovieFactory::getMovie(string type) {
-  if(type == "C" ) {
+Movie *MovieFactory::getMovie(string type) {
+  if (type == "C,") {
     return new Classic();
   }
-  if(type == "F") {
+  if (type == "F,") {
     return new Comedy();
   }
-  if (type == "D") {
+  if (type == "D,") {
     return new Drama();
+  } else {
+    return nullptr;
   }
-  else {
-    throw;
-  } 
 }
-
