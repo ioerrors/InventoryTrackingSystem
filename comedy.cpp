@@ -6,9 +6,6 @@
 // child of the movie class, inheriting from Movie
 //-----------------------------------------------------------------------------
 
-#ifndef COMEDY_CPP
-#define COMEDY_CPP
-
 #include "comedy.h"
 #include <sstream>
 
@@ -58,17 +55,24 @@ bool Comedy::setData(string movieData) {
 }
 
 bool Comedy::operator==(const Movie &otherMovie) const {
-  return (otherMovie.getGenre().compare("F") == 0 &&
-		  title.compare(otherMovie.getTitle())) == 0 &&
-         (year == otherMovie.getReleaseYear());
+  if (otherMovie.getGenre().compare("F") != 0) {
+      return false; //genre is different
+  }
+  if (title.compare(otherMovie.getTitle()) != 0) {
+      return false; // title is different
+  }
+  if (year != otherMovie.getReleaseYear()) {
+      return false; // year released is different
+  }
+  return true;
 }
 
 bool Comedy::operator!=(const Movie &otherMovie) const{
-  return !(this == &otherMovie);
+  return !(*this == otherMovie);
 }
 
 bool Comedy::operator>(const Movie &otherMovie) const {
-  if(otherMovie.getGenre() != "F") {
+  if(otherMovie.getGenre().compare("F") != 0) {
     return false;
   }
   if (title.compare(otherMovie.getTitle()) > 0) {
@@ -91,4 +95,4 @@ bool Comedy::operator<(const Movie &otherMovie) const{
   }
   return true;
 }
-#endif
+

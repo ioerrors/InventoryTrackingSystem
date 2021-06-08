@@ -16,13 +16,13 @@ MovieFactory::MovieFactory() {}
 MovieFactory::~MovieFactory() {}
 
 Movie *MovieFactory::getMovie(string type) {
-  if (type == "C,") {
+  if (type == "C," || type == "C") {
     return new Classic();
   }
-  if (type == "F,") {
+  if (type == "F," || type == "F") {
     return new Comedy();
   }
-  if (type == "D,") {
+  if (type == "D," || type == "D") {
     return new Drama();
   } else {
 	cout << "Invalid movie genre: " << type << endl;

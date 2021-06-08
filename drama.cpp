@@ -6,8 +6,6 @@
 // child of the movie class, inheriting from Movie
 //-----------------------------------------------------------------------------
 
-#ifndef DRAMA_CPP
-#define DRAMA_CPP
 
 #include "drama.h"
 #include <iostream>
@@ -60,19 +58,24 @@ bool Drama::setData(string movieData) {
 }
 
 bool Drama::operator==(const Movie &otherMovie) const {
-  return (director == otherMovie.getDirector() &&
-          title == otherMovie.getTitle());
+  if (director.compare(otherMovie.getDirector()) != 0) {
+    return false; // directors are different
+  }
+  if (title.compare(otherMovie.getTitle()) != 0 ) {
+    return false; // titles are different
+  }
+  return true;
 }
 
 bool Drama::operator!=(const Movie &otherMovie) const {
-  return !(this == &otherMovie);
+  return !(*this == otherMovie);
 }
 
 bool Drama::operator>(const Movie &otherMovie) const {
-  if (otherMovie.getGenre() == "C") {
+  if (otherMovie.getGenre().compare("C") == 0) {
     return false;
   }
-  if (otherMovie.getGenre() == "F") {
+  if (otherMovie.getGenre().compare("F") == 0) {
     return true;
   }
   if (director.compare(otherMovie.getDirector()) > 0) {
@@ -91,4 +94,4 @@ bool Drama::operator<(const Movie &otherMovie) const {
   return true;
 }
 
-#endif
+

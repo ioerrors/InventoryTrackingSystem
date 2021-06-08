@@ -39,12 +39,14 @@ bool Return::setData(string setMovieData) {
   stringstream ss(setMovieData);
   string data;
   ss >> data;
+
   customerID = stoi(data); // store customerID
+  data = "";
   ss >> data;              // clear media type
   data = "";
 
   // store rest of movieData as string
-  movieData = ss.str();
+  getline(ss, movieData);
   return true;
 }
 
@@ -68,7 +70,7 @@ bool Return::display() {
 bool Return::doTransaction(HashTable &customers, BSTree &movies) {
   Customer *current;
   if (customers.getCustomer(customerID, current)) {
-    current->addHistory("Return " + movieData);
+    //current->addHistory("Return " + movieData);
     Movie *foundMe;
 
     MovieFactory makeType;
@@ -112,7 +114,7 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
       string movieFakeData = "Fake Director," + data;
       findMe->setData(movieFakeData);
     } else {
-      cout << "Return failed: invalid Movie type";
+      cout << "Return failed: invalid Movie type" << endl;
       return false;
     }
 
@@ -141,15 +143,15 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
         current->addHistory("Return: " + movieData);
         return true;
       } else {
-        cout << "Return failed: movie not borrowed or already returned";
+        cout << "Return failed: movie not borrowed or already returned" << endl;
         return false;
       }
     } else {
-      cout << "Return failed: movie not found";
+      cout << "Return failed: movie not found" << endl;
       return false;
     }
   } else {
-    cout << "Return failed: invalid customerID";
+    cout << "Return failed: invalid customerID" << endl;
     return false;
   }
 }

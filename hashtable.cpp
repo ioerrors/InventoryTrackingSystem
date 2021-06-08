@@ -30,18 +30,16 @@
 using namespace std;
 
 HashTable::HashTable() {
-  // std::unordered_map<int, Customer*, KeyHasher> mappy;
+  std::unordered_map<int, Customer*, KeyHasher> mappy;
 }
 
 HashTable::~HashTable() {}
 
 // find
-bool HashTable::getCustomer(const int cID, Customer *&setMe) const {
-  Key hashMe;
-  hashMe.x = cID;
-  std::unordered_map<Key, Customer *, KeyHasher>::const_iterator got =
+bool HashTable::getCustomer(const int hashMe, Customer *&setMe) const {
+  std::unordered_map<int, Customer *, KeyHasher>::const_iterator find =
       mappy.find(hashMe);
-  setMe = got->second;
+  setMe = find->second;
   if (setMe == nullptr) {
     return false;
   } else {
@@ -51,9 +49,15 @@ bool HashTable::getCustomer(const int cID, Customer *&setMe) const {
 
 // insert
 bool HashTable::addCustomer(Customer *&cust) {
-  int data = cust->getID();
-  Key hashMe;
-  hashMe.x = data;
+  int hashMe = cust->getID();
   mappy.insert({hashMe, cust});
+  
+  /* for testing
+  cout << endl << "Hash Table of Customers, after add of: " << cust->getID() << " " << cust->getName() << endl;
+  for (auto const &pair : mappy) {
+      cout << pair.first <<  " = " << pair.second->getID() <<  " " << pair.second->getName() << endl;
+  }
+  */
   return true;
 }
+

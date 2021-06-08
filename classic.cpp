@@ -139,7 +139,7 @@ bool Classic::addActor(string actor) {
 
 
 bool Classic::operator!=(const Movie &otherMovie) const {
-  return !(this == &otherMovie);
+  return !(*this == otherMovie);
 }
 
 
@@ -147,7 +147,7 @@ bool Classic::operator!=(const Movie &otherMovie) const {
 //-----------------------------------------------------------------------------
 bool Classic::operator==(const Movie &otherMovie) const {
   string type = "C";
-  if (type != otherMovie.getGenre()) {
+  if (type.compare(otherMovie.getGenre()) != 0) {
     return false;
   }
   if (month != otherMovie.getMonth()) {
@@ -156,10 +156,14 @@ bool Classic::operator==(const Movie &otherMovie) const {
   if (year != otherMovie.getReleaseYear()) {
     return false;
   }
-  if (actorsList != otherMovie.getActors()) {
-    return false;
-  } 
-  return true; // different release date, actors
+  for (string actor1 : otherMovie.getActors()) {
+    for (string actor2 : actorsList) {
+      if (actor1.compare(actor2) == 0) {
+        return true;
+      }
+    }
+  }
+  return false; // no shared actors, even though same release date
 }
 
 //-----------------------------------------------------------------------------

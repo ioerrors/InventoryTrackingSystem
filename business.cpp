@@ -40,7 +40,7 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
         }
         stack<string> addFromMe;
         bool moreActors = false;
-        // Iterate till the end of set
+        // Iterate till the end of stack
         while (!classicsStack.empty()) {
           search.push(classicsStack.top());
           classicsStack.pop();
@@ -131,6 +131,7 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
     getline(transactionFile, data);
     action->setData(data);
     action->doTransaction(customers, movies);
+    //cout << endl;
   }
 }
 
@@ -148,9 +149,12 @@ int main() {
   BSTree movies;
   HashTable customers;
   createBSTreeMovies(movieFile, movies);
+  /*for testing
   cout << endl << "BSTree of Movies: " << endl; 
   cout << movies;
+  */
   createHashTableCustomers(customerFile, customers);
+
   processTransactions(transactionFile, customers, movies);
   return 0;
 }

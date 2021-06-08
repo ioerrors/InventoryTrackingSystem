@@ -29,7 +29,7 @@ ostream &operator<<(ostream &os, const Movie &mov) {
     os << mov.getDirector() + ",";
     os << mov.getTitle() + ", ";
     for(string actor : mov.getActors()) {
-	os << actor << ", ";
+       os << actor << ", ";
     }
     os << to_string(mov.getMonth()) + " ";
     os << to_string(mov.getReleaseYear());
@@ -111,14 +111,14 @@ bool Movie::setData(string movieData) { return false; }
 void Movie::display() const { cout << this;}
 
 bool Movie::operator==(const Movie &otherMovie) const {
-  return &otherMovie == this;
+  return otherMovie == *this;
 } // check if movies are equal
 bool Movie::operator!=(const Movie &otherMovie) const {
-  return &otherMovie != this;
+  return otherMovie != *this;
 } // check if movies are not equal
 bool Movie::operator>(const Movie &otherMovie) const {
-  return  &otherMovie < this;
+  return  otherMovie < *this;
 } // check if this movie is greater than other movie
 bool Movie::operator<(const Movie &otherMovie) const {
-  return &otherMovie > this;
+  return otherMovie > *this;
 } // check if this movie is less than other movie

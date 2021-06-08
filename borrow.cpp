@@ -43,11 +43,12 @@ bool Borrow::setData(string setMovieData) {
   ss >> data;
 
   customerID = stoi(data); // store customerID
+  data = "";
   ss >> data;              // clear media type
   data = "";
 
   // store rest of movieData as string
-  movieData = ss.str();
+  getline(ss, movieData);
   return true;
 }
 
@@ -71,7 +72,7 @@ bool Borrow::display() {
 bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
   Customer *current;
   if (customers.getCustomer(customerID, current)) {
-    current->addHistory("Borrow " + movieData);
+    //current->addHistory("Borrow " + movieData);
     Movie *foundMe;
 
     MovieFactory *makeType = new MovieFactory();
@@ -111,7 +112,7 @@ bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
       string movieFakeData = "Fake Director," + data;
       findMe->setData(movieFakeData);
     } else {
-      cout << "Borrow failed: invalid Movie type";
+      cout << "Borrow failed: invalid Movie type" << endl;
       return false;
     }
     if (movies.retrieve(*findMe, foundMe)) {
@@ -119,15 +120,16 @@ bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
         current->addHistory("Borrow: " + movieData);
         return true;
       } else {
-        cout << "Borrow failed: not enough in stock";
+        cout << "Borrow failed: not enough in stock" << endl;
         return false;
       }
     } else {
-      cout << "Borrow failed: movie not found";
+      cout << "Borrow failed: movie not found: " << endl;
+      cout << movieData << endl << endl;
       return false;
     }
   } else {
-    cout << "Borrow failed: invalid customerID";
+    cout << "Borrow failed: invalid customerID" << endl;
     return false;
   }
 }
