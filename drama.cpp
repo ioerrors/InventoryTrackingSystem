@@ -84,9 +84,9 @@ bool Drama::operator>(const Movie &otherMovie) const {
 }
 
 bool Drama::operator<(const Movie &otherMovie) const {
-  if (this == &otherMovie)
+  if (*this == otherMovie)
     return false;
-  if (this > &otherMovie)
+  if (*this > otherMovie)
     return false;
   return true;
 }

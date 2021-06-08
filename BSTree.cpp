@@ -39,6 +39,7 @@ ostream &operator<<(ostream &os, const BSTree &bst) {
   if (bst.isEmpty()) {
     return os;
   }
+  os << " ";
   // iterate inOrderHelper
   os << bst.inOrderHelper(bst.getRoot()) << endl;
   return os;

@@ -16,7 +16,7 @@
 // C, 20, George Cukor, Holiday, <Katherine Hepburn, Cary Grant> 9 1938
 //
 // OR into the movie set as:
-//
+
 // C, 20, George Cukor, Holiday, Katherine Hepburn 9 1938
 // C, 20, George Cukor, Holiday, Cary Grant 9 1938
 //
@@ -156,7 +156,7 @@ bool Classic::operator==(const Movie &otherMovie) const {
   if (year != otherMovie.getReleaseYear()) {
     return false;
   }
-  if (otherMovie.getActors() != otherMovie.getActors()) { 
+  if (actorsList != otherMovie.getActors()) {
     return false;
   } 
   return true; // different release date, actors

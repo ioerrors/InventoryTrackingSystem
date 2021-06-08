@@ -11,27 +11,6 @@
 
 using namespace std;
 
-
-void createBSTreeMoviesHelper(set<Movie *> &movieSet, BSTree::Node *current,
-                              BSTree &movies) {
-
-  /*
-  if (current->left == nullptr) {
-    return;
-  }
-
-  //createBSTreeMoviesHelper(movieSet, current->left, movies);
-
-
-  Movie *first = *movieSet.begin();
-  current->data = first;
-  movieSet.erase(first);
-
-  //createBSTreeMoviesHelper(movieSet, current->right, movies);
-
-   */
-}
-
 void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
   MovieFactory factory;
   stack<Movie*> classicsStack;
@@ -108,30 +87,19 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
     classicsStack.pop();
     classics.insert(real);
   }
-  cout << "Comedy: " << endl;
-  for (Movie* cur : comedies) {
-    cout << *cur << endl;
-    movies.insert(cur);
-  }
-  cout << "Comedy BST: " << endl;
-  cout << movies;
-  cout << "Drama: " << endl;
-  for (Movie* cur : dramas) {
-    cout << *cur;
-    cout << endl;
-    movies.insert(cur);
-  }
-  cout << "Drama BST: " << endl;
-  cout << movies;
 
-  cout << "Classic: " << endl;
-  for (Movie* cur : classics) {
-    cout << *cur << endl;
+  for (Movie* cur : comedies) {
     movies.insert(cur);
   }
-  cout << "Classic BST: " << endl;
-  cout << movies;
-  //createBSTreeMoviesHelper(setOfMovies, movies.getRoot(), movies);
+
+  for (Movie* cur : dramas) {
+    movies.insert(cur);
+  }
+  for (Movie* cur : classics) {
+    movies.insert(cur);
+  }
+
+
 }
 
 // 3333 Witch Wicked
