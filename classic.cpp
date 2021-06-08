@@ -164,21 +164,21 @@ bool Classic::operator>(const Movie &otherMovie) {
   if (*this != otherMovie) {
 	  string type = "C";
 	  if (type == otherMovie.getGenre()) {
-      if (year > otherMovie.getReleaseYear()) {
-        return true; // this movie release year is greater(more recent)
-      } else if (year == otherMovie.getReleaseYear() &&
-                 month > otherMovie.getMonth()) {
-        return true; // this movie release month is greater (more recent)
-      } else if (year == otherMovie.getReleaseYear() &&
-                 month == otherMovie.getMonth()) { // same release date
-        // alphabetically Last actor in both lists is used as sorting actor
-        string last = *actorsList.end();
-        string otherLast;
-        otherLast = *otherMovie.getActors().end();
-        int res = last.compare(otherLast);
-        return (res > 0);
-      }
-      return false; // this movie is less recent
+		  if (year > otherMovie.getReleaseYear()) {
+			return true; // this movie release year is greater(more recent)
+		  } else if (year == otherMovie.getReleaseYear() &&
+					 month > otherMovie.getMonth()) {
+			return true; // this movie release month is greater (more recent)
+		  } else if (year == otherMovie.getReleaseYear() &&
+					 month == otherMovie.getMonth()) { // same release date
+			// alphabetically Last actor in both lists is used as sorting actor
+			string last = *actorsList.end();
+			string otherLast;
+			otherLast = *otherMovie.getActors().end();
+			int res = last.compare(otherLast);
+			return (res > 0);
+		  }
+		  return false; // this movie is less recent
     }
     // this classic movie is sorted greater than other movie types
     return true;

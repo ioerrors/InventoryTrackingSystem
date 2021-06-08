@@ -57,16 +57,20 @@ bool Comedy::setData(string movieData) {
   return true;
 }
 
-bool Comedy::operator==(const Movie &otherMovie) const {
-  return (title == otherMovie.getTitle()) &&
+bool Comedy::operator==(const Movie &otherMovie) {
+  return (otherMovie.getGenre() == "F" &&
+		  title == otherMovie.getTitle()) &&
          (year == otherMovie.getReleaseYear());
 }
 
-bool Comedy::operator!=(const Movie &otherMovie) const {
+bool Comedy::operator!=(const Movie &otherMovie) {
   return !(this == &otherMovie);
 }
 
-bool Comedy::operator>(const Movie &otherMovie) const {
+bool Comedy::operator>(const Movie &otherMovie) {
+  if(otherMovie.getGenre() != "F") {
+    return false;
+  }
   if (title > otherMovie.getTitle()) {
     return true; // title is greater
   } else if (title == otherMovie.getTitle()) {
@@ -78,7 +82,7 @@ bool Comedy::operator>(const Movie &otherMovie) const {
   return false; // title is less
 }
 
-bool Comedy::operator<(const Movie &otherMovie) const {
+bool Comedy::operator<(const Movie &otherMovie) {
   if (this == &otherMovie)
     return false;
   if (this > &otherMovie)

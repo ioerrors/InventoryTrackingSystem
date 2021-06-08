@@ -13,24 +13,31 @@ using namespace std;
 
 void createBSTreeMoviesHelper(set<Movie *> &movieSet, BSTree::Node *current,
                               BSTree &movies) {
-  if (current == nullptr) {
+
+  /*
+	if (current == nullptr) {
     return;
   }
 
-  createBSTreeMoviesHelper(movieSet, current->left, movies);
+  //createBSTreeMoviesHelper(movieSet, current->left, movies);
+
 
   Movie *first = *movieSet.begin();
   current->data = first;
   movieSet.erase(first);
 
-  createBSTreeMoviesHelper(movieSet, current->right, movies);
+  //createBSTreeMoviesHelper(movieSet, current->right, movies);
+
+   */
 }
 
 void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
   // creates the BSTree for movies, and returns
 
   MovieFactory factory;
-  set<Movie *> setOfMovies;
+  set<Movie*> classics;
+  set<Movie*> dramas;
+  set<Movie*> comedies;
   while (!movieFile.eof()) {
     string movieType;
     movieFile >> movieType;
@@ -43,12 +50,29 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
     if(movie != nullptr) {
     	movie->addStock(stock);
     	getline(movieFile, data);
-		movie->setData(data);
-		setOfMovies.insert(movie);
-    }
-  } //<---we have a set full of all our movies
-  // now we want a bst of our movies.
-  createBSTreeMoviesHelper(setOfMovies, movies.getRoot(), movies);
+		  movie->setData(data);
+      if (movieType == "C,") {
+        classics.insert(movie);
+      } 
+      if(movieType == "D,") {
+        dramas.insert(movie);
+      }
+      if (movieType == "F,") {
+        comedies.insert(movie);
+      }
+    }//<---we have a set full of all our movies
+  }// now we want a bst of our movies.
+
+  for (Movie *cur : dramas) {
+    movies.insert(cur);
+  }
+  for (Movie *cur : comedies) {
+    movies.insert(cur);
+  }
+  for (Movie *cur : classics) {
+    movies.insert(cur);
+  }
+  //createBSTreeMoviesHelper(setOfMovies, movies.getRoot(), movies);
 }
 
 // 3333 Witch Wicked
@@ -97,6 +121,7 @@ int main() {
   BSTree movies;
   HashTable customers;
   createBSTreeMovies(movieFile, movies);
+  cout << movies;
   createHashTableCustomers(customerFile, customers);
   processTransactions(transactionFile, customers, movies);
   return 0;

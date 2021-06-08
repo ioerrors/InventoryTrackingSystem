@@ -32,10 +32,10 @@ public:
 
 
     // Overloaded operators
-    bool operator==(const Movie& otherMovie) const;   // check if movies are equal
-    bool operator!=(const Movie& otherMovie) const; // check if movies are not equal
-    bool operator>(const Movie& otherMovie) const;  // check if this movie is greater than rhs movie
-    bool operator<(const Movie& otherMovie) const;  // check if this movie is less than rhs movie
+    bool operator==(const Movie& otherMovie);   // check if movies are equal
+    bool operator!=(const Movie& otherMovie); // check if movies are not equal
+    bool operator>(const Movie& otherMovie);  // check if this movie is greater than rhs movie
+    bool operator<(const Movie& otherMovie);  // check if this movie is less than rhs movie
 };
 
 #endif

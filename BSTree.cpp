@@ -246,19 +246,19 @@ bool BSTree::insert(Movie *insertMe) {
   } else {
     while (current->right != nullptr && *current->data < *insertMe) {
       current = current->right;
-      while (current->left != nullptr && *insertMe < *current->data) {
+      while (current->left != nullptr && *current->data > *insertMe) {
         current = current->left;
       }
     }
-    while (current->left != nullptr && *insertMe < *current->data) {
+    while (current->left != nullptr &&  *current->data > *insertMe) {
       current = current->left;
       while (current->right != nullptr && *current->data < *insertMe) {
-        current = current->right;
+    	  current = current->right;
       }
     }
     if (*current->data == *insertMe) {
       return false;
-    } else if (*insertMe < *current->data) {
+    } else if (*current->data > *insertMe) {
       current->left = new Node;
       current = current->left;
       current->data = insertMe;
