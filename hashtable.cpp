@@ -39,7 +39,11 @@ HashTable::~HashTable() {}
 bool HashTable::getCustomer(const int hashMe, Customer *&setMe) const {
   std::unordered_map<int, Customer *, KeyHasher>::const_iterator find =
       mappy.find(hashMe);
-  setMe = find->second;
+  if (find != mappy.end()) {
+    setMe = find->second;
+  } else  {
+      return false;
+  }
   if (setMe == nullptr) {
     return false;
   } else {

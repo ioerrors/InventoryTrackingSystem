@@ -129,8 +129,11 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
     Transaction *action = factory->getTransaction(transType);
     string data;
     getline(transactionFile, data);
-    action->setData(data);
-    action->doTransaction(customers, movies);
+    if (action != nullptr) {
+      action->setData(data);
+      action->doTransaction(customers, movies);
+    }
+
     //cout << endl;
   }
 }

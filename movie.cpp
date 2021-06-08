@@ -78,7 +78,7 @@ bool Movie::addStock(int newStock) {
 }
 
 bool Movie::subStock(int removeStock) {
-  if (stock >= 0) {
+  if (stock > 0) {
     stock -= removeStock;
     return true;
   } else {

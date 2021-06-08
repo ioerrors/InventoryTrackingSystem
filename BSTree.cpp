@@ -284,9 +284,15 @@ bool BSTree::retrieve(const Movie &checkMe, Movie *&setMe) const {
   Node *current = root;
   while (current->right != nullptr && *current->data < checkMe) {
     current = current->right;
+    while (current->left != nullptr && *current->data > checkMe) {
+      current = current->left;
+    }
   }
   while (current->left != nullptr && *current->data > checkMe) {
     current = current->left;
+    while (current->right != nullptr && *current->data < checkMe) {
+       current = current->right;
+    }
   }
   if (*current->data == checkMe) {
     setMe = current->data;

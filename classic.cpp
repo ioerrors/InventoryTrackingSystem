@@ -171,7 +171,7 @@ bool Classic::operator==(const Movie &otherMovie) const {
 bool Classic::operator>(const Movie &otherMovie) const {
   if (*this != otherMovie) {
 	  string type = "C";
-	  if (type == otherMovie.getGenre()) {
+	  if (type.compare(otherMovie.getGenre()) == 0) {
 		  if (year > otherMovie.getReleaseYear()) {
 			return true; // this movie release year is greater(more recent)
 		  } else if (year == otherMovie.getReleaseYear() &&

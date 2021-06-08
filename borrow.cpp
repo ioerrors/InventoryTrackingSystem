@@ -82,7 +82,7 @@ bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
     // char type = data;
     Movie *findMe = makeType->getMovie(data);
 
-    if (data == "C") {
+    if (data.compare("C") == 0) {
       data = "";
       string month;
       ss >> month;
@@ -93,12 +93,12 @@ bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
 
       // Hal Ashby, Harold and Maude, Ruth Gordon 3 1971
       string movieFakeData =
-          "Hal Ashby, Harold and Maude, " + data + " " + month + " " + year;
+          "FAKE DIRECTOR, FAKE TITLE, " + data + " " + month + " " + year;
       findMe->setData(movieFakeData);
     }
     // Command "Nancy Savoca, Dogfight,"
     // movie "Steven Spielberg, Schindler's List, 1993"
-    else if (data == "D") {
+    else if (data.compare("D") == 0) {
       data = "";
       getline(ss, data);
       string movieFakeData = data + " 1993";
@@ -106,30 +106,36 @@ bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
     }
     // Command "Annie Hall, 1977"
     // movie "Steven Spielberg, Schindler's List, 1993"
-    else if (data == "F") {
+    else if (data.compare("F") == 0) {
       data = "";
       getline(ss, data);
       string movieFakeData = "Fake Director," + data;
       findMe->setData(movieFakeData);
     } else {
-      cout << "Borrow failed: invalid Movie type" << endl;
+      cout << "Borrow failed: invalid Movie type: " << endl;
+      cout << movieData << endl;
       return false;
     }
     if (movies.retrieve(*findMe, foundMe)) {
       if (foundMe->subStock(1)) {
-        current->addHistory("Borrow: " + movieData);
+        current->addHistory("Borrow:" + movieData);
+        // REMOVE LATER Just for testing:
+        cout << "Borrow Successful: " << endl;
+        cout << movieData;
         return true;
       } else {
         cout << "Borrow failed: not enough in stock" << endl;
+        cout << movieData  << "Stock: " << foundMe->getStock() << endl;
         return false;
       }
     } else {
       cout << "Borrow failed: movie not found: " << endl;
-      cout << movieData << endl << endl;
+      cout << movieData << endl;
       return false;
     }
   } else {
     cout << "Borrow failed: invalid customerID" << endl;
+    cout << movieData << endl;
     return false;
   }
 }

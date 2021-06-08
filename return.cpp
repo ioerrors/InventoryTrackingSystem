@@ -78,12 +78,12 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
     string data;
     ss >> data;
     Movie *findMe = makeType.getMovie(data);
-    data = "";
+    // data = "";
     // store rest of movieData as string
-    data = ss.str();
-    findMe->setData(data);
+    // data = ss.str();
+    // findMe->setData(data);
 
-    if (data == "C") {
+    if (data.compare("C") == 0) {
       data = "";
       string month;
       ss >> month;
@@ -100,7 +100,7 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
     }
     // Command format "Nancy Savoca, Dogfight,"
     // movie format "Steven Spielberg, Schindler's List, 1993"
-    else if (data == "D") {
+    else if (data.compare("D") == 0) {
       data = "";
       getline(ss, data);
       string movieFakeData = data + " 1993";
@@ -108,13 +108,14 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
     }
     // Command format "Annie Hall, 1977"
     // movie format  "Steven Spielberg, Schindler's List, 1993"
-    else if (data == "F") {
+    else if (data.compare("F") == 0) {
       data = "";
       getline(ss, data);
       string movieFakeData = "Fake Director," + data;
       findMe->setData(movieFakeData);
     } else {
       cout << "Return failed: invalid Movie type" << endl;
+      cout << movieData << endl;
       return false;
     }
 
@@ -126,9 +127,9 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
 
       // check if borrowed
       while (getline(os, data)) {
-        if (data == "Borrow " + movieData) {
+        if (data.compare("Borrow:" + movieData) == 0) {
           x--;
-        } else if (data == "Return " + movieData) {
+        } else if (data.compare("Return:" + movieData) == 0) {
           x++;
         }
       }
@@ -140,18 +141,24 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
       // x is never > 0
       if (x < 0) {
         foundMe->addStock(1);
-        current->addHistory("Return: " + movieData);
+        current->addHistory("Return:" + movieData);
+        //REMOVE LATER just for testing:
+        cout << "Return successful: " << endl;
+        cout << movieData << endl;
         return true;
       } else {
         cout << "Return failed: movie not borrowed or already returned" << endl;
+        cout << movieData << endl;
         return false;
       }
     } else {
       cout << "Return failed: movie not found" << endl;
+      cout << movieData << endl;
       return false;
     }
   } else {
     cout << "Return failed: invalid customerID" << endl;
+    cout << movieData << endl;
     return false;
   }
 }
