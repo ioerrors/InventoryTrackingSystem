@@ -27,7 +27,7 @@ class BSTree {
 public:
 
   struct Node {
-     Movie* data = new Movie();         // pointer to data object
+     Movie* data;         // pointer to data object
      Node* left = nullptr;             // left subtree pointer
      Node* right= nullptr;            // right subtree pointer
    };

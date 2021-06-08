@@ -11,11 +11,12 @@
 
 using namespace std;
 
+
 void createBSTreeMoviesHelper(set<Movie *> &movieSet, BSTree::Node *current,
                               BSTree &movies) {
 
   /*
-	if (current == nullptr) {
+  if (current->left == nullptr) {
     return;
   }
 
@@ -32,30 +33,69 @@ void createBSTreeMoviesHelper(set<Movie *> &movieSet, BSTree::Node *current,
 }
 
 void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
-  // creates the BSTree for movies, and returns
-
   MovieFactory factory;
+  stack<Movie*> classicsStack;
+  stack<Movie*> search;
   set<Movie*> classics;
   set<Movie*> dramas;
   set<Movie*> comedies;
   while (!movieFile.eof()) {
-    string movieType;
+    string movieType = "";
     movieFile >> movieType;
     Movie *movie = factory.getMovie(movieType);
-    string data;
+    string data = "";
     getline(movieFile, data, ',');
     stringstream ss(data);
     int stock = 0;
     ss >> stock;
+    getline(movieFile, data);
     if(movie != nullptr) {
-    	movie->addStock(stock);
-    	getline(movieFile, data);
-		  movie->setData(data);
+      movie->addStock(stock);
+      movie->setData(data);
+
+
+      //for classicsStack only
       if (movieType == "C,") {
-        classics.insert(movie);
-      } 
+	      if(classicsStack.empty()) {
+          classicsStack.push(movie);  
+        }
+        stack<string> addFromMe;
+        bool moreActors = false;
+        // Iterate till the end of set
+        while (!classicsStack.empty()) {
+          search.push(classicsStack.top());
+          classicsStack.pop();
+        }
+        while (!search.empty()) {
+          moreActors = false;
+          if(search.top()->getTitle() == movie->getTitle()) {
+            //Movie* retain = search.top();
+
+            for(string actor : search.top()->getActors()) {
+              addFromMe.push(actor);
+            }
+            while(!addFromMe.empty()) {
+              int a = movie->getActors().size();
+              movie->addActor(addFromMe.top());
+              int b = movie->getActors().size();
+              if(b > a) {
+                  moreActors = true;
+              }
+              addFromMe.pop();
+            }
+            if(moreActors) {
+                movie->addStock(search.top()->getStock());
+            }
+          } else {
+            classicsStack.push(search.top());
+          }
+          search.pop();
+        }
+        classicsStack.push(movie);        
+      }
       if(movieType == "D,") {
         dramas.insert(movie);
+        //dramas.erase(movie);
       }
       if (movieType == "F,") {
         comedies.insert(movie);
@@ -63,15 +103,34 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
     }//<---we have a set full of all our movies
   }// now we want a bst of our movies.
 
-  for (Movie *cur : dramas) {
+  while(!classicsStack.empty()) {
+    Movie* real = classicsStack.top();
+    classicsStack.pop();
+    classics.insert(real);
+  }
+  cout << "Comedy: " << endl;
+  for (Movie* cur : comedies) {
+    cout << *cur << endl;
     movies.insert(cur);
   }
-  for (Movie *cur : comedies) {
+  cout << "Comedy BST: " << endl;
+  cout << movies;
+  cout << "Drama: " << endl;
+  for (Movie* cur : dramas) {
+    cout << *cur;
+    cout << endl;
     movies.insert(cur);
   }
-  for (Movie *cur : classics) {
+  cout << "Drama BST: " << endl;
+  cout << movies;
+
+  cout << "Classic: " << endl;
+  for (Movie* cur : classics) {
+    cout << *cur << endl;
     movies.insert(cur);
   }
+  cout << "Classic BST: " << endl;
+  cout << movies;
   //createBSTreeMoviesHelper(setOfMovies, movies.getRoot(), movies);
 }
 
@@ -121,6 +180,7 @@ int main() {
   BSTree movies;
   HashTable customers;
   createBSTreeMovies(movieFile, movies);
+  cout << endl << "BSTree of Movies: " << endl; 
   cout << movies;
   createHashTableCustomers(customerFile, customers);
   processTransactions(transactionFile, customers, movies);

@@ -21,8 +21,8 @@ C, 10, Victor Fleming, Gone With the Wind, Clark Gable 2 1939
 C, 10, George Cukor, The Philadelphia Story, Katherine Hepburn 5 1940
 C, 10, George Cukor, The Philadelphia Story, Cary Grant 5 1940
 C, 10, John Huston, The Maltese Falcon, Humphrey Bogart 10 1941
-Z, 10, Frank Capra, It's a Wonderful Life, James Steward 11 1946
-C, 10, Frank Capra, It's a Wonderful Life, James Steward 11 1946
+Z, 10, Frank Capra, It's a Wonderful Life, James Stewart 11 1946
+C, 10, Frank Capra, It's a Wonderful Life, James Stewart 11 1946
 C, 10, Frank Capra, It's a Wonderful Life, Donna Reed 11 1946
 C, 10, Stanley Kubrick, A Clockwork Orange, Malcolm McDowell 2 1971
 F, 10, John Landis, National Lampoon's Animal House, 1978

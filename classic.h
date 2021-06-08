@@ -81,22 +81,22 @@ public:
   // POST: all data fields set
   bool setData(string movieData);
   
+  bool addActor(string actor);
   // Overloaded operators
 
   // check if movies are equal and adds actor to actor list
-  bool operator==(const Movie& otherMovie);
+  bool operator==(const Movie& otherMovie) const;
 
   // check if movies are not equal  
-  bool operator!=(const Movie& otherMovie);
+  bool operator!=(const Movie& otherMovie) const;
 
   // check if this movie is greater than other movie  
-  bool operator>(const Movie& otherMovie);
+  bool operator>(const Movie& otherMovie) const;
 
   // check if this movie is less than other movie  
-  bool operator<(const Movie& otherMovie);
-    
-private:
-    set<string> actorsList;       // List of actors
+  bool operator<(const Movie& otherMovie) const;
+
+
 };
 
 #endif

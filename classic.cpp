@@ -104,7 +104,7 @@ bool Classic::setData(string movieData) {
 
   // usable for any movie:
   stringstream ss(movieData);
-  string data;
+  string data = "";
   getline(ss, data, ',');
   director = data;
   data = "";
@@ -112,8 +112,8 @@ bool Classic::setData(string movieData) {
   title = data;
 
   // specific to Classic:
-  string first;
-  string last;
+  string first = "";
+  string last = "";
   ss >> first;
   ss >> last;
   string name = first + " " + last;
@@ -130,12 +130,22 @@ bool Classic::setData(string movieData) {
   return true;
 }
 
-bool Classic::operator!=(const Movie &otherMovie) {
+bool Classic::addActor(string actor) {
+  int a = actorsList.size();
+  actorsList.insert(actor);
+  int b = actorsList.size();
+  return b > a;
+}
+
+
+bool Classic::operator!=(const Movie &otherMovie) const {
   return !(this == &otherMovie);
 }
 
+
+
 //-----------------------------------------------------------------------------
-bool Classic::operator==(const Movie &otherMovie) {
+bool Classic::operator==(const Movie &otherMovie) const {
   string type = "C";
   if (type != otherMovie.getGenre()) {
     return false;
@@ -146,21 +156,15 @@ bool Classic::operator==(const Movie &otherMovie) {
   if (year != otherMovie.getReleaseYear()) {
     return false;
   }
-  if (title == otherMovie.getTitle()) { // still same movie, new actor
-    // add the other movie's entire list of actors to this movie object
-    set<string> thing;
-    thing = otherMovie.getActors();
-    actorsList.insert(thing.begin(), thing.end());
-
-    return true;
-  } else {
-    return false; // different release date, actors, and different title
-  }
+  if (otherMovie.getActors() != otherMovie.getActors()) { 
+    return false;
+  } 
+  return true; // different release date, actors
 }
 
 //-----------------------------------------------------------------------------
 // this > otherMovie
-bool Classic::operator>(const Movie &otherMovie) {
+bool Classic::operator>(const Movie &otherMovie) const {
   if (*this != otherMovie) {
 	  string type = "C";
 	  if (type == otherMovie.getGenre()) {
@@ -170,13 +174,13 @@ bool Classic::operator>(const Movie &otherMovie) {
 					 month > otherMovie.getMonth()) {
 			return true; // this movie release month is greater (more recent)
 		  } else if (year == otherMovie.getReleaseYear() &&
-					 month == otherMovie.getMonth()) { // same release date
-			// alphabetically Last actor in both lists is used as sorting actor
-			string last = *actorsList.end();
-			string otherLast;
-			otherLast = *otherMovie.getActors().end();
-			int res = last.compare(otherLast);
-			return (res > 0);
+					       month == otherMovie.getMonth()) { // same release date
+			  // alphabetically first actor in both lists is used as sorting actor
+  			string first = *actorsList.begin();
+  			string otherFirst;
+  			otherFirst = *otherMovie.getActors().begin();
+  			int res = first.compare(otherFirst);
+  			return (res > 0);
 		  }
 		  return false; // this movie is less recent
     }
@@ -187,7 +191,7 @@ bool Classic::operator>(const Movie &otherMovie) {
 }
 
 // this < otherMovie
-bool Classic::operator<(const Movie &otherMovie) {
+bool Classic::operator<(const Movie &otherMovie) const {
   if (*this != otherMovie) {
     return (!(*this > otherMovie));
   }

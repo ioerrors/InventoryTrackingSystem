@@ -25,7 +25,7 @@ Movie *MovieFactory::getMovie(string type) {
   if (type == "D,") {
     return new Drama();
   } else {
-	cout << "Invalid movie genre";
+	cout << "Invalid movie genre:  " << type << endl;
     return nullptr;
   }
 }

@@ -59,31 +59,31 @@ bool Drama::setData(string movieData) {
   return true;
 }
 
-bool Drama::operator==(const Movie &otherMovie) {
+bool Drama::operator==(const Movie &otherMovie) const {
   return (director == otherMovie.getDirector() &&
           title == otherMovie.getTitle());
 }
 
-bool Drama::operator!=(const Movie &otherMovie) {
+bool Drama::operator!=(const Movie &otherMovie) const {
   return !(this == &otherMovie);
 }
 
-bool Drama::operator>(const Movie &otherMovie) {
+bool Drama::operator>(const Movie &otherMovie) const {
   if (otherMovie.getGenre() == "C") {
     return false;
   }
   if (otherMovie.getGenre() == "F") {
     return true;
   }
-  if (director > otherMovie.getDirector()) {
+  if (director.compare(otherMovie.getDirector()) > 0) {
     return true;
-  } else if (director == otherMovie.getDirector()) {
-    return title > otherMovie.getTitle();
+  } else if (director.compare(otherMovie.getDirector()) == 0) {
+    return title.compare(otherMovie.getTitle()) > 0;
   }
   return false;
 }
 
-bool Drama::operator<(const Movie &otherMovie) {
+bool Drama::operator<(const Movie &otherMovie) const {
   if (this == &otherMovie)
     return false;
   if (this > &otherMovie)

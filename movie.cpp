@@ -6,9 +6,13 @@
 // and allows access to various movie attributes
 //-----------------------------------------------------------------------------
 
-#include "movie.h"
+
 #include <iterator>
 #include <set>
+#include<iostream>
+
+#include "movie.h"
+#include "classic.h"
 
 using namespace std;
 
@@ -19,26 +23,23 @@ using namespace std;
 // POST: All contained data fields are printed in order
 ostream &operator<<(ostream &os, const Movie &mov) {
   string type = "C";
+  os << mov.getGenre() + ", ";
   if (type == mov.getGenre()) {
-    string data = "D ";
-    os << data;
-    os << mov.getStock() + " ";
-    os << mov.getGenre() + " ";
-    os << mov.getDirector() + ", ";
+    os << to_string(mov.getStock()) + ",";
+    os << mov.getDirector() + ",";
     os << mov.getTitle() + ", ";
-    std::copy(mov.getActors().begin(), mov.getActors().end(),
-              std::ostream_iterator<std::string>(os, ","));
-    os << mov.getMonth() + " ";
-    os << mov.getReleaseYear();
+    for(string actor : mov.getActors()) {
+	os << actor << ", ";
+    }
+    os << to_string(mov.getMonth()) + " ";
+    os << to_string(mov.getReleaseYear());
     os << endl;
   } else {
-    string data = "D ";
-    os << data;
-    os << mov.getStock() + " ";
-    os << mov.getGenre() + " ";
-    os << mov.getDirector() + ", ";
+    os << to_string(mov.getStock()) + ", ";
+    os << mov.getGenre() + "";
+    os << mov.getDirector() + ",";
     os << mov.getTitle() + ", ";
-    os << mov.getReleaseYear();
+    os << to_string(mov.getReleaseYear());
     os << endl;
   }
   return os;
@@ -68,7 +69,7 @@ int Movie::getStock() const { return this->stock; }
 int Movie::getReleaseYear() const { return this->year; }
 
 bool Movie::addStock(int newStock) {
-  if (newStock > 0) {
+  if (newStock >= 0) {
     stock += newStock;
     return true;
   } else {
@@ -77,7 +78,7 @@ bool Movie::addStock(int newStock) {
 }
 
 bool Movie::subStock(int removeStock) {
-  if (stock > 0) {
+  if (stock >= 0) {
     stock -= removeStock;
     return true;
   } else {
@@ -85,28 +86,39 @@ bool Movie::subStock(int removeStock) {
   }
 }
 
+//will not accept actors for non classic movies
+bool Movie::addActor(string actor) {
+  if (this->getGenre() == "C") {
+    int a = actorsList.size();
+    actorsList.insert(actor);
+    int b = actorsList.size();
+    return b > a;
+  } else {
+    return false;
+  }
+}
+
 string Movie::getGenre() const { return this->genre; }
 
-int Movie::getMonth() const { return 0; }
+int Movie::getMonth() const { return this->month; }
+
 set<string> Movie::getActors() const {
-  set<string> notReal;
-  return notReal;
+  return this->actorsList;  
 }
 
 bool Movie::setData(string movieData) { return false; }
 
-void Movie::display() const { cout << "This is the base class!"; }
+void Movie::display() const { cout << this;}
 
-bool Movie::operator==(const Movie &otherMovie) {
-  return false;
+bool Movie::operator==(const Movie &otherMovie) const {
+  return &otherMovie == this;
 } // check if movies are equal
-bool Movie::operator!=(const Movie &otherMovie) {
-  return false;
+bool Movie::operator!=(const Movie &otherMovie) const {
+  return &otherMovie != this;
 } // check if movies are not equal
-bool Movie::operator>(const Movie &otherMovie) {
-  return false;
+bool Movie::operator>(const Movie &otherMovie) const {
+  return  &otherMovie < this;
 } // check if this movie is greater than other movie
-bool Movie::operator<(const Movie &otherMovie) {
-  return false;
+bool Movie::operator<(const Movie &otherMovie) const {
+  return &otherMovie > this;
 } // check if this movie is less than other movie
-
