@@ -19,10 +19,9 @@ class MovieFactory {
 public:
 
 
-	MovieFactory();             // constructor
+    MovieFactory();             // constructor
     ~MovieFactory();             // destructor
 
     Movie* getMovie(string type);
-
 };
 #endif

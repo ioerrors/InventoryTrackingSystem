@@ -8,7 +8,7 @@
 #include "classic.h"
 #include "comedy.h"
 #include "drama.h"
-
+#include "movie.h"
 #include "movieFactory.h"
 
 MovieFactory::MovieFactory() {}

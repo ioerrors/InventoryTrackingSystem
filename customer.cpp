@@ -19,7 +19,9 @@ Customer::Customer() {
 
 Customer::~Customer() {
   while (!history.empty()) {
-    string data = history.top();
+    history.pop();
+  }
+  while (!storage.empty()) {
     history.pop();
   }
 }

@@ -78,11 +78,9 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
       if (movieType == "F,") {
         comedies.insert(movie);
       }
-      delete movie;
+      //
     } //<---we have a set full of all our movies
-
   }   // now we want a bst of our movies.
-
   while (!classicsStack.empty()) {
     Movie *real = classicsStack.top();
     classicsStack.pop();
