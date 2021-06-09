@@ -78,7 +78,9 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
       if (movieType == "F,") {
         comedies.insert(movie);
       }
+      delete movie;
     } //<---we have a set full of all our movies
+
   }   // now we want a bst of our movies.
 
   while (!classicsStack.empty()) {
@@ -112,7 +114,7 @@ void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
     customerFile >> firstName;
     Customer *cust = new Customer(customerID, firstName, lastName);
     customers.addCustomer(cust);
-    //delete cust;
+    // delete cust;
   }
 }
 
@@ -135,7 +137,7 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
       cout << transType << endl;
       cout << endl;
     }
-
+    delete action;
     // cout << endl;
   }
   delete factory;

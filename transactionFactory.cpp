@@ -19,7 +19,8 @@
 #include "transactionFactory.h"
 
 TransactionFactory::TransactionFactory() {}
-TransactionFactory::~TransactionFactory() {}
+TransactionFactory::~TransactionFactory() {
+}
 
 Transaction *TransactionFactory::getTransaction(string type) {
   if (type == "H") {
