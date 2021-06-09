@@ -6,7 +6,6 @@
 // child of the movie class, inheriting from Movie
 //-----------------------------------------------------------------------------
 
-
 #include "drama.h"
 #include <iostream>
 #include <sstream>
@@ -53,7 +52,7 @@ bool Drama::setData(string movieData) {
   // get year
   data = "";
   ss >> year;
-  //year = stoi(data);
+  // year = stoi(data);
   return true;
 }
 
@@ -61,7 +60,7 @@ bool Drama::operator==(const Movie &otherMovie) const {
   if (director.compare(otherMovie.getDirector()) != 0) {
     return false; // directors are different
   }
-  if (title.compare(otherMovie.getTitle()) != 0 ) {
+  if (title.compare(otherMovie.getTitle()) != 0) {
     return false; // titles are different
   }
   return true;
@@ -93,5 +92,3 @@ bool Drama::operator<(const Movie &otherMovie) const {
     return false;
   return true;
 }
-
-

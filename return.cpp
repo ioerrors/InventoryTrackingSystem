@@ -42,7 +42,7 @@ bool Return::setData(string setMovieData) {
 
   customerID = stoi(data); // store customerID
   data = "";
-  ss >> data;              // clear media type
+  ss >> data; // clear media type
   data = "";
 
   // store rest of movieData as string
@@ -70,7 +70,7 @@ bool Return::display() {
 bool Return::doTransaction(HashTable &customers, BSTree &movies) {
   Customer *current;
   if (customers.getCustomer(customerID, current)) {
-    //current->addHistory("Return " + movieData);
+    // current->addHistory("Return " + movieData);
     Movie *foundMe;
 
     MovieFactory makeType;
@@ -147,7 +147,8 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
         // cout << movieData << endl;
         return true;
       } else {
-        cout << "Return failed: movie not borrowed or already returned:" << endl;
+        cout << "Return failed: movie not borrowed or already returned:"
+             << endl;
         cout << movieData << endl << endl;
         return false;
       }

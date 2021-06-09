@@ -121,7 +121,7 @@ bool Classic::setData(string movieData) {
 
   data = "";
   ss >> month;
-  //month = stoi(data);
+  // month = stoi(data);
 
   // use for any movie:
   data = "";
@@ -137,12 +137,9 @@ bool Classic::addActor(string actor) {
   return b > a;
 }
 
-
 bool Classic::operator!=(const Movie &otherMovie) const {
   return !(*this == otherMovie);
 }
-
-
 
 //-----------------------------------------------------------------------------
 bool Classic::operator==(const Movie &otherMovie) const {
@@ -170,23 +167,23 @@ bool Classic::operator==(const Movie &otherMovie) const {
 // this > otherMovie
 bool Classic::operator>(const Movie &otherMovie) const {
   if (*this != otherMovie) {
-	  string type = "C";
-	  if (type.compare(otherMovie.getGenre()) == 0) {
-		  if (year > otherMovie.getReleaseYear()) {
-			return true; // this movie release year is greater(more recent)
-		  } else if (year == otherMovie.getReleaseYear() &&
-					 month > otherMovie.getMonth()) {
-			return true; // this movie release month is greater (more recent)
-		  } else if (year == otherMovie.getReleaseYear() &&
-					       month == otherMovie.getMonth()) { // same release date
-			  // alphabetically first actor in both lists is used as sorting actor
-  			string first = *actorsList.begin();
-  			string otherFirst;
-  			otherFirst = *otherMovie.getActors().begin();
-  			int res = first.compare(otherFirst);
-  			return (res > 0);
-		  }
-		  return false; // this movie is less recent
+    string type = "C";
+    if (type.compare(otherMovie.getGenre()) == 0) {
+      if (year > otherMovie.getReleaseYear()) {
+        return true; // this movie release year is greater(more recent)
+      } else if (year == otherMovie.getReleaseYear() &&
+                 month > otherMovie.getMonth()) {
+        return true; // this movie release month is greater (more recent)
+      } else if (year == otherMovie.getReleaseYear() &&
+                 month == otherMovie.getMonth()) { // same release date
+        // alphabetically first actor in both lists is used as sorting actor
+        string first = *actorsList.begin();
+        string otherFirst;
+        otherFirst = *otherMovie.getActors().begin();
+        int res = first.compare(otherFirst);
+        return (res > 0);
+      }
+      return false; // this movie is less recent
     }
     // this classic movie is sorted greater than other movie types
     return true;

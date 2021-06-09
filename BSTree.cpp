@@ -251,10 +251,10 @@ bool BSTree::insert(Movie *insertMe) {
         current = current->left;
       }
     }
-    while (current->left != nullptr &&  *current->data > *insertMe) {
+    while (current->left != nullptr && *current->data > *insertMe) {
       current = current->left;
       while (current->right != nullptr && *current->data < *insertMe) {
-    	  current = current->right;
+        current = current->right;
       }
     }
     if (*current->data == *insertMe) {
@@ -291,7 +291,7 @@ bool BSTree::retrieve(const Movie &checkMe, Movie *&setMe) const {
   while (current->left != nullptr && *current->data > checkMe) {
     current = current->left;
     while (current->right != nullptr && *current->data < checkMe) {
-       current = current->right;
+      current = current->right;
     }
   }
   if (*current->data == checkMe) {

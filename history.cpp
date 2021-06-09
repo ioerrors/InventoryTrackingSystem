@@ -9,7 +9,6 @@
 #include <iostream>
 #include <sstream>
 
-
 #include "history.h"
 #include "transaction.h"
 using namespace std;

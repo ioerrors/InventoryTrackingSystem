@@ -44,7 +44,7 @@ bool Borrow::setData(string setMovieData) {
 
   customerID = stoi(data); // store customerID
   data = "";
-  ss >> data;              // clear media type
+  ss >> data; // clear media type
   data = "";
 
   // store rest of movieData as string
@@ -72,7 +72,7 @@ bool Borrow::display() {
 bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
   Customer *current;
   if (customers.getCustomer(customerID, current)) {
-    //current->addHistory("Borrow " + movieData);
+    // current->addHistory("Borrow " + movieData);
     Movie *foundMe;
 
     MovieFactory *makeType = new MovieFactory();

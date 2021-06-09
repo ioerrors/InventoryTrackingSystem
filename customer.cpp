@@ -15,7 +15,7 @@ Customer::Customer() {
   setID(0);
   setFirstName("");
   setLastName("");
-  while(!history.empty()) {
+  while (!history.empty()) {
     history.pop();
   }
 }
@@ -47,7 +47,7 @@ stringstream Customer::getHistory() {
     history.pop();
   }
   // <--top of storage is least recent transaction
-  while(!storage.empty()) {
+  while (!storage.empty()) {
     history.push(storage.top());
     storage.pop();
   }

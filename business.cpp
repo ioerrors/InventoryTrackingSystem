@@ -13,11 +13,11 @@ using namespace std;
 
 void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
   MovieFactory factory;
-  stack<Movie*> classicsStack;
-  stack<Movie*> search;
-  set<Movie*> classics;
-  set<Movie*> dramas;
-  set<Movie*> comedies;
+  stack<Movie *> classicsStack;
+  stack<Movie *> search;
+  set<Movie *> classics;
+  set<Movie *> dramas;
+  set<Movie *> comedies;
   while (!movieFile.eof()) {
     string movieType = "";
     movieFile >> movieType;
@@ -28,15 +28,14 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
     int stock = 0;
     ss >> stock;
     getline(movieFile, data);
-    if(movie != nullptr) {
+    if (movie != nullptr) {
       movie->addStock(stock);
       movie->setData(data);
 
-
-      //for classicsStack only
+      // for classicsStack only
       if (movieType == "C,") {
-	      if(classicsStack.empty()) {
-          classicsStack.push(movie);  
+        if (classicsStack.empty()) {
+          classicsStack.push(movie);
         }
         stack<string> addFromMe;
         bool moreActors = false;
@@ -47,59 +46,57 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
         }
         while (!search.empty()) {
           moreActors = false;
-          if(search.top()->getTitle() == movie->getTitle()) {
-            //Movie* retain = search.top();
+          if (search.top()->getTitle() == movie->getTitle()) {
+            // Movie* retain = search.top();
 
-            for(string actor : search.top()->getActors()) {
+            for (string actor : search.top()->getActors()) {
               addFromMe.push(actor);
             }
-            while(!addFromMe.empty()) {
+            while (!addFromMe.empty()) {
               int a = movie->getActors().size();
               movie->addActor(addFromMe.top());
               int b = movie->getActors().size();
-              if(b > a) {
-                  moreActors = true;
+              if (b > a) {
+                moreActors = true;
               }
               addFromMe.pop();
             }
-            if(moreActors) {
-                movie->addStock(search.top()->getStock());
+            if (moreActors) {
+              movie->addStock(search.top()->getStock());
             }
           } else {
             classicsStack.push(search.top());
           }
           search.pop();
         }
-        classicsStack.push(movie);        
+        classicsStack.push(movie);
       }
-      if(movieType == "D,") {
+      if (movieType == "D,") {
         dramas.insert(movie);
-        //dramas.erase(movie);
+        // dramas.erase(movie);
       }
       if (movieType == "F,") {
         comedies.insert(movie);
       }
-    }//<---we have a set full of all our movies
-  }// now we want a bst of our movies.
+    } //<---we have a set full of all our movies
+  }   // now we want a bst of our movies.
 
-  while(!classicsStack.empty()) {
-    Movie* real = classicsStack.top();
+  while (!classicsStack.empty()) {
+    Movie *real = classicsStack.top();
     classicsStack.pop();
     classics.insert(real);
   }
 
-  for (Movie* cur : comedies) {
+  for (Movie *cur : comedies) {
     movies.insert(cur);
   }
 
-  for (Movie* cur : dramas) {
+  for (Movie *cur : dramas) {
     movies.insert(cur);
   }
-  for (Movie* cur : classics) {
+  for (Movie *cur : classics) {
     movies.insert(cur);
   }
-
-
 }
 
 // 3333 Witch Wicked
@@ -108,7 +105,7 @@ void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
     int customerID;
     string data;
     customerFile >> customerID;
-    //customerID = stoi(data);
+    // customerID = stoi(data);
     string lastName;
     customerFile >> lastName;
     string firstName;
@@ -133,12 +130,12 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
       action->setData(data);
       action->doTransaction(customers, movies);
     } else {
-      cout << "Transaction Failed, invalid Transaction Code: "; 
+      cout << "Transaction Failed, invalid Transaction Code: ";
       cout << transType << endl;
       cout << endl;
     }
 
-    //cout << endl;
+    // cout << endl;
   }
 }
 
@@ -157,7 +154,7 @@ int main() {
   HashTable customers;
   createBSTreeMovies(movieFile, movies);
   /*for testing
-  cout << endl << "BSTree of Movies: " << endl; 
+  cout << endl << "BSTree of Movies: " << endl;
   cout << movies;
   */
   createHashTableCustomers(customerFile, customers);
