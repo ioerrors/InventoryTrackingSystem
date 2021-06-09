@@ -56,7 +56,8 @@ bool History::doTransaction(HashTable &customers, BSTree &movies) {
       if (data.compare("") > 0) {
         x = 1;
       }
-      cout << data << endl;
+      cout << data;
+      cout << endl;
     }
     if (x == 0) {
       cout << "Customer has no History" << endl;
