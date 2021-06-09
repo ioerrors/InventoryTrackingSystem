@@ -114,8 +114,8 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
       string movieFakeData = "Fake Director," + data;
       findMe->setData(movieFakeData);
     } else {
-      cout << "Return failed: invalid Movie type" << endl;
-      cout << movieData << endl;
+      cout << "Return failed: invalid Movie type:" << endl;
+      cout << movieData << endl << endl;
       return false;
     }
 
@@ -126,10 +126,10 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
       stringstream os = current->getHistory();
 
       // check if borrowed
-      while (getline(os, data)) {
-        if (data.compare("Borrow:" + movieData) == 0) {
+      while (getline(os, data, '.')) {
+        if (data.compare("Borrowed:" + movieData) == 0) {
           x--;
-        } else if (data.compare("Return:" + movieData) == 0) {
+        } else if (data.compare("Returned:" + movieData) == 0) {
           x++;
         }
       }
@@ -141,24 +141,24 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
       // x is never > 0
       if (x < 0) {
         foundMe->addStock(1);
-        current->addHistory("Return:" + movieData);
-        //REMOVE LATER just for testing:
-        cout << "Return successful: " << endl;
-        cout << movieData << endl;
+        current->addHistory("Returned:" + movieData + ".");
+        // REMOVE LATER just for testing:
+        // cout << "Return successful: " << endl;
+        // cout << movieData << endl;
         return true;
       } else {
-        cout << "Return failed: movie not borrowed or already returned" << endl;
-        cout << movieData << endl;
+        cout << "Return failed: movie not borrowed or already returned:" << endl;
+        cout << movieData << endl << endl;
         return false;
       }
     } else {
-      cout << "Return failed: movie not found" << endl;
-      cout << movieData << endl;
+      cout << "Return failed: movie not found:" << endl << endl;
+      cout << movieData << endl << endl;
       return false;
     }
   } else {
-    cout << "Return failed: invalid customerID" << endl;
-    cout << movieData << endl;
+    cout << "Return failed: invalid customerID:" << endl << endl;
+    cout << movieData << endl << endl;
     return false;
   }
 }

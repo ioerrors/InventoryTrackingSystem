@@ -113,29 +113,29 @@ bool Borrow::doTransaction(HashTable &customers, BSTree &movies) {
       findMe->setData(movieFakeData);
     } else {
       cout << "Borrow failed: invalid Movie type: " << endl;
-      cout << movieData << endl;
+      cout << movieData << endl << endl;
       return false;
     }
     if (movies.retrieve(*findMe, foundMe)) {
       if (foundMe->subStock(1)) {
-        current->addHistory("Borrow:" + movieData);
+        current->addHistory("Borrowed:" + movieData + ".");
         // REMOVE LATER Just for testing:
-        cout << "Borrow Successful: " << endl;
-        cout << movieData;
+        // cout << "Borrow Successful: " << endl;
+        // cout << movieData;
         return true;
       } else {
-        cout << "Borrow failed: not enough in stock" << endl;
-        cout << movieData  << "Stock: " << foundMe->getStock() << endl;
+        cout << "Borrow failed: not enough in stock:" << endl;
+        cout << movieData << endl << endl;
         return false;
       }
     } else {
       cout << "Borrow failed: movie not found: " << endl;
-      cout << movieData << endl;
+      cout << movieData << endl << endl;
       return false;
     }
   } else {
-    cout << "Borrow failed: invalid customerID" << endl;
-    cout << movieData << endl;
+    cout << "Borrow failed: invalid customerID:" << endl;
+    cout << movieData << endl << endl;
     return false;
   }
 }

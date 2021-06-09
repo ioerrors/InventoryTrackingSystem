@@ -15,6 +15,9 @@ Customer::Customer() {
   setID(0);
   setFirstName("");
   setLastName("");
+  while(!history.empty()) {
+    history.pop();
+  }
 }
 
 Customer::Customer(int cID, string first, string last) {
@@ -36,10 +39,19 @@ string Customer::getLastName() const { return lastName; }
 
 stringstream Customer::getHistory() {
   stringstream os;
+
+  // <---top of history is most recent transaction
   while (!history.empty()) {
     os << history.top();
+    storage.push(history.top());
     history.pop();
   }
+  // <--top of storage is least recent transaction
+  while(!storage.empty()) {
+    history.push(storage.top());
+    storage.pop();
+  }
+  // <--top of history is most recent transaction
   return os;
 }
 

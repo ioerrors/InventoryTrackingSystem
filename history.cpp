@@ -48,14 +48,24 @@ bool History::doTransaction(HashTable &customers, BSTree &movies) {
   Customer *current;
   if (customers.getCustomer(customerID, current)) {
     stringstream out = current->getHistory();
+    cout << "Customer: " << current->getName() << endl;
+    cout << "ID: " << current->getID() << endl;
+    int x = 0;
     while (!out.eof()) {
       string data;
-      out >> data;
+      getline(out, data, '.');
+      if (data.compare("") > 0) {
+        x = 1;
+      }
       cout << data;
     }
+    if (x == 0) {
+      cout << "Customer has no History" << endl;
+    }
+    cout << endl << endl;
     return true;
   } else {
-    cout << "History: invalid customerID";
+    cout << "History: invalid customerID" << endl << endl;
     return false;
   }
 }

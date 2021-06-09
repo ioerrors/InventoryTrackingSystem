@@ -132,6 +132,10 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
     if (action != nullptr) {
       action->setData(data);
       action->doTransaction(customers, movies);
+    } else {
+      cout << "Transaction Failed, invalid Transaction Code: "; 
+      cout << transType << endl;
+      cout << endl;
     }
 
     //cout << endl;

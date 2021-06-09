@@ -34,8 +34,10 @@ Inventory::~Inventory() {}
 // PRE: BSTree movies exists, is not null
 // POST: movies in stock are printed
 bool Inventory::doTransaction(HashTable &customers, BSTree &movies) {
+  cout << endl;
   cout << "Inventory: " << endl;
   cout << movies;
+  cout << endl;
   return true;
 }
 

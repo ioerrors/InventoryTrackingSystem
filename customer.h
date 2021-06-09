@@ -45,7 +45,8 @@ private:
     string firstName;      // firstname of the customer
 
     int customerID;        // unique user ID
-    stack<string> history;    // linked list of transaction history nodes
+    stack<string> history; // stack of transaction strings
+    stack<string> storage; // manage reset of stack
 }; 
 #endif
 
