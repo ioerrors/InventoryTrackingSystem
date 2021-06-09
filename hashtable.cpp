@@ -31,7 +31,8 @@ using namespace std;
 
 HashTable::HashTable() { std::unordered_map<int, Customer *, KeyHasher> mappy; }
 
-HashTable::~HashTable() {}
+HashTable::~HashTable() { 
+}
 
 // find
 bool HashTable::getCustomer(const int hashMe, Customer *&setMe) const {

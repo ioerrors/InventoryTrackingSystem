@@ -112,6 +112,7 @@ void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
     customerFile >> firstName;
     Customer *cust = new Customer(customerID, firstName, lastName);
     customers.addCustomer(cust);
+    //delete cust;
   }
 }
 
@@ -137,6 +138,7 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
 
     // cout << endl;
   }
+  delete factory;
 }
 
 int main() {

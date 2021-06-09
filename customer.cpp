@@ -15,7 +15,11 @@ Customer::Customer() {
   setID(0);
   setFirstName("");
   setLastName("");
+}
+
+Customer::~Customer() {
   while (!history.empty()) {
+    string data = history.top();
     history.pop();
   }
 }

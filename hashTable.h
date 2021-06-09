@@ -50,7 +50,7 @@ private:
       //write hashing code here
       int res = k^(k + 41);
       if (res % 2 == 0) {
-	 res = (res + 41)^KeyHasher()(k);
+         res = (res + 41)^k;
       }
       res = res * 62 + k;
       res = res / 3 - k / 2;
