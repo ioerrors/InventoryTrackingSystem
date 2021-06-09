@@ -13,6 +13,7 @@
 #include "transaction.h"
 using namespace std;
 
+
 //-----------------------------------------------------------------------------
 // History CONSTRUCTOR
 // Description: creates an empty History
@@ -55,8 +56,8 @@ bool History::doTransaction(HashTable &customers, BSTree &movies) {
       getline(out, data, '.');
       if (data.compare("") > 0) {
         x = 1;
-      }
-      cout << data << "\r" << endl;
+        cout << data << "\r" << endl;
+      }  
     }
     if (x == 0) {
       cout << "Customer has no History" << endl;
