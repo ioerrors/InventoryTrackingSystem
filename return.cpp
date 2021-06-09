@@ -47,6 +47,13 @@ bool Return::setData(string setMovieData) {
 
   // store rest of movieData as string
   getline(ss, movieData);
+
+  /*
+  if (movieData.compare(" F You've Got Mail, 1998") == 0) {
+    cout << "Movie Data Set:" << movieData << endl;
+
+  }*/ // For Testing
+
   return true;
 }
 
@@ -114,7 +121,7 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
       string movieFakeData = "Fake Director," + data;
       findMe->setData(movieFakeData);
     } else {
-      cout << "Return failed: invalid Movie type:" << endl;
+      cout << "Return failed: invalid Movie type: " << endl;
       cout << movieData << endl << endl;
       return false;
     }
@@ -153,12 +160,12 @@ bool Return::doTransaction(HashTable &customers, BSTree &movies) {
         return false;
       }
     } else {
-      cout << "Return failed: movie not found:" << endl << endl;
+      cout << "Return failed: movie not found:" << endl;
       cout << movieData << endl << endl;
       return false;
     }
   } else {
-    cout << "Return failed: invalid customerID:" << endl << endl;
+    cout << "Return failed: invalid customerID:" << endl;
     cout << movieData << endl << endl;
     return false;
   }
