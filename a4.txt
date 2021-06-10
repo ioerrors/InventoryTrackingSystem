@@ -1,172 +1,0 @@
-Script started on Tue 08 Jun 2021 06:28:34 PM PDT
-]0;drmicah@csslab7:~/winter[?1034h[drmicah@csslab7 winter]$ exit./a.outg++ -std=c++14 -g  *.cpp -o assig4
-]0;drmicah@csslab7:~/winter[drmicah@csslab7 winter]$ g++ -std=c++14 -g  *.cpp -o assig4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit[K./a.out
-Invalid movie genre: Z,
-
-Invalid movie genre: Z,
-
-
-Inventory: 
- F, 10, F Woody Allen, Annie Hall, 1977
- F, 10, F Joel Coen, Fargo, 1996
- F, 10, F John Landis, National Lampoon's Animal House, 1978
- F, 10, F Gore Verbinski, Pirates of the Caribbean, 2003
- F, 10, F Nora Ephron, Sleepless in Seattle, 1993
- F, 10, F Rob Reiner, When Harry Met Sally, 1989
- D, 10, D Barry Levinson, Good Morning Vietnam, 1988
- D, 10, D Clint Eastwood, Unforgiven, 1992
- D, 10, D Gus Van Sant, Good Will Hunting, 2000
- D, 10, D Jonathan Demme, Silence of the Lambs, 1991
- D, 10, D Nancy Savoca, Dogfight, 1991
- D, 10, D Phillippe De Broca, King of Hearts, 1967
- D, 10, D Steven Spielberg, Schindler's List, 1993
- C, 20, George Cukor, Holiday, Cary Grant, Katherine Hepburn, 9 1938
- C, 10, Micah Rice, The Worst Binary Search Tree, Brad Pitt, 2 1939
- C, 20, Victor Fleming, Gone With the Wind, Clark Gable, Vivien Leigh, 2 1939
- C, 10, Abraham Sham, The Best Binary Search Tree, Zack Ephron, 2 1939
- C, 10, Victor Fleming, The Wizard of Oz, Judy Garland, 7 1939
- C, 20, George Cukor, The Philadelphia Story, Cary Grant, Katherine Hepburn, 5 1940
- C, 10, John Huston, The Maltese Falcon, Humphrey Bogart, 10 1941
- C, 20, Michael Curtiz, Casablanca, Humphrey Bogart, Ingrid Bergman, 8 1942
- C, 20, Frank Capra, It's a Wonderful Life, Donna Reed, James Stewart, 11 1946
- C, 10, Stanley Kubrick, A Clockwork Orange, Malcolm McDowell, 2 1971
- C, 10, Hal Ashby, Harold and Maude, Ruth Gordon, 3 1971
- 
-
-Customer: Minnie Mouse
-ID: 1000
-
-Customer has no History
-
-
-Customer: Freddie Frog
-ID: 5000
-
-Customer has no History
-
-
-Customer: Wally Wacky
-ID: 8000
-
-Customer has no History
-
-
-Borrow failed: movie not found: 
- F You've Got Mail, 1998
-
-Invalid movie genre: Z
-
-Borrow failed: invalid Movie type: 
- Z 2 1971 Malcolm McDowell
-
-Return failed: movie not found:
-
- F You've Got Mail, 1998
-
-Borrow failed: movie not found: 
- F You've Got Mail, 1998
-
-Transaction Failed, invalid Transaction Code: X
-
-Transaction Failed, invalid Transaction Code: Z
-
-Borrow failed: invalid customerID:
- C 2 1971 Malcolm McDowell
-
-Borrow failed: movie not found: 
- F Bogus Title, 2001
-
-Borrow failed: not enough in stock:
- C 3 1971 Ruth Gordon
-
-Borrow failed: not enough in stock:
- C 3 1971 Ruth Gordon
-
-Borrow failed: not enough in stock:
- C 3 1971 Ruth Gordon
-
-Borrow failed: movie not found: 
- D Steven Spielberg, Bogus Title,
-
-
-Inventory: 
- F, 9, F Woody Allen, Annie Hall, 1977
- F, 8, F Joel Coen, Fargo, 1996
- F, 9, F John Landis, National Lampoon's Animal House, 1978
- F, 10, F Gore Verbinski, Pirates of the Caribbean, 2003
- F, 9, F Nora Ephron, Sleepless in Seattle, 1993
- F, 9, F Rob Reiner, When Harry Met Sally, 1989
- D, 9, D Barry Levinson, Good Morning Vietnam, 1988
- D, 9, D Clint Eastwood, Unforgiven, 1992
- D, 9, D Gus Van Sant, Good Will Hunting, 2000
- D, 9, D Jonathan Demme, Silence of the Lambs, 1991
- D, 8, D Nancy Savoca, Dogfight, 1991
- D, 9, D Phillippe De Broca, King of Hearts, 1967
- D, 9, D Steven Spielberg, Schindler's List, 1993
- C, 19, George Cukor, Holiday, Cary Grant, Katherine Hepburn, 9 1938
- C, 10, Micah Rice, The Worst Binary Search Tree, Brad Pitt, 2 1939
- C, 20, Victor Fleming, Gone With the Wind, Clark Gable, Vivien Leigh, 2 1939
- C, 10, Abraham Sham, The Best Binary Search Tree, Zack Ephron, 2 1939
- C, 10, Victor Fleming, The Wizard of Oz, Judy Garland, 7 1939
- C, 18, George Cukor, The Philadelphia Story, Cary Grant, Katherine Hepburn, 5 1940
- C, 9, John Huston, The Maltese Falcon, Humphrey Bogart, 10 1941
- C, 20, Michael Curtiz, Casablanca, Humphrey Bogart, Ingrid Bergman, 8 1942
- C, 20, Frank Capra, It's a Wonderful Life, Donna Reed, James Stewart, 11 1946
- C, 9, Stanley Kubrick, A Clockwork Orange, Malcolm McDowell, 2 1971
- C, 0, Hal Ashby, Harold and Maude, Ruth Gordon, 3 1971
- 
-
-Customer: Minnie Mouse
-ID: 1000
-Borrowed: F Fargo, 1996
-Borrowed: C 3 1971 Ruth Gordon
-Borrowed: C 5 1940 Cary Grant
-Borrowed: D Gus Van Sant, Good Will Hunting,
-Borrowed: C 5 1940 Katherine Hepburn
-Borrowed: D Barry Levinson, Good Morning Vietnam,
-
-
-
-Customer: Mickey Mouse
-ID: 1111
-Borrowed: C 9 1938 Cary Grant
-Borrowed: C 10 1941 Humphrey Bogart
-Borrowed: C 3 1971 Ruth Gordon
-Borrowed: C 2 1971 Malcolm McDowell
-
-
-
-Customer: Freddie Frog
-ID: 5000
-Borrowed: C 3 1971 Ruth Gordon
-Returned: C 3 1971 Ruth Gordon
-Borrowed: C 3 1971 Ruth Gordon
-Returned: C 3 1971 Ruth Gordon
-Borrowed: C 3 1971 Ruth Gordon
-Returned: C 3 1971 Ruth Gordon
-Borrowed: C 3 1971 Ruth Gordon
-
-
-
-Customer: Wally Wacky
-ID: 8000
-Borrowed: F National Lampoon's Animal House, 1978
-Borrowed: C 3 1971 Ruth Gordon
-Borrowed: C 3 1971 Ruth Gordon
-
-
-
-Customer: Porky Pig
-ID: 8888
-Borrowed: C 3 1971 Ruth Gordon
-Borrowed: D Nancy Savoca, Dogfight,
-Borrowed: D Jonathan Demme, Silence of the Lambs,
-Borrowed: F When Harry Met Sally, 1989
-Borrowed: F Annie Hall, 1977
-
-
-
-]0;drmicah@csslab7:~/winter[drmicah@csslab7 winter]$ ./a.outg++ -std=c++14 -g  *.cpp -o assig4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit[K
-exit
-
-Script done on Tue 08 Jun 2021 06:28:57 PM PDT
