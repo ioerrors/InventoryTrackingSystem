@@ -22,11 +22,11 @@ public:
   Customer(); // constructor
 
   //---------------------------------------------------------------------------
-  // Customer COPY CONSTRUCTOR
+  // Customer CONSTRUCTOR
   // Description: creates Customer copy
   // PRE: memory is available for Customer
   // POST: Customer copy is created
-  Customer(int cID, string first, string last); // ID, first, last
+  Customer(int cID, string first, string last);
 
   //---------------------------------------------------------------------------
   // Customer DESTRUCTOR
@@ -119,7 +119,7 @@ public:
   bool setLastName(string last);
 
 private:
-  // not sure about these structs
+
 
   string lastName;  // lastname of the customer
   string firstName; // firstname of the customer

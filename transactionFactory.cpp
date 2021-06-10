@@ -18,9 +18,27 @@
 #include "return.h"
 #include "transactionFactory.h"
 
+//-----------------------------------------------------------------------------
+// TransactionFactory CONSTRUCTOR
+// Description: creates an empty TransactionFactor
+// PRE: memory is available for TransactionFactor
+// POST: empty TransactionFactor is created
 TransactionFactory::TransactionFactory() {}
+
+//-----------------------------------------------------------------------------
+// Customer DESTRUCTOR
+// Description: deallocates all memory allocated for TransactionFactory
+// PRE: TransactionFactory exists
+// POST: all TransactionFactory memory is freed
 TransactionFactory::~TransactionFactory() {}
 
+
+//-----------------------------------------------------------------------------
+// getTransaction()
+// Description: returns constructor based on transaction type
+// PRE: Transaction type and constructor for type H, I, R, B exists
+// POST: a transaction constructor is returned if the
+//       movie type given is valid
 Transaction *TransactionFactory::getTransaction(string type) {
   if (type == "H") {
     return new History();

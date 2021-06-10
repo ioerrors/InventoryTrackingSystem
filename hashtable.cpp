@@ -29,11 +29,29 @@
 
 using namespace std;
 
+
+//-----------------------------------------------------------------------------
+// Hashtable CONSTRUCTOR
+// Description: Creates and empty HashTable object  
+// PRE: Memory is available for HashTable object
+// POST: New empty HashTable object is created
 HashTable::HashTable() { std::unordered_map<int, Customer *, KeyHasher> mappy; }
 
+
+//-----------------------------------------------------------------------------
+// Hashtable DESTRUCTOR
+// Description: Frees memory in use by HashTable, deletes hashtable
+// PRE: HashTable exists 
+// POST: Memory freed, all objects destructors are called
 HashTable::~HashTable() { mappy.clear(); }
 
-// find
+//-----------------------------------------------------------------------------
+// getCustomer()
+// Description: finds a customer in the HashTable
+// PRE: HashTable Exists
+// POST: Customer, if exists, is found by hashing the cID parameter, and
+//       the found customer object is set to the second param (returns true)
+//       if customer is not found, returns false 
 bool HashTable::getCustomer(const int hashMe, Customer *&setMe) const {
   std::unordered_map<int, Customer *, KeyHasher>::const_iterator find =
       mappy.find(hashMe);
@@ -49,17 +67,22 @@ bool HashTable::getCustomer(const int hashMe, Customer *&setMe) const {
   }
 }
 
-// insert
+
+//-----------------------------------------------------------------------------
+// addCustomer()
+// Description: Adds a customer to the HashTable
+// PRE: Customer object exists, HashTable exists
+// POST: returns true if successfully added customer 
 bool HashTable::addCustomer(Customer *&cust) {
   int hashMe = cust->getID();
   mappy.insert({ hashMe, cust });
 
-  /* for testing
-  cout << endl << "Hash Table of Customers, after add of: " << cust->getID() <<
-  " " << cust->getName() << endl; for (auto const &pair : mappy) { cout <<
-  pair.first <<  " = " << pair.second->getID() <<  " " << pair.second->getName()
-  << endl;
-  }
-  */
+  // For Testing
+  // cout << endl << "Hash Table of Customers, after add of: " << cust->getID() <<
+  // " " << cust->getName() << endl; for (auto const &pair : mappy) { cout <<
+  // pair.first <<  " = " << pair.second->getID() <<  " " << pair.second->getName()
+  // << endl;
+  // }
+
   return true;
 }

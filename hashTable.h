@@ -25,43 +25,41 @@ class HashTable {
 public:
   //---------------------------------------------------------------------------
   // Hashtable CONSTRUCTOR
-  // Description: 
-  // PRE: 
-  // POST: 
+  // Description: Creates and empty HashTable object  
+  // PRE: Memory is available for HashTable object
+  // POST: New empty HashTable object is created
   HashTable();
 
   //---------------------------------------------------------------------------
   // Hashtable DESTRUCTOR
-  // Description: 
-  // PRE: 
-  // POST: 
-  ~HashTable(); // destructor
+  // Description: Frees memory in use by HashTable, deletes hashtable
+  // PRE: HashTable exists 
+  // POST: Memory freed, all objects destructors are called
+  ~HashTable();
 
-  // find
   //---------------------------------------------------------------------------
   // getCustomer()
-  // Description: 
-  // PRE: 
-  // POST: 
-  bool getCustomer(const int cID, Customer *&) const; // get Customer
+  // Description: finds a customer in the HashTable
+  // PRE: HashTable Exists
+  // POST: Customer, if exists, is found by hashing the cID parameter, and
+  //       the found customer object is set to the second param (returns true)
+  //       if customer is not found, returns false 
+  bool getCustomer(const int cID, Customer *&) const;
 
-  // insert
   //---------------------------------------------------------------------------
   // addCustomer()
-  // Description: 
-  // PRE: 
-  // POST: 
-  bool addCustomer(Customer *&); // add Customer
-
-  // returns message digest, after padding
-  //---------------------------------------------------------------------------
-  // addCustomer()
-  // Description: 
-  // PRE: 
-  // POST: 
-  string paddAndReturn();
+  // Description: Adds a customer to the HashTable
+  // PRE: Customer object exists, HashTable exists
+  // POST: returns true if successfully added customer 
+  bool addCustomer(Customer *&);
 
 private:
+  
+  //---------------------------------------------------------------------------
+  // KeyHasher HASHING IMPLEMENTATION
+  // Description: custom hashing algorithm for our HashTable
+  // PRE: HashTable Exists, unordered Map is passed this hasher as a param
+  // POST: Key int is hashed, and returned
   struct KeyHasher {
     std::size_t operator()(const int &k) const {
       using std::size_t;

@@ -117,18 +117,18 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
   }
 }
 
-// 3333 Witch Wicked
+
 //-----------------------------------------------------------------------------
 // createHashTableCustomers()
 // Description: creates a hashtable of customers based on the txt file
-// PRE: assumes format from txt file is valid
+// PRE: assumes format from txt file is valid format: 3333 Witch Wicked
 // POST: a hashtable of customers based on the txt file is created
 void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
   while (!customerFile.eof()) {
     int customerID;
     string data;
     customerFile >> customerID;
-    // customerID = stoi(data);
+
     string lastName;
     customerFile >> lastName;
     string firstName;
@@ -188,10 +188,6 @@ int main() {
   BSTree movies;
   HashTable customers;
   createBSTreeMovies(movieFile, movies);
-  /*for testing
-  cout << endl << "BSTree of Movies: " << endl;
-  cout << movies;
-  */
   createHashTableCustomers(customerFile, customers);
 
   processTransactions(transactionFile, customers, movies);

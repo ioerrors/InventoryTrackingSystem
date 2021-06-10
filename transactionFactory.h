@@ -19,23 +19,23 @@
 #include "inventory.h"
 #include "return.h"
 #include "borrow.h"
-//#include "transactionFactory.h"
+
 
 class TransactionFactory {
 public:
   //---------------------------------------------------------------------------
   // TransactionFactory CONSTRUCTOR
-  // Description: creates an empty Transaction
-  // PRE: memory is available for Transaction
-  // POST: empty Transaction is created
-  TransactionFactory();  // constructor
+  // Description: creates an empty TransactionFactor
+  // PRE: memory is available for TransactionFactor
+  // POST: empty TransactionFactor is created
+  TransactionFactory(); 
 
   //---------------------------------------------------------------------------
   // Customer DESTRUCTOR
-  // Description: deallocates all memory allocated for Transaction
-  // PRE: Transaction exists
-  // POST: all Transaction memory is freed
-  ~TransactionFactory(); // destructor
+  // Description: deallocates all memory allocated for TransactionFactory
+  // PRE: TransactionFactory exists
+  // POST: all TransactionFactory memory is freed
+  ~TransactionFactory();
 
   //---------------------------------------------------------------------------
   // getTransaction()

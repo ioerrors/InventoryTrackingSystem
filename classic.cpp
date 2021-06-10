@@ -131,7 +131,7 @@ bool Classic::subStock(int removeStock) {
   }
 }
 
-// get the actors of the movie object
+
 //-----------------------------------------------------------------------------
 // getActors()
 // Description: returns the major actors in the movie
@@ -171,7 +171,6 @@ bool Classic::setData(string movieData) {
   // use for any movie:
   data = "";
   ss >> year;
-  //   = stoi(data);
   return true;
 }
 
@@ -196,7 +195,7 @@ bool Classic::addActor(string actor) {
 bool Classic::operator==(const Movie &otherMovie) const {
   string type = "C";
   if (type.compare(otherMovie.getGenre()) != 0) {
-    return false;
+    return false; 
   }
   if (month != otherMovie.getMonth()) {
     return false;
@@ -223,12 +222,11 @@ bool Classic::operator!=(const Movie &otherMovie) const {
   return !(*this == otherMovie);
 }
 
-// this > otherMovie
 //-----------------------------------------------------------------------------
 // operator >
 // Description: checks if the release year, then the release month,
 //              then the alphabetical order of the first actor on the list
-//              is greater
+//              for this movie is greater than otherMovie
 // PRE: assumes that the movies exist
 // POST: returns true if the LHS movie is sorted greater than the
 //       RHS movie
@@ -258,7 +256,6 @@ bool Classic::operator>(const Movie &otherMovie) const {
   return false; // this movie is the same movie
 }
 
-// this < otherMovie
 //-----------------------------------------------------------------------------
 // operator <
 // Description: checks if the release year, then the release month,

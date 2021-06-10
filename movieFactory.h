@@ -11,8 +11,6 @@
 #include "comedy.h"
 #include "drama.h"
 
-//#include "transactionFactory.h"
-
 class MovieFactory {
 public:
   //---------------------------------------------------------------------------

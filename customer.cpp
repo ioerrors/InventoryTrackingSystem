@@ -28,10 +28,10 @@ Customer::Customer() {
 }
 
 //-----------------------------------------------------------------------------
-// Customer COPY CONSTRUCTOR
+// Customer CONSTRUCTOR
 // Description: creates Customer copy
 // PRE: memory is available for Customer
-// POST: Customer copy is created
+// POST: Customer copy is created 
 Customer::Customer(int cID, string first, string last) {
   setID(cID);
   setFirstName(first);

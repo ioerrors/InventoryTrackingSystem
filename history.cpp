@@ -20,6 +20,14 @@ using namespace std;
 // POST: Empty History is created
 History::History() { customerID = 0; }
 
+
+
+
+//-----------------------------------------------------------------------------
+// History DESTRUCTOR
+// Description: deallocates all memory allocated for History
+// PRE: History exists
+// POST: All History memory is freed
 History::~History() {}
 
 //-----------------------------------------------------------------------------

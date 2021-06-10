@@ -139,7 +139,7 @@ public:
   bool addActor(string actor);
   // Overloaded operators
 
-  // check if movies are equal and adds actor to actor list
+
   //---------------------------------------------------------------------------
   // operator ==
   // Description: checks if the movies are equal
@@ -147,7 +147,6 @@ public:
   // POST: returns true if the movies are equal
   bool operator==(const Movie &otherMovie) const;
 
-  // check if movies are not equal
   //---------------------------------------------------------------------------
   // operator !=
   // Description: checks if the movies are not equal
@@ -155,19 +154,16 @@ public:
   // POST: returns true if the movies are not equal
   bool operator!=(const Movie &otherMovie) const;
 
-  // check if this movie is greater than other movie
-  //---------------------------------------------------------------------------
-  // operator >
-  // Description: checks if the release year, then the release month,
-  //              then the alphabetical order of the first actor on the list
-  //              is greater
-  // PRE: assumes that the movies exist
-  // POST: returns true if the LHS movie is sorted greater than the
-  //       RHS movie
+//-----------------------------------------------------------------------------
+// operator >
+// Description: checks if the release year, then the release month,
+//              then the alphabetical order of the first actor on the list
+//              for this movie is greater than otherMovie
+// PRE: assumes that the movies exist
+// POST: returns true if the LHS movie is sorted greater than the
+//       RHS movie
   bool operator>(const Movie &otherMovie) const;
 
-  // check if this movie is less than other movie
-  // this < otherMovie
   //---------------------------------------------------------------------------
   // operator <
   // Description: checks if the release year, then the release month,
