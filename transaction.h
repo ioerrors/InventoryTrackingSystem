@@ -22,7 +22,18 @@
 
 class Transaction {
 public:
+  //---------------------------------------------------------------------------
+  // Transaction CONSTRUCTOR
+  // Description: creates an empty Transaction
+  // PRE: memory is available for Transaction
+  // POST: empty Transaction is created
   Transaction();          // constructor
+
+  //---------------------------------------------------------------------------
+  // Transaction DESTRUCTOR
+  // Description: deallocates all memory allocated for Transaction
+  // PRE: Transaction exists
+  // POST: all Transaction memory is freed
   virtual ~Transaction(); // destructor
 
   //---------------------------------------------------------------------------

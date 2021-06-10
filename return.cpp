@@ -27,6 +27,11 @@ Return::Return() {
   customerID = 0;
 }
 
+//-----------------------------------------------------------------------------
+// Return DESTRUCTOR
+// Description: deallocates all memory allocated for Return
+// PRE: Return exists
+// POST: All Return memory is freed
 Return::~Return() {}
 
 //-----------------------------------------------------------------------------

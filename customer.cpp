@@ -41,7 +41,7 @@ Customer::Customer(int cID, string first, string last) {
 //-----------------------------------------------------------------------------
 // Customer DESTRUCTOR
 // Description: deallocates all memory allocated for Customer
-// PRE: Customer exits
+// PRE: Customer exists
 // POST: all Customer memory is freed
 Customer::~Customer() {
   while (!history.empty()) {

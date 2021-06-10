@@ -15,11 +15,21 @@
 #include <sstream>
 #include <stack>
 
+//-----------------------------------------------------------------------------
+// Transaction CONSTRUCTOR
+// Description: creates an empty Transaction
+// PRE: memory is available for Transaction
+// POST: empty Transaction is created
 Transaction::Transaction() {}
 
+//-----------------------------------------------------------------------------
+// Transaction DESTRUCTOR
+// Description: deallocates all memory allocated for Transaction
+// PRE: Transaction exists
+// POST: all Transaction memory is freed
 Transaction::~Transaction() {}
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // doTransaction()
 // Description: function overloaded in the children classes
 // PRE: transaction exists
@@ -28,7 +38,7 @@ bool Transaction::doTransaction(HashTable &customers, BSTree &movies) {
   return (*this).doTransaction(customers, movies);
 }
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // setData()
 // Description: sets data fields
 // PRE: transaction
