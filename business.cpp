@@ -22,6 +22,13 @@
 
 using namespace std;
 
+//-----------------------------------------------------------------------------
+// createBSTreeMovies()
+// Description: creates a BSTree and stores the movies
+//              from data found in the txt files
+// PRE: assumes data from txt file is in the correct format
+// POST: a BSTree filled with movies from the data found 
+//       in the txt files is created
 void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
   MovieFactory factory;
   stack<Movie *> classicsStack;
@@ -111,6 +118,11 @@ void createBSTreeMovies(ifstream &movieFile, BSTree &movies) {
 }
 
 // 3333 Witch Wicked
+//-----------------------------------------------------------------------------
+// createHashTableCustomers()
+// Description: creates a hashtable of customers based on the txt file
+// PRE: assumes format from txt file is valid
+// POST: a hashtable of customers based on the txt file is created
 void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
   while (!customerFile.eof()) {
     int customerID;
@@ -127,6 +139,11 @@ void createHashTableCustomers(ifstream &customerFile, HashTable &customers) {
   }
 }
 
+//-----------------------------------------------------------------------------
+// processTransactions()
+// Description: processes transactions based on the commands from the txt files
+// PRE: assumes that valid transactions are defined
+// POST: the transactions are processed
 void processTransactions(ifstream &transactionFile, HashTable &customers,
                          BSTree &movies) {
   //    MovieFactory* makeType = new MovieFactory();
@@ -152,6 +169,11 @@ void processTransactions(ifstream &transactionFile, HashTable &customers,
   delete factory;
 }
 
+//-----------------------------------------------------------------------------
+// main()
+// Description: reads the txt files, stores and process the data
+// PRE: assume txt files are in the valid format
+// POST: the data from the txt files are stored and processed
 int main() {
   ifstream movieFile("data4movies.txt");         // read the movies text file
   ifstream customerFile("data4customers.txt");   // read the customers text file
