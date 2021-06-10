@@ -1,4 +1,4 @@
-////////////////////////////////drama.cpp file /////////////////////////////////
+////////////////////////////////drama.cpp file ////////////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
@@ -26,8 +26,18 @@ Drama::Drama() {
   month = 0;
 }
 
+//-----------------------------------------------------------------------------
+// Comedy DESTRUCTOR
+// Description: deallocates all memory allocated for Drama
+// PRE: Drama exist
+// POST: all Drama memory is freed
 Drama::~Drama() {}
 
+//-----------------------------------------------------------------------------
+// getGenre()
+// Description: returns the genre type
+// PRE: assumes genre set to return is valid
+// POST: the genre type is returned
 string Drama::getGenre() const { return "D"; }
 
 //-----------------------------------------------------------------------------
@@ -56,6 +66,11 @@ bool Drama::setData(string movieData) {
   return true;
 }
 
+//-----------------------------------------------------------------------------
+// operator ==
+// Description: checks if the movies are equal
+// PRE: assumes that the movies exist
+// POST: returns true if the movies are equal
 bool Drama::operator==(const Movie &otherMovie) const {
   if (director.compare(otherMovie.getDirector()) != 0) {
     return false; // directors are different
@@ -66,10 +81,21 @@ bool Drama::operator==(const Movie &otherMovie) const {
   return true;
 }
 
+//-----------------------------------------------------------------------------
+// operator !=
+// Description: checks if the movies are not equal
+// PRE: assumes that the movies exist
+// POST: returns true if the movies are not equal
 bool Drama::operator!=(const Movie &otherMovie) const {
   return !(*this == otherMovie);
 }
 
+//-----------------------------------------------------------------------------
+// operator >
+// Description: checks if the movie type, director, and title is greater
+// PRE: assumes that the movies exist
+// POST: returns true if the LHS movie is sorted greater than the
+//       RHS movie
 bool Drama::operator>(const Movie &otherMovie) const {
   if (otherMovie.getGenre().compare("C") == 0) {
     return false;
@@ -85,6 +111,12 @@ bool Drama::operator>(const Movie &otherMovie) const {
   return false;
 }
 
+//-----------------------------------------------------------------------------
+// operator <
+// Description: checks if the movie type, director, and title is lesser
+// PRE: assumes that the movies exist
+// POST: returns true if the LHS movie is sorted lesser than the
+//       RHS movie
 bool Drama::operator<(const Movie &otherMovie) const {
   if (*this == otherMovie)
     return false;

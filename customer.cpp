@@ -28,7 +28,7 @@ Customer::Customer() {
 }
 
 //-----------------------------------------------------------------------------
-// Customer CONSTRUCTOR
+// Customer COPY CONSTRUCTOR
 // Description: creates Customer copy
 // PRE: memory is available for Customer
 // POST: Customer copy is created
@@ -54,40 +54,41 @@ Customer::~Customer() {
 
 //-----------------------------------------------------------------------------
 // getID()
-// Description: 
-// PRE: 
-// POST: 
+// Description: returns the customer's ID
+// PRE: assumes customer's ID exist
+// POST: the customer's ID is returned
 int Customer::getID() const { return customerID; }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// getName()
+// Description: returns the first name and last name of customer 
+// PRE: assumes the first name and last name of customer exist
+// POST: the customer's first name and last name is returned
 string Customer::getName() const {
   string fullName = firstName + " " + lastName;
   return fullName;
 }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// getFirstName()
+// Description: returns the first name of the customer
+// PRE: assumes the first name of the customer exist
+// POST: the customer's first name is returned
 string Customer::getFirstName() const { return firstName; }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// getLastName()
+// Description: returns the last name of the customer
+// PRE: assumes the last name of the custimer exist
+// POST: the customer's last name is returned
 string Customer::getLastName() const { return lastName; }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// getHistory()
+// Description: returns the transaction history of the customer with the
+//              most recent one being printed first
+// PRE: assumes that customer exit
+// POST: the transaction history of the customer is returned
 stringstream Customer::getHistory() {
   stringstream os;
 
@@ -107,46 +108,46 @@ stringstream Customer::getHistory() {
 }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// addHistory()
+// Description: add transaction event to customer's transaction history
+// PRE: assumes customer exist
+// POST: a transaction event is added to the customer's transaction history
 void Customer::addHistory(string transaction) { history.push(transaction); }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// setCustomerInfo()
+// Description: sets the customer data fields
+// PRE: assumes that the data fields exist
+// POST: return true if the customer data fields are set
 bool Customer::setCustomerInfo(int cID, string first, string last) {
   return setID(cID) && setFirstName(first) && setLastName(last);
 }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// setID()
+// Description: sets the customer ID
+// PRE: assumes customer's ID exist
+// POST: returns true if the customer ID is set
 bool Customer::setID(int cID) {
   customerID = cID;
   return true;
 }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// setFirstName()
+// Description: sets the customer's first name
+// PRE: assumes customer's first name exist 
+// POST: returns true if the customer's first name is set
 bool Customer::setFirstName(string first) {
   firstName = first;
   return true;
 }
 
 //-----------------------------------------------------------------------------
-// 
-// Description: 
-// PRE: 
-// POST: 
+// setLastName()
+// Description: sets the customer's last name 
+// PRE: assumes customer's last name exist
+// POST: returns true if the customer's last name is set
 bool Customer::setLastName(string last) {
   lastName = last;
   return true;
