@@ -19,34 +19,33 @@ class BSTree {
 
   //---------------------------------------------------------------------------
   // Overloaded Operator <<
-  // Description: traverses tree inorder, 
+  // Description: traverses tree inorder,
   //              and prints each node's data as it passes
   // PRE: BSTree exists
   // POST: All contained nodes are printed in order
-  friend ostream &operator<<(ostream &os, const BSTree&);
-public:
+  friend ostream &operator<<(ostream &os, const BSTree &);
 
+public:
   struct Node {
-     Movie* data;         // pointer to data object
-     Node* left = nullptr;             // left subtree pointer
-     Node* right= nullptr;            // right subtree pointer
-   };
+    Movie *data;           // pointer to data object
+    Node *left = nullptr;  // left subtree pointer
+    Node *right = nullptr; // right subtree pointer
+  };
 
   //---------------------------------------------------------------------------
   // BSTree CONSTRUCTOR
   // Description: creates an empty BSTree
   // PRE: Memory is available for BSTree
   // POST: Empty BSTree is created
-  BSTree(); 
+  BSTree();
 
   //---------------------------------------------------------------------------
   // BSTree COPY CONSTRUCTOR
-  // Description: creates an BSTree that is an exact 
+  // Description: creates an BSTree that is an exact
   //              deep copy of otherBSTree
   // PRE: Memory is available for BSTree
   // POST: Exact Deep Copy of otherBSTree is created
-  BSTree(const BSTree &otherBSTree);       // copy constructor
-
+  BSTree(const BSTree &otherBSTree); // copy constructor
 
   //---------------------------------------------------------------------------
   // BSTree DESTRUCTOR
@@ -56,7 +55,6 @@ public:
   // POST: All BSTree memory is freed, objects deleted
   ~BSTree();
 
-
   //---------------------------------------------------------------------------
   // isEmpty()
   // Description: checks to see if BSTree is empty
@@ -65,7 +63,6 @@ public:
   //       returns false if BSTree contains any nodes
   bool isEmpty() const;
 
-
   //---------------------------------------------------------------------------
   // makeEmpty()
   // Description: clears the BSTree of all allocated nodes, freeing memory
@@ -73,16 +70,14 @@ public:
   // POST: BSTree is now empty, memory of deleted nodes freed
   void makeEmpty();
 
-
   //---------------------------------------------------------------------------
   // operator =
   // Description: sets this BSTree equal to otherBSTree
   // PRE: BSTree Exists
-  // POST: BSTree is now equal to otherBSTree, 
+  // POST: BSTree is now equal to otherBSTree,
   //       any memory of deleted nodes freed
   // ASSUMPTION: Intent is to create a SHALLOW copy of otherBSTree
-  BSTree& operator=(const BSTree &otherBSTree);
-
+  BSTree &operator=(const BSTree &otherBSTree);
 
   //---------------------------------------------------------------------------
   // operator ==
@@ -92,16 +87,14 @@ public:
   //       OR returns false if this BSTree is not equal to otherBSTree
   bool operator==(const BSTree &otherBSTree) const;
 
-
   //---------------------------------------------------------------------------
   // operator !=
   // Description: checks if this BSTree is equal to otherBSTree
-  //              calls operator == 
+  //              calls operator ==
   // PRE: BSTree Exists
   // POST: returns false if this BSTree is equal to otherBSTree
   //       OR returns true if this BSTree is not equal to otherBSTree
   bool operator!=(const BSTree &otherBSTree) const;
-
 
   //---------------------------------------------------------------------------
   // insert()
@@ -109,17 +102,17 @@ public:
   // PRE: BSTree Exists
   // POST: returns false if this BSTree already contains Node
   //       OR returns true if this BSTree successfully added Node
-  bool insert(Movie*);
+  bool insert(Movie *);
 
   //---------------------------------------------------------------------------
   // insert()
-  // Description: attempts to retrieve node from BSTree, 
+  // Description: attempts to retrieve node from BSTree,
   //              returns status of success
   // PRE: BSTree Exists
-  // POST: returns true if this BSTree contains Node, 
+  // POST: returns true if this BSTree contains Node,
   //       and Movie* & is now pointing to its location
   //       OR returns false if this BSTree does not contain node
-  bool retrieve(const Movie &, Movie* &) const;
+  bool retrieve(const Movie &, Movie *&) const;
 
   //---------------------------------------------------------------------------
   // inOrderHelper()
@@ -128,16 +121,15 @@ public:
   // POST: ostream now contains an inorder traversal of the tree
   string inOrderHelper(Node *current) const;
 
-
   //---------------------------------------------------------------------------
   // getRoot()
   // Description: returns the root of this BSTree
   // PRE: BSTree Exists
   // POST: returned the value of the root
-  Node* getRoot() const;
+  Node *getRoot() const;
 
 private:
-  Node* root;               // root of the tree
+  Node *root; // root of the tree
 
   //---------------------------------------------------------------------------
   // copyHelper
@@ -145,7 +137,7 @@ private:
   //              to the current tree
   // PRE: Memory is available for BSTree
   // POST: SHALLOW Copy of othercurrent is created in this tree
-  void copyHelper(Node* current, Node* currentOther);
+  void copyHelper(Node *current, Node *currentOther);
 
   //---------------------------------------------------------------------------
   // clear()
@@ -163,8 +155,7 @@ private:
   // PRE: current and currentOther belong to seperate BSTree
   // POST: returns true if current node and currentOther node contain
   //       identical subtrees
-  bool equalsHelper(Node* current, Node* currentOther) const;
+  bool equalsHelper(Node *current, Node *currentOther) const;
 };
 
-
-#endif //BSTREE_H
+#endif // BSTREE_H

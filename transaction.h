@@ -1,4 +1,4 @@
-/////////////////////////transactionFactory.h file  ///////////////////////////
+/////////////////////////transaction.h file  ///////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
@@ -15,35 +15,29 @@
 #include <string>
 #include <stack>
 
-
 #include "hashTable.h"
 #include "BSTree.h"
 
 //#include "transactionFactory.h"
 
-
 class Transaction {
 public:
+  Transaction();          // constructor
+  virtual ~Transaction(); // destructor
 
+  //---------------------------------------------------------------------------
+  // doTransaction()
+  // Description: function overloaded in the children classes
+  // PRE: transaction exists
+  // POST: no action is taken in the virtual doTransaction();
+  virtual bool doTransaction(HashTable &customers, BSTree &movies);
 
-    Transaction();           // constructor
-    virtual ~Transaction();             // destructor
-
-
-    //---------------------------------------------------------------------------
-    // doTransaction()
-    // Description: function overloaded in the children classes
-    // PRE: transaction exists
-    // POST: no action is taken in the virtual doTransaction();
-    virtual bool doTransaction(HashTable& customers, BSTree& movies);
-
-    //---------------------------------------------------------------------------
-    // setData()
-    // Description: sets data fields
-    // PRE: transaction
-    // POST: function is not carried out except in children classes
-    virtual bool setData(string setMovieData);
-
+  //---------------------------------------------------------------------------
+  // setData()
+  // Description: sets data fields
+  // PRE: transaction
+  // POST: function is not carried out except in children classes
+  virtual bool setData(string setMovieData);
 };
 #endif
 ;

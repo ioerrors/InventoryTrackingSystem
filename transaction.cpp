@@ -33,4 +33,6 @@ bool Transaction::doTransaction(HashTable &customers, BSTree &movies) {
 // Description: sets data fields
 // PRE: transaction
 // POST: function is not carried out except in children classes
-bool Transaction::setData(string setMovieData) { return (*this).setData(setMovieData); }
+bool Transaction::setData(string setMovieData) {
+  return (*this).setData(setMovieData);
+}

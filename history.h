@@ -16,40 +16,38 @@
 
 using namespace std;
 
-
-class History: public Transaction {
+class History : public Transaction {
 public:
-    //---------------------------------------------------------------------------
-    // History CONSTRUCTOR
-    // Description: creates an empty History
-    // PRE: Memory is available for History
-    // POST: Empty History is created
-    History();
+  //---------------------------------------------------------------------------
+  // History CONSTRUCTOR
+  // Description: creates an empty History
+  // PRE: Memory is available for History
+  // POST: Empty History is created
+  History();
 
-    //---------------------------------------------------------------------------
-    // History DESTRUCTOR
-    // Description: deallocates all memory allocated for History
-    // PRE: History exists
-    // POST: All History memory is freed
-    ~History();
-    
+  //---------------------------------------------------------------------------
+  // History DESTRUCTOR
+  // Description: deallocates all memory allocated for History
+  // PRE: History exists
+  // POST: All History memory is freed
+  ~History();
 
-    //---------------------------------------------------------------------------
-    // setData()
-    // Description: sets data field
-    // PRE: history exists, customer exists
-    // POST: movieData is ignored, 
-    //       and customerID is set to setCustomerID
-    bool setData(string setMovieData);
-    
-    //---------------------------------------------------------------------------
-    // doTransaction()
-    // Description: performs the action relevant to the correct customer
-    // PRE: customer exists, movie is in stock
-    // POST: transaction history for customer is printed
-    bool doTransaction(HashTable& customers, BSTree& movies);
-    
-private:           
-    int customerID;                 // customer responsible for the transaction
+  //---------------------------------------------------------------------------
+  // setData()
+  // Description: sets data field
+  // PRE: history exists, customer exists
+  // POST: movieData is ignored,
+  //       and customerID is set to setCustomerID
+  bool setData(string setMovieData);
+
+  //---------------------------------------------------------------------------
+  // doTransaction()
+  // Description: performs the action relevant to the correct customer
+  // PRE: customer exists, movie is in stock
+  // POST: transaction history for customer is printed
+  bool doTransaction(HashTable &customers, BSTree &movies);
+
+private:
+  int customerID; // customer responsible for the transaction
 };
 #endif

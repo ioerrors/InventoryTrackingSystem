@@ -24,8 +24,18 @@ Comedy::Comedy() {
   month = 0;
 }
 
+//-----------------------------------------------------------------------------
+// Comedy DESTRUCTOR
+// Description: deallocates all memory allocated for Comedy
+// PRE: Comedy exists
+// POST: all Comedy memory is freed
 Comedy::~Comedy() {}
 
+//-----------------------------------------------------------------------------
+// getGenre()
+// Description: returns the genre type
+// PRE: assumes genre set to return is valid
+// POST: the genre type is returned
 string Comedy::getGenre() const { return "F"; }
 
 //-----------------------------------------------------------------------------
@@ -54,6 +64,11 @@ bool Comedy::setData(string movieData) {
   return true;
 }
 
+//-----------------------------------------------------------------------------
+// operator ==
+// Description: checks if the movies are equal
+// PRE: assumes that the movies exist
+// POST: returns true if the movies are equal
 bool Comedy::operator==(const Movie &otherMovie) const {
   if (otherMovie.getGenre().compare("F") != 0) {
     return false; // genre is different
@@ -67,10 +82,22 @@ bool Comedy::operator==(const Movie &otherMovie) const {
   return true;
 }
 
+//-----------------------------------------------------------------------------
+// operator !=
+// Description: checks if the movies are not equal
+// PRE: assumes that the movies exist
+// POST: returns true if the movies are not equal
 bool Comedy::operator!=(const Movie &otherMovie) const {
   return !(*this == otherMovie);
 }
 
+//-----------------------------------------------------------------------------
+// operator >
+// Description: checks if the title and release year of LHS is greater
+//              than RHS
+// PRE: assumes that the movies exist
+// POST: returns true if the LHS movie is sorted greater than the
+//       RHS movie
 bool Comedy::operator>(const Movie &otherMovie) const {
   if (otherMovie.getGenre().compare("F") != 0) {
     return false;
@@ -86,6 +113,13 @@ bool Comedy::operator>(const Movie &otherMovie) const {
   return false; // title is less
 }
 
+//-----------------------------------------------------------------------------
+// operator <
+// Description: checks if the title and release year of LHS is less
+//              than RHS
+// PRE: assumes that the movies exist
+// POST: returns true if the LHS movie is sorted lesser than the
+//       RHS movie
 bool Comedy::operator<(const Movie &otherMovie) const {
   if (*this == otherMovie) {
     return false;

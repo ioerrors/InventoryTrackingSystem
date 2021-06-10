@@ -7,21 +7,17 @@
 #ifndef MOVIEFACTORY_H
 #define MOVIEFACTORY_H
 
-
 #include "classic.h"
 #include "comedy.h"
 #include "drama.h"
 
 //#include "transactionFactory.h"
 
-
 class MovieFactory {
 public:
+  MovieFactory();  // constructor
+  ~MovieFactory(); // destructor
 
-
-    MovieFactory();             // constructor
-    ~MovieFactory();             // destructor
-
-    Movie* getMovie(string type);
+  Movie *getMovie(string type);
 };
 #endif

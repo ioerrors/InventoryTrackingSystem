@@ -42,8 +42,8 @@ using namespace std;
 //-----------------------------------------------------------------------------
 // Classic CONSTRUCTOR
 // Description: creates an empty Classic
-// PRE: Memory is available for Classic
-// POST: Empty Classic is created
+// PRE: memory is available for Classic
+// POST: empty Classic is created
 Classic::Classic() {
   genre = "C";
   mediaType = "D";
@@ -54,56 +54,56 @@ Classic::Classic() {
   month = 0;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Classic DESTRUCTOR
 // Description: deallocates all memory allocated for Classic
 // PRE: Classic exists
-// POST: All Classic memory is freed
+// POST: all Classic memory is freed
 Classic::~Classic() {}
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getGenre()
 // Description: returns the genre type
 // PRE: assumes genre set to return is valid
 // POST: the genre type is returned
 string Classic::getGenre() const { return "C"; }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getTitle()
 // Description: returns the title
 // PRE: assumes title exist
 // POST: the title is returned
 string Classic::getTitle() const { return this->title; }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getDirector()
 // Description: returns the director name
 // PRE: assumes director name exist
 // POST: the director name is returned
 string Classic::getDirector() const { return this->director; }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getStock()
 // Description: returns the stock amount
 // PRE: assumes stock amount exist
 // POST: the stock amount is returned
 int Classic::getStock() const { return this->stock; }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getReleaseYear()
 // Description: returns the release year
 // PRE: assumes the release year exist
 // POST: the release year is returned
 int Classic::getReleaseYear() const { return this->year; }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getMonth()
 // Description: return the release month
 // PRE: assumes the release month exist
 // POST: the release month is returned
 int Classic::getMonth() const { return this->month; }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // addStock()
 // Description: adds stock when a movie is returned
 // PRE: assumes that the movie exist
@@ -117,7 +117,7 @@ bool Classic::addStock(int newStock) {
   }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // subStock()
 // Description: subs stock when a movie is borrow
 // PRE: assumes that the movie exist
@@ -132,9 +132,9 @@ bool Classic::subStock(int removeStock) {
 }
 
 // get the actors of the movie object
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getActors()
-// Description: returns the major actors in the movie 
+// Description: returns the major actors in the movie
 // PRE: assumes that one or more major actors exist
 // POST: the list of actors is returned
 set<string> Classic::getActors() { return actorsList; }
@@ -175,9 +175,9 @@ bool Classic::setData(string movieData) {
   return true;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // addActor()
-// Description: add an actor to a Classic movie with multiple 
+// Description: add an actor to a Classic movie with multiple
 //              major actors.
 // PRE: assume the movie is a Classic movie type
 // POST: the name of the major actor is added to the set
@@ -188,9 +188,9 @@ bool Classic::addActor(string actor) {
   return b > a;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // operator ==
-// Description: checks if the movies are equal 
+// Description: checks if the movies are equal
 // PRE: assumes that the movies exist
 // POST: returns true if the movies are equal
 bool Classic::operator==(const Movie &otherMovie) const {
@@ -214,7 +214,7 @@ bool Classic::operator==(const Movie &otherMovie) const {
   return false; // no shared actors, even though same release date
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // operator !=
 // Description: checks if the movies are not equal
 // PRE: assumes that the movies exist
@@ -224,9 +224,9 @@ bool Classic::operator!=(const Movie &otherMovie) const {
 }
 
 // this > otherMovie
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // operator >
-// Description: checks if the release year, then the release month, 
+// Description: checks if the release year, then the release month,
 //              then the alphabetical order of the first actor on the list
 //              is greater
 // PRE: assumes that the movies exist
@@ -259,9 +259,9 @@ bool Classic::operator>(const Movie &otherMovie) const {
 }
 
 // this < otherMovie
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // operator <
-// Description: checks if the release year, then the release month, 
+// Description: checks if the release year, then the release month,
 //              then the alphabetical order of the first actor on the list
 //              is lesser
 // PRE: assumes that the movies exist

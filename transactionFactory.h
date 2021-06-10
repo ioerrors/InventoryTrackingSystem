@@ -7,7 +7,6 @@
 #ifndef TRANSACTIONFACTORY_H
 #define TRANSACTIONFACTORY_H
 
-
 #include <cstdint>
 #include <fstream>
 #include <iomanip>
@@ -16,20 +15,17 @@
 #include <string>
 #include <stack>
 
-
 #include "history.h"
 #include "inventory.h"
 #include "return.h"
 #include "borrow.h"
 //#include "transactionFactory.h"
 
-
 class TransactionFactory {
 public:
+  TransactionFactory();  // constructor
+  ~TransactionFactory(); // destructor
 
-  TransactionFactory();              // constructor
-  ~TransactionFactory();             // destructor
-
-  Transaction* getTransaction(string type);
+  Transaction *getTransaction(string type);
 };
 #endif

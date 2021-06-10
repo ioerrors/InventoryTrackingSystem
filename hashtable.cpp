@@ -52,7 +52,7 @@ bool HashTable::getCustomer(const int hashMe, Customer *&setMe) const {
 // insert
 bool HashTable::addCustomer(Customer *&cust) {
   int hashMe = cust->getID();
-  mappy.insert({hashMe, cust});
+  mappy.insert({ hashMe, cust });
 
   /* for testing
   cout << endl << "Hash Table of Customers, after add of: " << cust->getID() <<
