@@ -32,7 +32,7 @@
 // normal sorting criteria of Release date --> Actor for Classics
 // which if positive will add to the existing actor list
 // rather than return a false negative in comparison operations
-
+//-----------------------------------------------------------------------------
 #include "classic.h"
 #include <iostream>
 #include <sstream>

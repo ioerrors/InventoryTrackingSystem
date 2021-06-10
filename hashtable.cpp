@@ -1,4 +1,4 @@
-////////////////////////////////hashTable.h file  /////////////////////////////
+////////////////////////////////hashTable.cpp file  /////////////////////////////
 //-----------------------------------------------------------------------------
 // Created by Micah Rice and Abraham Sham on 05/25/2021.
 //-----------------------------------------------------------------------------
@@ -9,7 +9,7 @@
 // Standardized and somewhat broken now
 // sha1 hashing implementations
 // it is still my favorite hashing algorithm though
-
+//-----------------------------------------------------------------------------
 #include <cstdint>
 #include <fstream>
 #include <iomanip>

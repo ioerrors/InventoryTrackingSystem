@@ -23,16 +23,42 @@
 class HashTable {
 
 public:
+  //---------------------------------------------------------------------------
+  // Hashtable CONSTRUCTOR
+  // Description: 
+  // PRE: 
+  // POST: 
   HashTable();
+
+  //---------------------------------------------------------------------------
+  // Hashtable DESTRUCTOR
+  // Description: 
+  // PRE: 
+  // POST: 
   ~HashTable(); // destructor
 
   // find
+  //---------------------------------------------------------------------------
+  // getCustomer()
+  // Description: 
+  // PRE: 
+  // POST: 
   bool getCustomer(const int cID, Customer *&) const; // get Customer
 
   // insert
+  //---------------------------------------------------------------------------
+  // addCustomer()
+  // Description: 
+  // PRE: 
+  // POST: 
   bool addCustomer(Customer *&); // add Customer
 
   // returns message digest, after padding
+  //---------------------------------------------------------------------------
+  // addCustomer()
+  // Description: 
+  // PRE: 
+  // POST: 
   string paddAndReturn();
 
 private:
