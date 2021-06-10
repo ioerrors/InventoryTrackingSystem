@@ -38,15 +38,15 @@ public:
     //---------------------------------------------------------------------------
     // Borrow DESTRUCTOR
     // Description: deallocates all memory allocated for Borrow
-    // PRE: Borrow exists
-    // POST: All Borrow memory is freed
+    // PRE: borrow exists
+    // POST: all Borrow memory is freed
     virtual ~Borrow();
     
     //---------------------------------------------------------------------------
     // setData()
     // Description: sets data fields
     // PRE: borrow exists, 
-    //      Format setMovieData = "B 2000 D F Sleepless in Seattle, 1993"   
+    //      Format setMovieData = "2000 D F Sleepless in Seattle, 1993"   
     // POST: movieData is set to setMovieData, 
     //       and customerID is set to setCustomerID
     bool setData(string setMovieData);

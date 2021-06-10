@@ -1,3 +1,14 @@
+////////////////////////////////BSTree.h file  ///////////////////////////
+//-----------------------------------------------------------------------------
+// Created by Micah Rice & Abraham Sham on 05/25/2021.
+//
+// CPP file to initiate the creation of BSTree with movies and 
+// the initiation of processing transactions.
+//
+// To test the functions of this program, like having the data 
+// printed out in specific orders, and certain error messages are
+// printed.
+//-----------------------------------------------------------------------------
 #include <iostream>
 #include <set>
 #include <sstream>

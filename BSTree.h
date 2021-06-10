@@ -5,7 +5,7 @@
 // BSTree class demonstrating data structure
 // Can search a BSTree and find items in O(log n) time.
 // No duplicates are allowed.
-
+//-----------------------------------------------------------------------------
 #ifndef BSTREE_H
 #define BSTREE_H
 
@@ -136,11 +136,7 @@ public:
   // POST: returned the value of the root
   Node* getRoot() const;
 
-
 private:
-
-
-
   Node* root;               // root of the tree
 
   //---------------------------------------------------------------------------
@@ -168,11 +164,6 @@ private:
   // POST: returns true if current node and currentOther node contain
   //       identical subtrees
   bool equalsHelper(Node* current, Node* currentOther) const;
-
-
-
-
-
 };
 
 

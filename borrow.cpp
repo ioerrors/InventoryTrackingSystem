@@ -23,13 +23,19 @@ using namespace std;
 // Borrow CONSTRUCTOR
 // Description: creates an empty Borrow
 // PRE: Memory is available for Borrow
-// POST: Empty Borrow is created
+// POST: Empty Borrow is created  
 Borrow::Borrow() {
   movieData = "";
   customerID = 0;
 }
 
+//-----------------------------------------------------------------------------
+// Borrow DESTRUCTOR
+// Description: deallocates all memory allocated for Borrow
+// PRE: borrow exists
+// POST: all Borrow memory is freed
 Borrow::~Borrow() {}
+
 //-----------------------------------------------------------------------------
 // setData()
 // Description: sets data fields
