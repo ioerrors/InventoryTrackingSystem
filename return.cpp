@@ -17,7 +17,7 @@
 
 using namespace std;
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Return CONSTRUCTOR
 // Description: creates an empty Return
 // PRE: Memory is available for Return
@@ -29,7 +29,7 @@ Return::Return() {
 
 Return::~Return() {}
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // setData()
 // Description: sets data fields
 // PRE: return exists, Format setMovieData: "5000 D C 3 1971 Ruth Gordon"
@@ -57,7 +57,7 @@ bool Return::setData(string setMovieData) {
   return true;
 }
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // display()
 // Description: displays command
 // PRE: return exists
@@ -67,7 +67,7 @@ bool Return::display() {
   return true;
 }
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // doTransaction()
 // Description: performs the action relevant to the correct
 //              movie and customer
